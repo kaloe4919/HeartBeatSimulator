@@ -1,0 +1,238 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "左目　開閉"
+		},
+		{
+			"Id": "ParamEyeLFlat",
+			"GroupId": "",
+			"Name": "左目　じと"
+		},
+		{
+			"Id": "ParamEyeROpen",
+			"GroupId": "",
+			"Name": "右目　開閉"
+		},
+		{
+			"Id": "ParamEyeRFlat",
+			"GroupId": "",
+			"Name": "右目　じと"
+		},
+		{
+			"Id": "ParamEyeSize",
+			"GroupId": "",
+			"Name": "目大きさ"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"GroupId": "",
+			"Name": "目玉 X"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"GroupId": "",
+			"Name": "目玉 Y"
+		},
+		{
+			"Id": "ParamBrowY",
+			"GroupId": "",
+			"Name": "眉　上下"
+		},
+		{
+			"Id": "ParamBrowAngle",
+			"GroupId": "",
+			"Name": "眉　角度"
+		},
+		{
+			"Id": "ParamBrowForm",
+			"GroupId": "",
+			"Name": "眉　変形"
+		},
+		{
+			"Id": "ParamMouthForm",
+			"GroupId": "",
+			"Name": "口　変形"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"GroupId": "",
+			"Name": "口　開閉"
+		},
+		{
+			"Id": "ParamCheek",
+			"GroupId": "",
+			"Name": "照れ"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "びっくり"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "汗"
+		},
+		{
+			"Id": "ParamBreathEffect",
+			"GroupId": "",
+			"Name": "息"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "ParamLeaning",
+			"GroupId": "",
+			"Name": "かがむ"
+		},
+		{
+			"Id": "ParamHeartBeat",
+			"GroupId": "",
+			"Name": "鼓動"
+		},
+		{
+			"Id": "ParamRibbon",
+			"GroupId": "",
+			"Name": "リボン揺れ"
+		},
+		{
+			"Id": "ParamHairFront",
+			"GroupId": "",
+			"Name": "髪揺れ　前"
+		},
+		{
+			"Id": "ParamHairSide",
+			"GroupId": "",
+			"Name": "髪揺れ　横"
+		},
+		{
+			"Id": "ParamHairBack",
+			"GroupId": "",
+			"Name": "髪揺れ　後"
+		},
+		{
+			"Id": "ParamArmSwitch",
+			"GroupId": "",
+			"Name": "腕切り替え"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part8",
+			"Name": "京香.psd（対応無し）"
+		},
+		{
+			"Id": "Part7",
+			"Name": "京香.psd（対応無し）"
+		},
+		{
+			"Id": "Part6",
+			"Name": "京香.psd（対応無し）"
+		},
+		{
+			"Id": "Part3",
+			"Name": "京香.psd"
+		},
+		{
+			"Id": "PartRough",
+			"Name": "ラフ"
+		},
+		{
+			"Id": "PartFace",
+			"Name": "顔"
+		},
+		{
+			"Id": "PartEye",
+			"Name": "目"
+		},
+		{
+			"Id": "PartEyeBall",
+			"Name": "目玉"
+		},
+		{
+			"Id": "PartBrow",
+			"Name": "まゆ毛"
+		},
+		{
+			"Id": "PartMouth",
+			"Name": "口"
+		},
+		{
+			"Id": "PartNose",
+			"Name": "鼻"
+		},
+		{
+			"Id": "PartEar",
+			"Name": "耳"
+		},
+		{
+			"Id": "PartHairFront",
+			"Name": "前髪"
+		},
+		{
+			"Id": "PartHairSide",
+			"Name": "横髪"
+		},
+		{
+			"Id": "PartHairBack",
+			"Name": "後ろ髪"
+		},
+		{
+			"Id": "PartNeck",
+			"Name": "首"
+		},
+		{
+			"Id": "PartBody",
+			"Name": "体"
+		},
+		{
+			"Id": "PartBackground",
+			"Name": "背景"
+		},
+		{
+			"Id": "PartSketch",
+			"Name": "[ 下絵 ]"
+		},
+		{
+			"Id": "root4",
+			"Name": "root"
+		},
+		{
+			"Id": "root3",
+			"Name": "root"
+		},
+		{
+			"Id": "root2",
+			"Name": "root"
+		},
+		{
+			"Id": "root",
+			"Name": "root"
+		},
+		{
+			"Id": "Part",
+			"Name": "左目"
+		},
+		{
+			"Id": "Part2",
+			"Name": "右目"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"ParamEyeBallX",
+			"ParamEyeBallY"
+		],
+		[
+			"ParamMouthForm",
+			"ParamMouthOpenY"
+		]
+	]
+}

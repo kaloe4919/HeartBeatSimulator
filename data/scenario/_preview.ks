@@ -1,5 +1,7 @@
-[_tb_system_call storage=system/_scene1.ks]
+[_tb_system_call storage=system/_preview.ks ]
 
+[mask time=10]
+[mask_off time=10]
 [live2d_new  model_id="Kyoka"  breath="true"  lip_time="100"  lip="true"  jname="京香"  ]
 [live2d_show  name="Kyoka"  x="0"  y="-0.03"  scale="1.1"  ]
 [bg  storage="lab1.png"  time="1000"  ]

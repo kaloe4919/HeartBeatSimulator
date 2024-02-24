@@ -1,0 +1,41 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 0.667,
+		"Fps": 60.0,
+		"Loop": true,
+		"AreBeziersRestricted": false,
+		"CurveCount": 1,
+		"TotalSegmentCount": 3,
+		"TotalPointCount": 8,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamLeaning",
+			"Segments": [
+				0,
+				20,
+				1,
+				0.083,
+				20,
+				0.167,
+				19,
+				0.25,
+				19,
+				1,
+				0.344,
+				19,
+				0.439,
+				30,
+				0.533,
+				30,
+				0,
+				0.667,
+				30
+			]
+		}
+	]
+}

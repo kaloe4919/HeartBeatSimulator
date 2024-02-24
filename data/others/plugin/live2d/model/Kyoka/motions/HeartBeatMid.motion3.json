@@ -1,0 +1,44 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 0.483,
+		"Fps": 60.0,
+		"Loop": true,
+		"AreBeziersRestricted": false,
+		"CurveCount": 1,
+		"TotalSegmentCount": 4,
+		"TotalPointCount": 9,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamHeartBeat",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.083,
+				0,
+				1,
+				0.111,
+				0,
+				0.139,
+				4,
+				0.167,
+				4,
+				1,
+				0.267,
+				4,
+				0.367,
+				0,
+				0.467,
+				0,
+				0,
+				0.483,
+				0
+			]
+		}
+	]
+}

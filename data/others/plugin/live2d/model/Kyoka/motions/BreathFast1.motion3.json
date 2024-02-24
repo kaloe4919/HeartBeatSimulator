@@ -1,0 +1,73 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 2.017,
+		"Fps": 60.0,
+		"Loop": true,
+		"AreBeziersRestricted": false,
+		"CurveCount": 2,
+		"TotalSegmentCount": 7,
+		"TotalPointCount": 19,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamBreathEffect",
+			"Segments": [
+				0,
+				0.2,
+				1,
+				0.361,
+				0.2,
+				0.722,
+				0.2,
+				1.083,
+				0.2,
+				1,
+				1.222,
+				0.2,
+				1.361,
+				0.8,
+				1.5,
+				0.8,
+				1,
+				1.667,
+				0.8,
+				1.833,
+				0.2,
+				2,
+				0.2,
+				0,
+				2.017,
+				0.2
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamBreath",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.361,
+				0,
+				0.722,
+				4,
+				1.083,
+				4,
+				1,
+				1.389,
+				4,
+				1.694,
+				0,
+				2,
+				0,
+				0,
+				2.017,
+				0
+			]
+		}
+	]
+}
