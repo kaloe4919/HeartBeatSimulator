@@ -420,7 +420,8 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
         name:"",
         mtn:"",
         no:"0",
-        force:"true"
+        force:"true",
+        isAsync:true,
     },
 
     start : function(pm) {
@@ -433,8 +434,9 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
         //モデルを追加
         _live2d_tyrano.tm.setMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
         
-        TYRANO.kag.ftag.nextOrder();
-        
+        if(!pm.isAsync) {
+            TYRANO.kag.ftag.nextOrder();
+        }
         
     }
         
