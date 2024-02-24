@@ -1,7 +1,6 @@
 {
 	"Version": 3,
 	"Meta": {
-		"Name": "BlinkDouble",
 		"Duration": 0.35,
 		"Fps": 60.0,
 		"Loop": true,

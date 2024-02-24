@@ -39,28 +39,6 @@
 					"FadeOutTime": 0
 				}
 			],
-			"Breath": [
-				{
-					"File": "motions/BreathFast1.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/BreathFast2.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/BreathMid.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/BreathMidStrong.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				}
-			],
 			"Pose": [
 				{
 					"File": "motions/HeartAttack1.motion3.json",
@@ -123,39 +101,53 @@
 					"FadeOutTime": 0
 				}
 			],
-			"HeartBeat": [
+			"Breath": [
 				{
-					"File": "motions/HeartBeatFast1.motion3.json",
+					"File": "motions/Breath1.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
 				{
-					"File": "motions/HeartBeatFast2.motion3.json",
+					"File": "motions/Breath1Strong.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
 				{
-					"File": "motions/HeartBeatFast3.motion3.json",
+					"File": "motions/Breath2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
 				{
-					"File": "motions/HeartBeatMid.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeatMidStrong.motion3.json",
+					"File": "motions/Breath3.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
 			],
-			"": [
+			"HeartBeat": [
 				{
-					"File": "motions/_test.motion3.json"
+					"File": "motions/HeartBeat1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
 				},
 				{
-					"File": "motions/_test2.motion3.json"
+					"File": "motions/HeartBeat1Strong.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat3.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat4.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
 				}
 			]
 		}
@@ -177,5 +169,6 @@
 				"ParamEyeROpen"
 			]
 		}
-	]
+	],
+	"HitAreas": []
 }
