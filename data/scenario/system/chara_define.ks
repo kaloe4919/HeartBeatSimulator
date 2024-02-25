@@ -3,4 +3,8 @@
 
 ;=========変数宣言部分 
 [iscript] 
+f['bpm']=65; 
+f['bpmMin']=60; 
+f['bpmMax']=70; 
+f['buf']=0; 
 [endscript] 
