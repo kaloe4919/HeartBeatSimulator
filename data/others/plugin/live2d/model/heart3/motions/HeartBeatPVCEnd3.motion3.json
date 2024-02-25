@@ -1,0 +1,69 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 0.217,
+		"Fps": 60.0,
+		"Loop": true,
+		"AreBeziersRestricted": false,
+		"CurveCount": 2,
+		"TotalSegmentCount": 7,
+		"TotalPointCount": 17,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "ParamBeatVentricle",
+			"Segments": [
+				0,
+				30,
+				0,
+				0.033,
+				30,
+				1,
+				0.089,
+				30,
+				0.144,
+				0,
+				0.2,
+				0,
+				0,
+				0.217,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamPurkinjeFiberLamp",
+			"Segments": [
+				0,
+				-30,
+				1,
+				0.006,
+				-30,
+				0.011,
+				0,
+				0.017,
+				0,
+				1,
+				0.072,
+				0,
+				0.128,
+				-30,
+				0.183,
+				-30,
+				1,
+				0.189,
+				-30,
+				0.194,
+				0,
+				0.2,
+				0,
+				0,
+				0.217,
+				0
+			]
+		}
+	]
+}

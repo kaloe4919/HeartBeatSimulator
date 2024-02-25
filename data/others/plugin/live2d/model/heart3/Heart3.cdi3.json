@@ -1,0 +1,137 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "角度 X"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "角度 Y"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "ParamBeatVentricle",
+			"GroupId": "",
+			"Name": "心室鼓動"
+		},
+		{
+			"Id": "ParamBeatVentricleCompression",
+			"GroupId": "",
+			"Name": "心室締付け鼓動"
+		},
+		{
+			"Id": "ParamBeatRightAtrium",
+			"GroupId": "",
+			"Name": "右心房鼓動"
+		},
+		{
+			"Id": "ParamBeatLeftAtrium",
+			"GroupId": "",
+			"Name": "左心房鼓動"
+		},
+		{
+			"Id": "ParamAVNodeLamp",
+			"GroupId": "",
+			"Name": "AVノードメーター"
+		},
+		{
+			"Id": "ParamSANodeLamp",
+			"GroupId": "",
+			"Name": "SAノードメーター"
+		},
+		{
+			"Id": "ParamPurkinjeFiberLamp",
+			"GroupId": "",
+			"Name": "心室メーター"
+		},
+		{
+			"Id": "ParamPowerLamp",
+			"GroupId": "",
+			"Name": "電源"
+		},
+		{
+			"Id": "ParamElectricalDischarge",
+			"GroupId": "",
+			"Name": "放電"
+		},
+		{
+			"Id": "ParamBackgroundAlpha",
+			"GroupId": "",
+			"Name": "背景透過"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "心臓3.psd"
+		},
+		{
+			"Id": "PartRough",
+			"Name": "ラフ"
+		},
+		{
+			"Id": "PartFace",
+			"Name": "顔"
+		},
+		{
+			"Id": "PartEye",
+			"Name": "目"
+		},
+		{
+			"Id": "PartEyeBall",
+			"Name": "目玉"
+		},
+		{
+			"Id": "PartBrow",
+			"Name": "まゆ毛"
+		},
+		{
+			"Id": "PartMouth",
+			"Name": "口"
+		},
+		{
+			"Id": "PartNose",
+			"Name": "鼻"
+		},
+		{
+			"Id": "PartEar",
+			"Name": "耳"
+		},
+		{
+			"Id": "PartHairFront",
+			"Name": "前髪"
+		},
+		{
+			"Id": "PartHairSide",
+			"Name": "横髪"
+		},
+		{
+			"Id": "PartHairBack",
+			"Name": "後ろ髪"
+		},
+		{
+			"Id": "PartNeck",
+			"Name": "首"
+		},
+		{
+			"Id": "PartBody",
+			"Name": "体"
+		},
+		{
+			"Id": "PartBackground",
+			"Name": "背景"
+		},
+		{
+			"Id": "PartSketch",
+			"Name": "[ 下絵 ]"
+		}
+	]
+}
