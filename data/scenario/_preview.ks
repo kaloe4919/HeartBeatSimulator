@@ -9,8 +9,10 @@
 [live2d_show  name="Kyoka"  x="0"  y="-0.03"  scale="1.1"  ]
 [live2d_show  name="heart3"  x="0.65"  y="-0.33"  scale="0.5"  ]
 [tb_start_tyrano_code]
-[loadjs storage="heartbeat/heartbeat.js"]
+[loadjs storage="circulatory/heartbeat.js"]
+[loadjs storage="circulatory/breath.js"]
 [heartbeat_start]
+[breath_start]
 [_tb_end_tyrano_code]
 
 [bg  storage="lab1.png"  time="1000"  ]

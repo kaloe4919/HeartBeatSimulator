@@ -75,7 +75,7 @@ function playActorBeatMotion(bpm) {
     } else if (playBpm >= 150) {
         motionConfig.no = "4";
     }
-    TYRANO.kag.ftag.master_tag.live2d_motion.start(motionConfig);
+    TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
 function playHeartBeatMotion(bpm, cond) {
@@ -99,7 +99,7 @@ function playHeartBeatMotion(bpm, cond) {
     } else if (playBpm >= 120) {
         motionConfig.no = "3";
     }
-    TYRANO.kag.ftag.master_tag.live2d_motion.start(motionConfig);
+    TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
 // Normal beat

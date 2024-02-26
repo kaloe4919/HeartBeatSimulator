@@ -442,6 +442,66 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
         
 };
 
+TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
+    
+    kag: TYRANO.kag,
+	vital : ["name","mtn"],
+    pm:{
+        name:"",
+        mtn:"",
+        no:"0",
+        force:"true",
+        isAsync:true,
+    },
+
+    start : function(pm) {
+        
+        var that = this;
+        var name = pm.name;
+
+        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+        
+        //モデルを追加
+        _live2d_tyrano.tm.setBeatMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
+        
+        if(!pm.isAsync) {
+            TYRANO.kag.ftag.nextOrder();
+        }
+        
+    }
+        
+};
+
+TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
+    
+    kag: TYRANO.kag,
+	vital : ["name","mtn"],
+    pm:{
+        name:"",
+        mtn:"",
+        no:"0",
+        force:"true",
+        isAsync:true,
+    },
+
+    start : function(pm) {
+        
+        var that = this;
+        var name = pm.name;
+
+        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+        
+        //モデルを追加
+        _live2d_tyrano.tm.setBreathMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
+        
+        if(!pm.isAsync) {
+            TYRANO.kag.ftag.nextOrder();
+        }
+        
+    }
+        
+};
+
 /*
  #[live2d_expression]
  :group
