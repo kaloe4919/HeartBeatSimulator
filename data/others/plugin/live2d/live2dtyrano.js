@@ -379,7 +379,7 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
     mtn: "",
     no: "0",
     force: "true",
-    isAsync: true,
+    isAsync: "true",
   },
 
   start: function (pm) {
@@ -391,7 +391,7 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
     //モデルを追加
     _live2d_tyrano.tm.setMotion(pm.name, pm.mtn, parseInt(pm.no), pm.force); //noを最後に渡す。
 
-    if (!pm.isAsync) {
+    if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
     }
   },
@@ -405,7 +405,7 @@ TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
     mtn: "",
     no: "0",
     force: "true",
-    isAsync: true,
+    isAsync: "true",
   },
 
   start: function (pm) {
@@ -417,7 +417,7 @@ TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
     //モデルを追加
     _live2d_tyrano.tm.setBeatMotion(pm.name, pm.mtn, parseInt(pm.no), pm.force); //noを最後に渡す。
 
-    if (!pm.isAsync) {
+    if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
     }
   },
@@ -431,7 +431,7 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
     mtn: "",
     no: "0",
     force: "true",
-    isAsync: true,
+    isAsync: "true",
   },
 
   start: function (pm) {
@@ -448,7 +448,7 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
       pm.force,
     ); //noを最後に渡す。
 
-    if (!pm.isAsync) {
+    if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
     }
   },

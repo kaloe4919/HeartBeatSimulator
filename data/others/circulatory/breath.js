@@ -1,3 +1,7 @@
+var breathStatus = {
+  rr: 20,
+};
+
 function sleep(milliseconds) {
   if (milliseconds < 200) {
     milliseconds = 200;
@@ -10,7 +14,7 @@ function playActorBreathMotion() {
     name: "Kyoka",
     mtn: "Breath",
     no: "0",
-    isAsync: true,
+    isAsync: "true",
   };
 
   TYRANO.kag.ftag.master_tag.live2d_breath_motion.start(motionConfig);
@@ -26,6 +30,24 @@ async function breath() {
   while (isDefinedRr) {
     await breathNormal();
     console.log("breath");
+
+    //Update HR Display
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "1",
+      page: "fore",
+      x: 1140,
+      y: 58,
+      vertical: "false",
+      text: `RR: ${breathStatus.rr}`,
+      size: "26",
+      color: "",
+      bold: "bold",
+      align: "left",
+      name: "RR",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
   }
 }
 

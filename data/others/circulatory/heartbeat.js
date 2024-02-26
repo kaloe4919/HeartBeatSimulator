@@ -34,7 +34,7 @@ function playBeatSound(bpm) {
     volume: heartStatus.beatVol,
     buf: seChannel.toString(),
     storage: "heartbeat/AC08_HB01" + soundFileType,
-    isAsync: true,
+    isAsync: "true",
   };
 
   if (playBpm < 50) {
@@ -61,7 +61,7 @@ function playActorBeatMotion(bpm) {
     name: "Kyoka",
     mtn: "HeartBeat",
     no: "0",
-    isAsync: true,
+    isAsync: "true",
   };
 
   if (playBpm < 50) {
@@ -85,7 +85,7 @@ function playHeartBeatMotion(bpm, cond) {
     name: "heart3",
     mtn: cond ? cond : "Normal",
     no: "0",
-    isAsync: true,
+    isAsync: "true",
   };
 
   if (playBpm < 50) {
@@ -149,6 +149,24 @@ async function heartbeat() {
     } else {
       await beatRhythmPVC();
     }
+
+    //Update HR Display
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1140,
+      y: 16,
+      vertical: "false",
+      text: `HR: ${heartStatus.bpm}`,
+      size: "26",
+      color: "",
+      bold: "bold",
+      align: "left",
+      name: "HR",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
   }
 }
 

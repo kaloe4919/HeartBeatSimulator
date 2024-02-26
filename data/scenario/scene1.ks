@@ -4,13 +4,21 @@
 [wait  time="200"  ]
 [live2d_new  model_id="heart3"  breath="false"  lip_time="100"  ]
 [wait  time="200"  ]
-[live2d_show  name="Kyoka"  x="0"  y="-0.03"  scale="1.1"  ]
-[live2d_show  name="heart3"  x="0.65"  y="-0.33"  scale="0.5"  ]
+[live2d_show  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
+[live2d_show  name="heart3"  x="0.5"  y="-0.33"  scale="0.5"  ]
+[tb_start_tyrano_code]
+[layopt layer="0" visible="true"]
+[ptext layer="0" name="HR" text="HR: --" size="26" bold="bold" x=1140 y=16]
+[layopt layer="1" visible="true"]
+[ptext layer="1" name="RR" text="RR: --" size="26" bold="bold" x=1140 y=58]
+[_tb_end_tyrano_code]
+
 [tb_start_tyrano_code]
 [loadjs storage="circulatory/heartbeat.js"]
 [loadjs storage="circulatory/breath.js"]
 [heartbeat_start]
 [breath_start]
+
 [_tb_end_tyrano_code]
 
 [bg  storage="lab1.png"  time="1000"  ]

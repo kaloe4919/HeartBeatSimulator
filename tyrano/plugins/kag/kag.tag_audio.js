@@ -12,7 +12,7 @@ tyrano.plugin.kag.tag.playbgm = {
     html5: "false",
     click: "false",
     stop: "false",
-    isAsync: true,
+    isAsync: "true",
   },
   start: function (pm) {
     var that = this;
@@ -23,7 +23,7 @@ tyrano.plugin.kag.tag.playbgm = {
           if (1 == this.kag.stat.is_skip && "se" == pm.target) {
             if ("false" == pm.stop) {
               that.kag.layer.showEventLayer();
-              if(!pm.isAsync) {
+              if (!"true" == pm.isAsync) {
                 that.kag.ftag.nextOrder();
               }
             }
@@ -46,12 +46,12 @@ tyrano.plugin.kag.tag.playbgm = {
               })
             : that.play(pm);
       else {
-        if(!pm.isAsync) {
+        if (!"true" == pm.isAsync) {
           that.kag.ftag.nextOrder();
         }
       }
     else {
-      if(!pm.isAsync) {
+      if (!"true" == pm.isAsync) {
         that.kag.ftag.nextOrder();
       }
     }
@@ -83,7 +83,7 @@ tyrano.plugin.kag.tag.playbgm = {
           : parseFloat(parseInt(this.kag.config.defaultBgmVolume) / 100);
       void 0 !== this.kag.stat.map_bgm_volume[pm.buf] &&
         (ratio = parseFloat(
-          parseInt(this.kag.stat.map_bgm_volume[pm.buf]) / 100
+          parseInt(this.kag.stat.map_bgm_volume[pm.buf]) / 100,
         ));
     } else {
       ratio =
@@ -92,7 +92,7 @@ tyrano.plugin.kag.tag.playbgm = {
           : parseFloat(parseInt(this.kag.config.defaultSeVolume) / 100);
       void 0 !== this.kag.stat.map_se_volume[pm.buf] &&
         (ratio = parseFloat(
-          parseInt(this.kag.stat.map_se_volume[pm.buf]) / 100
+          parseInt(this.kag.stat.map_se_volume[pm.buf]) / 100,
         ));
     }
     volume *= ratio;
@@ -106,8 +106,8 @@ tyrano.plugin.kag.tag.playbgm = {
         src: $.isHTTP(pm.storage)
           ? storage
           : "" != storage
-          ? "./data/" + target + "/" + storage
-          : "",
+            ? "./data/" + target + "/" + storage
+            : "",
         volume: volume,
         onend: (e) => {},
       };
@@ -138,7 +138,7 @@ tyrano.plugin.kag.tag.playbgm = {
     }
     audio_obj.once("play", function () {
       that.kag.layer.showEventLayer();
-      "false" == pm.stop && !pm.isAsync && that.kag.ftag.nextOrder();
+      "false" == pm.stop && !"true" == pm.isAsync && that.kag.ftag.nextOrder();
     });
     "" !== pm.sprite_time ? audio_obj.play("sprite_default") : audio_obj.play();
     "true" == pm.fadein && audio_obj.fade(0, volume, parseInt(pm.time));
@@ -149,13 +149,13 @@ tyrano.plugin.kag.tag.playbgm = {
           that.kag.tmp.is_vo_play = !1;
           if (1 == that.kag.tmp.is_se_play_wait) {
             that.kag.tmp.is_se_play_wait = !1;
-            if(!pm.isAsync) {
+            if (!"true" == pm.isAsync) {
               that.kag.ftag.nextOrder();
             }
           } else if (1 == that.kag.tmp.is_vo_play_wait) {
             that.kag.tmp.is_vo_play_wait = !1;
             setTimeout(function () {
-              if(!pm.isAsync) {
+              if (!"true" == pm.isAsync) {
                 that.kag.ftag.nextOrder();
               }
             }, 500);
@@ -164,7 +164,7 @@ tyrano.plugin.kag.tag.playbgm = {
           that.kag.tmp.is_bgm_play = !1;
           if (1 == that.kag.tmp.is_bgm_play_wait) {
             that.kag.tmp.is_bgm_play_wait = !1;
-            if(!pm.isAsync) {
+            if (!"true" == pm.isAsync) {
               that.kag.ftag.nextOrder();
             }
           }
@@ -262,7 +262,7 @@ tyrano.plugin.kag.tag.playse = {
     sprite_time: "",
     html5: "false",
     clear: "false",
-    isAsync: true,
+    isAsync: "true",
   },
   start: function (pm) {
     this.kag.layer.hideEventLayer();
@@ -399,7 +399,7 @@ tyrano.plugin.kag.tag.speak_on = {
     "speechSynthesis" in window
       ? (this.kag.stat.play_speak = !0)
       : console.error(
-          "*error:この環境は[speak_on]の読み上げ機能に対応していません"
+          "*error:この環境は[speak_on]の読み上げ機能に対応していません",
         );
     this.kag.ftag.nextOrder();
   },
