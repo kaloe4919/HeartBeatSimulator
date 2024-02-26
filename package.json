@@ -1,21 +1,20 @@
 {
-        "name":"tyranoscript",
-        "main":"app://./index.html",
-		"window":{
-		"title": "setting tyrano",
-    		"icon": "link.png",
-    		"toolbar": false,
-    		"frame": true,
-    		"width": 640,
-    		"height": 480,
-    		"position": "mouse",
-    		"min_width": 640,
-    		"min_height": 480
-    		
-	},
-	
-	"webkit": {
-  		"plugin": true
-  	}
-
+  "name": "heart-beat-simulator",
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier --write \"data/**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YamikarasuMk22/HeartBeatSimulator.git"
+  },
+  "author": "YamikarasuMk22",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YamikarasuMk22/HeartBeatSimulator/issues"
+  },
+  "homepage": "https://github.com/YamikarasuMk22/HeartBeatSimulator#readme",
+  "dependencies": {
+    "prettier": "3.2.5"
+  }
 }

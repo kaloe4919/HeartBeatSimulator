@@ -1,6 +1,6 @@
 var _live2d_tyrano = {
-    "tm":{},
-    "layer":"0"
+  tm: {},
+  layer: "0",
 };
 
 /*
@@ -30,132 +30,119 @@ var _live2d_tyrano = {
  #[end]
 */
 
-
 TYRANO.kag.ftag.master_tag.live2d_new = {
-    
-    kag: TYRANO.kag,
-	vital : ["model_id"],
-    	
-    pm : {
+  kag: TYRANO.kag,
+  vital: ["model_id"],
 
-        name:"",
-        model_id:"",
-        page:"fore",
+  pm: {
+    name: "",
+    model_id: "",
+    page: "fore",
 
-        width:"",
-        height:"",
-        
-        idle:"Idle",
+    width: "",
+    height: "",
 
-        x:"0",
-        y:"0",
-        scale:"1",
+    idle: "Idle",
 
-        visible:"false",
+    x: "0",
+    y: "0",
+    scale: "1",
 
-        lip:"false",
-        lip_time:"100",
-        lip_value:"0",
-        jname:"none", //キャラクターの名前を指定できます。
+    visible: "false",
 
-        breath:"true", //自然な動作になるように、首振りがはいります。
+    lip: "false",
+    lip_time: "100",
+    lip_value: "0",
+    jname: "none", //キャラクターの名前を指定できます。
 
-        next:"true"
-        
-    },
+    breath: "true", //自然な動作になるように、首振りがはいります。
 
-    start : function(pm) {
-        
-        var that = this;
+    next: "true",
+  },
 
-        var canvas_id = "live2d_canvas_tyrano";
+  start: function (pm) {
+    var that = this;
 
-        //nameを省略した場合はmodel_idがnameになる。
-        if(pm.name==""){
-            pm.name=pm.model_id;
-        }
+    var canvas_id = "live2d_canvas_tyrano";
 
-        //ステータスにモデル情報を配置する。
-        if(!TYRANO.kag.stat.live2d_models){
-            TYRANO.kag.stat.live2d_models={};
-        }
-
-        //Live2D一番最初の実行
-        var layer = _live2d_tyrano.layer;
-        
-        if($("#live2d_canvas_tyrano").length==0){
-            
-            var j_canvas = $('<canvas id="'+canvas_id+'" class="'+pm.name+' live2d_model live2d_canvas_tyrano"></canvas>');
-            j_canvas.css("position","absolute");
-            
-            if(pm.width==""){
-                pm.width = TYRANO.kag.config.scWidth;
-            }
-            
-            if(pm.height==""){
-                pm.height = TYRANO.kag.config.scHeight;
-            }
-            
-            j_canvas.attr("width",pm.width);
-            j_canvas.attr("height",pm.height);
-
-            var target_layer = TYRANO.kag.layer.getLayer(layer,pm.page);
-            target_layer.show();
-            target_layer.append(j_canvas);
-            
-        }
-
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //lipの設定
-        if(pm.lip=="true"){
-            
-            (function(pm){
-                var lip_id = setInterval(function(){
-                    //console.log()
-                    //lipを更新
-                    //該当キャラが喋っているときだけ、口を動かす。
-                    if(TYRANO.kag.stat.is_adding_text){
-                        
-                        var jname = $("." + TYRANO.kag.stat.chara_ptext).html();
-                        if(jname==pm.jname){
-                            //該当キャラの場合だけ口を動かせ
-                            var a = (Math.floor( Math.random() * 101 ))/100 ;
-                            _live2d_tyrano.tm.setLipValue(pm.name,a);
-                        }
-
-                    }else{
-                        _live2d_tyrano.tm.setLipValue(pm.name,0);
-                    }
-
-                },parseInt(pm.lip_time));
-                pm.lip_id = lip_id; 
-            })(pm);
-
-        }
-
-
-        TYRANO.kag.stat.live2d_models[pm.name] = pm;
-        
-        //読み込み完了しないと次へはない。
-        pm.onFinishLoad = function(){
-            if(pm.next=="true"){
-                TYRANO.kag.ftag.nextOrder();
-            }
-        };
-
-        
-        //モデルを追加
-        _live2d_tyrano.tm.addModel(pm);
-
-        return;
-        
-        
-        
+    //nameを省略した場合はmodel_idがnameになる。
+    if (pm.name == "") {
+      pm.name = pm.model_id;
     }
-        
-};
 
+    //ステータスにモデル情報を配置する。
+    if (!TYRANO.kag.stat.live2d_models) {
+      TYRANO.kag.stat.live2d_models = {};
+    }
+
+    //Live2D一番最初の実行
+    var layer = _live2d_tyrano.layer;
+
+    if ($("#live2d_canvas_tyrano").length == 0) {
+      var j_canvas = $(
+        '<canvas id="' +
+          canvas_id +
+          '" class="' +
+          pm.name +
+          ' live2d_model live2d_canvas_tyrano"></canvas>',
+      );
+      j_canvas.css("position", "absolute");
+
+      if (pm.width == "") {
+        pm.width = TYRANO.kag.config.scWidth;
+      }
+
+      if (pm.height == "") {
+        pm.height = TYRANO.kag.config.scHeight;
+      }
+
+      j_canvas.attr("width", pm.width);
+      j_canvas.attr("height", pm.height);
+
+      var target_layer = TYRANO.kag.layer.getLayer(layer, pm.page);
+      target_layer.show();
+      target_layer.append(j_canvas);
+    }
+
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //lipの設定
+    if (pm.lip == "true") {
+      (function (pm) {
+        var lip_id = setInterval(function () {
+          //console.log()
+          //lipを更新
+          //該当キャラが喋っているときだけ、口を動かす。
+          if (TYRANO.kag.stat.is_adding_text) {
+            var jname = $("." + TYRANO.kag.stat.chara_ptext).html();
+            if (jname == pm.jname) {
+              //該当キャラの場合だけ口を動かせ
+              var a = Math.floor(Math.random() * 101) / 100;
+              _live2d_tyrano.tm.setLipValue(pm.name, a);
+            }
+          } else {
+            _live2d_tyrano.tm.setLipValue(pm.name, 0);
+          }
+        }, parseInt(pm.lip_time));
+        pm.lip_id = lip_id;
+      })(pm);
+    }
+
+    TYRANO.kag.stat.live2d_models[pm.name] = pm;
+
+    //読み込み完了しないと次へはない。
+    pm.onFinishLoad = function () {
+      if (pm.next == "true") {
+        TYRANO.kag.ftag.nextOrder();
+      }
+    };
+
+    //モデルを追加
+    _live2d_tyrano.tm.addModel(pm);
+
+    return;
+  },
+};
 
 /*
  #[live2d_show]
@@ -178,46 +165,37 @@ TYRANO.kag.ftag.master_tag.live2d_new = {
  #[end]
 */
 
-
 TYRANO.kag.ftag.master_tag.live2d_show = {
-    
-    kag: TYRANO.kag,
-	vital : ["name"],
-    pm:{
-
-        name:"",
-        /*
+  kag: TYRANO.kag,
+  vital: ["name"],
+  pm: {
+    name: "",
+    /*
         //これは宣言しないけど、つかえるぞい。
         x:"1",
         y:"1",
         scale:"2"
         */
 
-        next:"true"
-        
-    },
+    next: "true",
+  },
 
-    start : function(pm) {
-        
-        var that = this;
+  start: function (pm) {
+    var that = this;
 
-        var name = pm.name;
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        pm.visible = "true";
-        
-        var new_pm = _live2d_tyrano.tm.updateModel(pm);
+    var name = pm.name;
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    pm.visible = "true";
 
-        TYRANO.kag.stat.live2d_models[pm.name] = new_pm;
-        
-        
-        if(pm.next=="true"){
-            TYRANO.kag.ftag.nextOrder();
-        }
+    var new_pm = _live2d_tyrano.tm.updateModel(pm);
 
+    TYRANO.kag.stat.live2d_models[pm.name] = new_pm;
+
+    if (pm.next == "true") {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+  },
 };
-
 
 /*
  #[live2d_mod]
@@ -243,43 +221,35 @@ TYRANO.kag.ftag.master_tag.live2d_show = {
 
 */
 
-
 TYRANO.kag.ftag.master_tag.live2d_mod = {
-    
-    kag: TYRANO.kag,
-	vital : ["name"],
-    pm:{
-
-        name:"",
-        /*
+  kag: TYRANO.kag,
+  vital: ["name"],
+  pm: {
+    name: "",
+    /*
         //これは宣言しないけど、つかえるぞい。
         x:"1",
         y:"1",
         scale:"2"
         */
 
-        next:"true"
-        
-    },
+    next: "true",
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        var new_pm = _live2d_tyrano.tm.updateModel(pm);
+  start: function (pm) {
+    var that = this;
 
-        TYRANO.kag.stat.live2d_models[pm.name] = new_pm;
-        
-        if(pm.next=="true"){
-            TYRANO.kag.ftag.nextOrder();
-        }
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
 
+    var new_pm = _live2d_tyrano.tm.updateModel(pm);
+
+    TYRANO.kag.stat.live2d_models[pm.name] = new_pm;
+
+    if (pm.next == "true") {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+  },
 };
-
 
 /*
  #[live2d_delete_all]
@@ -302,44 +272,37 @@ TYRANO.kag.ftag.master_tag.live2d_mod = {
 */
 
 TYRANO.kag.ftag.master_tag.live2d_delete_all = {
-    
-    kag: TYRANO.kag,
-	vital : [],
-    pm:{
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {
+    next: "true",
+  },
 
-        next:"true"
-        
-    },
+  start: function (pm) {
+    var that = this;
 
-    start : function(pm) {
-        
-        var that = this;
-        
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //リップシンクのクリア
-        var models = TYRANO.kag.stat.live2d_models;
-        for(key in models){
-            var _pm = models[key];
-            clearInterval(_pm.lip_id);
-        }
-        
-        //モデルを削除
-        _live2d_tyrano.tm.deleteAllModel();
-        TYRANO.kag.stat.live2d_models={};
-        
-        $("#live2d_canvas_tyrano").remove();
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
 
-        tyranolive2dplugin.releaseTyranoManager();
-        
-        if(pm.next=="true"){
-            TYRANO.kag.ftag.nextOrder();
-        }
-
+    //リップシンクのクリア
+    var models = TYRANO.kag.stat.live2d_models;
+    for (key in models) {
+      var _pm = models[key];
+      clearInterval(_pm.lip_id);
     }
-        
-};
 
+    //モデルを削除
+    _live2d_tyrano.tm.deleteAllModel();
+    TYRANO.kag.stat.live2d_models = {};
+
+    $("#live2d_canvas_tyrano").remove();
+
+    tyranolive2dplugin.releaseTyranoManager();
+
+    if (pm.next == "true") {
+      TYRANO.kag.ftag.nextOrder();
+    }
+  },
+};
 
 /*
  #[live2d_hide]
@@ -365,27 +328,23 @@ TYRANO.kag.ftag.master_tag.live2d_delete_all = {
 */
 
 TYRANO.kag.ftag.master_tag.live2d_hide = {
-    
-    kag: TYRANO.kag,
-	vital : ["name"],
-    pm:{
-        name:"",
-    },
+  kag: TYRANO.kag,
+  vital: ["name"],
+  pm: {
+    name: "",
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        
-        var name = pm.name;
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        pm.visible = "false";
-        _live2d_tyrano.tm.updateModel(pm);
+  start: function (pm) {
+    var that = this;
 
-        TYRANO.kag.ftag.nextOrder();
-        
-    }
-        
+    var name = pm.name;
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    pm.visible = "false";
+    _live2d_tyrano.tm.updateModel(pm);
+
+    TYRANO.kag.ftag.nextOrder();
+  },
 };
 
 /*
@@ -413,93 +372,86 @@ TYRANO.kag.ftag.master_tag.live2d_hide = {
 
 //live2d_motion
 TYRANO.kag.ftag.master_tag.live2d_motion = {
-    
-    kag: TYRANO.kag,
-	vital : ["name","mtn"],
-    pm:{
-        name:"",
-        mtn:"",
-        no:"0",
-        force:"true",
-        isAsync:true,
-    },
+  kag: TYRANO.kag,
+  vital: ["name", "mtn"],
+  pm: {
+    name: "",
+    mtn: "",
+    no: "0",
+    force: "true",
+    isAsync: true,
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        var name = pm.name;
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
 
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //モデルを追加
-        _live2d_tyrano.tm.setMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
-        
-        if(!pm.isAsync) {
-            TYRANO.kag.ftag.nextOrder();
-        }
-        
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //モデルを追加
+    _live2d_tyrano.tm.setMotion(pm.name, pm.mtn, parseInt(pm.no), pm.force); //noを最後に渡す。
+
+    if (!pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+  },
 };
 
 TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
-    
-    kag: TYRANO.kag,
-	vital : ["name","mtn"],
-    pm:{
-        name:"",
-        mtn:"",
-        no:"0",
-        force:"true",
-        isAsync:true,
-    },
+  kag: TYRANO.kag,
+  vital: ["name", "mtn"],
+  pm: {
+    name: "",
+    mtn: "",
+    no: "0",
+    force: "true",
+    isAsync: true,
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        var name = pm.name;
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
 
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //モデルを追加
-        _live2d_tyrano.tm.setBeatMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
-        
-        if(!pm.isAsync) {
-            TYRANO.kag.ftag.nextOrder();
-        }
-        
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //モデルを追加
+    _live2d_tyrano.tm.setBeatMotion(pm.name, pm.mtn, parseInt(pm.no), pm.force); //noを最後に渡す。
+
+    if (!pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+  },
 };
 
 TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
-    
-    kag: TYRANO.kag,
-	vital : ["name","mtn"],
-    pm:{
-        name:"",
-        mtn:"",
-        no:"0",
-        force:"true",
-        isAsync:true,
-    },
+  kag: TYRANO.kag,
+  vital: ["name", "mtn"],
+  pm: {
+    name: "",
+    mtn: "",
+    no: "0",
+    force: "true",
+    isAsync: true,
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        var name = pm.name;
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
 
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //モデルを追加
-        _live2d_tyrano.tm.setBreathMotion(pm.name,pm.mtn,parseInt(pm.no),pm.force); //noを最後に渡す。
-        
-        if(!pm.isAsync) {
-            TYRANO.kag.ftag.nextOrder();
-        }
-        
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //モデルを追加
+    _live2d_tyrano.tm.setBreathMotion(
+      pm.name,
+      pm.mtn,
+      parseInt(pm.no),
+      pm.force,
+    ); //noを最後に渡す。
+
+    if (!pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+  },
 };
 
 /*
@@ -525,39 +477,32 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
 */
 
 TYRANO.kag.ftag.master_tag.live2d_expression = {
-    
-    kag: TYRANO.kag,
-	vital : ["name","expression"],
-    pm:{
-        name:"",
-        expression:"",
-        next:"true"
-        
-    },
+  kag: TYRANO.kag,
+  vital: ["name", "expression"],
+  pm: {
+    name: "",
+    expression: "",
+    next: "true",
+  },
 
-    start : function(pm) {
-        
-        var that = this;
-        var name = pm.name;
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
 
-        _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
-        
-        //表情
-        TYRANO.kag.stat.live2d_models[pm.name]["expression"] = pm.expression;
-        
-        //モデルを追加
-        _live2d_tyrano.tm.setExpression(pm.name,pm.expression); //noを最後に渡す。
-        
-        if(pm.next=="true"){
-            TYRANO.kag.ftag.nextOrder();
-        }
-        //canvas.style.opacity = 1;  
-        
-        
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //表情
+    TYRANO.kag.stat.live2d_models[pm.name]["expression"] = pm.expression;
+
+    //モデルを追加
+    _live2d_tyrano.tm.setExpression(pm.name, pm.expression); //noを最後に渡す。
+
+    if (pm.next == "true") {
+      TYRANO.kag.ftag.nextOrder();
     }
-        
+    //canvas.style.opacity = 1;
+  },
 };
-
 
 /*
  #[live2d_restore]
@@ -578,63 +523,53 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
 */
 
 TYRANO.kag.ftag.master_tag.live2d_restore = {
-    
-    kag: TYRANO.kag,
-	vital : [],
-    pm:{
-        
-    },
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
 
-    start : function(pm) {
+  start: function (pm) {
+    //モデル
+    var models = $.extend({}, TYRANO.kag.stat.live2d_models);
 
-        //モデル
-        var models = $.extend({},TYRANO.kag.stat.live2d_models);
-
-        if(Object.keys(models).length <=0){
-            TYRANO.kag.ftag.nextOrder();
-            return;
-        }
-
-        TYRANO.kag.stat.live2d_models = {};
-        TYRANO.kag.ftag.startTag("live2d_delete_all",{next:"false"});
-
-        for(key in models){
-
-            var pm = models[key];
-            pm.next="false";
-            TYRANO.kag.ftag.startTag("live2d_new",pm);
-            
-        }
-       
-        for(key in models){
-
-            var pm = models[key];
-            
-            (function(pm){
-
-                if(pm.expression){
-                    pm.next="false";
-                    setTimeout(function(){
-                        TYRANO.kag.ftag.startTag("live2d_expression",pm);
-                    },500);
-                }
-
-            })(pm);
-
-        }
-
-        //fadein fadeout の復元
-        if(typeof TYRANO.kag.stat.live2d_canvas_visible == "undefined" || TYRANO.kag.stat.live2d_canvas_visible=="on"){
-            $("#live2d_canvas_tyrano").css("opacity",1);
-        }else{
-            $("#live2d_canvas_tyrano").css("opacity",0);
-        }
-        
-
-        TYRANO.kag.ftag.nextOrder();
-        
+    if (Object.keys(models).length <= 0) {
+      TYRANO.kag.ftag.nextOrder();
+      return;
     }
-        
+
+    TYRANO.kag.stat.live2d_models = {};
+    TYRANO.kag.ftag.startTag("live2d_delete_all", { next: "false" });
+
+    for (key in models) {
+      var pm = models[key];
+      pm.next = "false";
+      TYRANO.kag.ftag.startTag("live2d_new", pm);
+    }
+
+    for (key in models) {
+      var pm = models[key];
+
+      (function (pm) {
+        if (pm.expression) {
+          pm.next = "false";
+          setTimeout(function () {
+            TYRANO.kag.ftag.startTag("live2d_expression", pm);
+          }, 500);
+        }
+      })(pm);
+    }
+
+    //fadein fadeout の復元
+    if (
+      typeof TYRANO.kag.stat.live2d_canvas_visible == "undefined" ||
+      TYRANO.kag.stat.live2d_canvas_visible == "on"
+    ) {
+      $("#live2d_canvas_tyrano").css("opacity", 1);
+    } else {
+      $("#live2d_canvas_tyrano").css("opacity", 0);
+    }
+
+    TYRANO.kag.ftag.nextOrder();
+  },
 };
 
 /*
@@ -659,47 +594,42 @@ TYRANO.kag.ftag.master_tag.live2d_restore = {
 
 */
 TYRANO.kag.ftag.master_tag.live2d_fadein = {
-    
-    kag: TYRANO.kag,
-	vital : [],
-    pm:{
-        time:"1000",
-        wait:"true"
-    },
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {
+    time: "1000",
+    wait: "true",
+  },
 
-    start : function(pm) {
-
-        if(pm.time=="0"){
-            pm.time="10";
-        }
-
-        var j_canvas = $("#live2d_canvas_tyrano");
-        if(j_canvas.length==0){
-            TYRANO.kag.ftag.nextOrder();
-            return;
-        }
-
-        j_canvas.animate(
-            {
-                "opacity":1
-            },
-            parseInt(pm.time),
-            function(){
-
-                if(pm.wait=="true"){
-                    TYRANO.kag.ftag.nextOrder();
-                }
-            }
-        );
-
-        if(pm.wait=="false"){
-            TYRANO.kag.ftag.nextOrder();
-        }
-                
-        TYRANO.kag.stat.live2d_canvas_visible = "on";
-        
+  start: function (pm) {
+    if (pm.time == "0") {
+      pm.time = "10";
     }
-        
+
+    var j_canvas = $("#live2d_canvas_tyrano");
+    if (j_canvas.length == 0) {
+      TYRANO.kag.ftag.nextOrder();
+      return;
+    }
+
+    j_canvas.animate(
+      {
+        opacity: 1,
+      },
+      parseInt(pm.time),
+      function () {
+        if (pm.wait == "true") {
+          TYRANO.kag.ftag.nextOrder();
+        }
+      },
+    );
+
+    if (pm.wait == "false") {
+      TYRANO.kag.ftag.nextOrder();
+    }
+
+    TYRANO.kag.stat.live2d_canvas_visible = "on";
+  },
 };
 
 /*
@@ -723,50 +653,40 @@ TYRANO.kag.ftag.master_tag.live2d_fadein = {
 */
 
 TYRANO.kag.ftag.master_tag.live2d_fadeout = {
-    
-    kag: TYRANO.kag,
-	vital : [],
-    pm:{
-        time:"1000",
-        wait:"true"
-    },
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {
+    time: "1000",
+    wait: "true",
+  },
 
-    start : function(pm) {
-
-        if(pm.time=="0"){
-            pm.time="10";
-        }
-
-        var j_canvas = $("#live2d_canvas_tyrano");
-        if(j_canvas.length==0){
-            TYRANO.kag.ftag.nextOrder();
-            return;
-        }
-
-        j_canvas.animate(
-            {
-                "opacity":0
-            },
-            parseInt(pm.time),
-            function(){
-
-                if(pm.wait=="true"){
-                    TYRANO.kag.ftag.nextOrder();
-                }
-            }
-        );
-
-        if(pm.wait=="false"){
-            TYRANO.kag.ftag.nextOrder();
-        }
-                
-        TYRANO.kag.stat.live2d_canvas_visible = "off";
-        
+  start: function (pm) {
+    if (pm.time == "0") {
+      pm.time = "10";
     }
-        
+
+    var j_canvas = $("#live2d_canvas_tyrano");
+    if (j_canvas.length == 0) {
+      TYRANO.kag.ftag.nextOrder();
+      return;
+    }
+
+    j_canvas.animate(
+      {
+        opacity: 0,
+      },
+      parseInt(pm.time),
+      function () {
+        if (pm.wait == "true") {
+          TYRANO.kag.ftag.nextOrder();
+        }
+      },
+    );
+
+    if (pm.wait == "false") {
+      TYRANO.kag.ftag.nextOrder();
+    }
+
+    TYRANO.kag.stat.live2d_canvas_visible = "off";
+  },
 };
-
-
-
-
-

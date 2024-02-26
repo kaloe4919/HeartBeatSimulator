@@ -31,7 +31,7 @@
             n,
             function (e) {
               return t[e];
-            }.bind(null, n)
+            }.bind(null, n),
           );
       return r;
     }),
@@ -140,7 +140,7 @@
                 r(
                   e.replace(/\{(\d+)\}/g, function (t, e) {
                     return i[e];
-                  })
+                  }),
                 );
             }
           }),
@@ -311,7 +311,7 @@
             (t.prototype.pushBack = function (e) {
               this._size >= this._capacity &&
                 this.prepareCapacity(
-                  0 == this._capacity ? t.s_defaultSize : 2 * this._capacity
+                  0 == this._capacity ? t.s_defaultSize : 2 * this._capacity,
                 ),
                 (this._ptr[this._size++] = e);
             }),
@@ -492,7 +492,7 @@
           }),
           (t.prototype.getValueByIndex = function (e) {
             return t.errorValue.setErrorNotForClientCall(
-              "Error: type mismatch"
+              "Error: type mismatch",
             );
           }),
           (t.prototype.getValueByString = function (e) {
@@ -933,14 +933,14 @@
           (i.prototype.getValueByIndex = function (t) {
             if (t < 0 || this._array.getSize() <= t)
               return e.errorValue.setErrorNotForClientCall(
-                "Error: index out of bounds"
+                "Error: index out of bounds",
               );
             var i = this._array.at(t);
             return null == i ? e.nullValue : i;
           }),
           (i.prototype.getValueByString = function (t) {
             return e.errorValue.setErrorNotForClientCall(
-              "Error: type mismatch"
+              "Error: type mismatch",
             );
           }),
           (i.prototype.getString = function (t, e) {
@@ -1000,7 +1000,7 @@
           }),
           (i.prototype.getValueByIndex = function (t) {
             return e.errorValue.setErrorNotForClientCall(
-              "Error: type mismatch"
+              "Error: type mismatch",
             );
           }),
           (i.prototype.getString = function (t, e) {
@@ -1053,15 +1053,15 @@
             return "string" == typeof e
               ? this._id.isEqual(e)
               : e instanceof B
-              ? this._id.isEqual(e.s)
-              : e instanceof t && this._id.isEqual(e._id.s);
+                ? this._id.isEqual(e.s)
+                : e instanceof t && this._id.isEqual(e._id.s);
           }),
           (t.prototype.isNotEqual = function (e) {
             return "string" == typeof e
               ? !this._id.isEqual(e)
               : e instanceof B
-              ? !this._id.isEqual(e.s)
-              : e instanceof t && !this._id.isEqual(e._id.s);
+                ? !this._id.isEqual(e.s)
+                : e instanceof t && !this._id.isEqual(e._id.s);
           }),
           t
         );
@@ -1091,8 +1091,8 @@
             return "string" != typeof t
               ? this.registerId(t.s)
               : null != (e = this.findId(t))
-              ? e
-              : ((e = new M(t)), this._ids.pushBack(e), e);
+                ? e
+                : ((e = new M(t)), this._ids.pushBack(e), e);
           }),
           (t.prototype.getId = function (t) {
             return this.registerId(t);
@@ -1367,7 +1367,7 @@
                 ("00" + ((4278190080 & i) >> 24)).slice(-2),
                 ("00" + n).slice(-2),
                 ("0000" + a).slice(-4),
-                s
+                s,
               );
             }
             return o("CubismFramework.startUp() is complete."), e;
@@ -1380,7 +1380,7 @@
               e
                 ? i
                   ? a(
-                      "CubismFramework.initialize() skipped, already initialized."
+                      "CubismFramework.initialize() skipped, already initialized.",
                     )
                   : (T.staticInitializeNotForClientCall(),
                     (n = new E()),
@@ -1744,14 +1744,14 @@
                 e.bufferData(
                   e.ARRAY_BUFFER,
                   new Float32Array(this._uvArray),
-                  e.STATIC_DRAW
+                  e.STATIC_DRAW,
                 ),
                 e.vertexAttribPointer(this._uvLocation, 2, e.FLOAT, !1, 0, 0),
                 e.bindBuffer(e.ARRAY_BUFFER, this._vertexBuffer),
                 e.bufferData(
                   e.ARRAY_BUFFER,
                   new Float32Array(this._positionArray),
-                  e.STATIC_DRAW
+                  e.STATIC_DRAW,
                 ),
                 e.vertexAttribPointer(
                   this._positionLocation,
@@ -1759,20 +1759,20 @@
                   e.FLOAT,
                   !1,
                   0,
-                  0
+                  0,
                 ),
                 e.bindBuffer(e.ELEMENT_ARRAY_BUFFER, this._indexBuffer),
                 e.bufferData(
                   e.ELEMENT_ARRAY_BUFFER,
                   new Uint16Array(this._indexArray),
-                  e.DYNAMIC_DRAW
+                  e.DYNAMIC_DRAW,
                 ),
                 e.bindTexture(e.TEXTURE_2D, this._texture),
                 e.drawElements(
                   e.TRIANGLES,
                   this._indexArray.length,
                   e.UNSIGNED_SHORT,
-                  0
+                  0,
                 );
             }
           }),
@@ -1825,7 +1825,7 @@
                 k.ViewLogicalMaxLeft,
                 k.ViewLogicalMaxRight,
                 k.ViewLogicalMaxBottom,
-                k.ViewLogicalMaxTop
+                k.ViewLogicalMaxTop,
               );
           }),
           (t.prototype.release = function () {
@@ -1902,7 +1902,7 @@
             console.log(
               t.replace(/\{(\d+)\}/g, function (t, i) {
                 return e[i];
-              })
+              }),
             );
           }),
           (t.printMessage = function (t) {
@@ -1945,7 +1945,7 @@
                   r.texParameteri(
                     r.TEXTURE_2D,
                     r.TEXTURE_MIN_FILTER,
-                    r.LINEAR_MIPMAP_LINEAR
+                    r.LINEAR_MIPMAP_LINEAR,
                   ),
                   r.texParameteri(r.TEXTURE_2D, r.TEXTURE_MAG_FILTER, r.LINEAR),
                   r.texImage2D(
@@ -1954,7 +1954,7 @@
                     r.RGBA,
                     r.RGBA,
                     r.UNSIGNED_BYTE,
-                    n
+                    n,
                   ),
                   r.generateMipmap(r.TEXTURE_2D),
                   r.bindTexture(r.TEXTURE_2D, o);
@@ -2034,7 +2034,7 @@
           }),
           (t.prototype.getDistanceWith = function (t) {
             return Math.sqrt(
-              (this.x - t.x) * (this.x - t.x) + (this.y - t.y) * (this.y - t.y)
+              (this.x - t.x) * (this.x - t.x) + (this.y - t.y) * (this.y - t.y),
             );
           }),
           (t.prototype.dot = function (t) {
@@ -2157,12 +2157,12 @@
                 (0 == this._fadeInSeconds
                   ? 1
                   : et.getEasingSine(
-                      (i - e.getFadeInStartTime()) / this._fadeInSeconds
+                      (i - e.getFadeInStartTime()) / this._fadeInSeconds,
                     )) *
                 (0 == this._fadeOutSeconds || e.getEndTime() < 0
                   ? 1
                   : et.getEasingSine(
-                      (e.getEndTime() - i) / this._fadeOutSeconds
+                      (e.getEndTime() - i) / this._fadeOutSeconds,
                     ))),
                 e.setState(i, n),
                 d(0 <= n && n <= 1),
@@ -2401,7 +2401,7 @@
                   for (
                     var a = o.getFiredEvent(
                         n.getLastCheckEventTime() - n.getStartTime(),
-                        e - n.getStartTime()
+                        e - n.getStartTime(),
                       ),
                       s = 0;
                     s < a.getSize();
@@ -2484,7 +2484,7 @@
             var r = t.prototype.doUpdateMotion.call(
               this,
               e,
-              this._userTimeSeconds
+              this._userTimeSeconds,
             );
             return this.isFinished() && (this._currentPriority = 0), r;
           }),
@@ -2533,7 +2533,7 @@
                   (this._faceVY += u);
                 var h = 0.5 * (pt.sqrt(i * i + 16 * i * o - 8 * i * o) - i),
                   p = pt.sqrt(
-                    this._faceVX * this._faceVX + this._faceVY * this._faceVY
+                    this._faceVX * this._faceVX + this._faceVY * this._faceVY,
                   );
                 p > h && ((this._faceVX *= h / p), (this._faceVY *= h / p)),
                   (this._faceX += this._faceVX),
@@ -2650,18 +2650,18 @@
               "x" == i
                 ? this.setX(r)
                 : "y" == i
-                ? this.setY(r)
-                : "center_x" == i
-                ? this.centerX(r)
-                : "center_y" == i
-                ? this.centerY(r)
-                : "top" == i
-                ? this.top(r)
-                : "bottom" == i
-                ? this.bottom(r)
-                : "left" == i
-                ? this.left(r)
-                : "right" == i && this.right(r);
+                  ? this.setY(r)
+                  : "center_x" == i
+                    ? this.centerX(r)
+                    : "center_y" == i
+                      ? this.centerY(r)
+                      : "top" == i
+                        ? this.top(r)
+                        : "bottom" == i
+                          ? this.bottom(r)
+                          : "left" == i
+                            ? this.left(r)
+                            : "right" == i && this.right(r);
             }
           }),
           e
@@ -2798,7 +2798,7 @@
                     1 == i
                       ? e
                       : this._notExistParameterValues.getValue(t) * (1 - i) +
-                          e * i
+                          e * i,
                   )
                 : (d(0 <= t && t < this.getParameterCount()),
                   this._model.parameters.maximumValues[t] < e &&
@@ -2820,7 +2820,7 @@
             void 0 === i && (i = 1),
               this.setParameterValueByIndex(
                 t,
-                this.getParameterValueByIndex(t) + e * i
+                this.getParameterValueByIndex(t) + e * i,
               );
           }),
           (t.prototype.addParameterValueById = function (t, e, i) {
@@ -2837,7 +2837,7 @@
             void 0 === i && (i = 1),
               this.setParameterValueByIndex(
                 t,
-                this.getParameterValueByIndex(t) * (1 + (e - 1) * i)
+                this.getParameterValueByIndex(t) * (1 + (e - 1) * i),
               );
           }),
           (t.prototype.getDrawableIndex = function (t) {
@@ -2862,7 +2862,7 @@
             function (t) {
               var e = this._model.drawables.dynamicFlags;
               return Live2DCubismCore.Utils.hasVertexPositionsDidChangeBit(
-                e[t]
+                e[t],
               );
             }),
           (t.prototype.getDrawableVertexIndexCount = function (t) {
@@ -2895,8 +2895,8 @@
             return Live2DCubismCore.Utils.hasBlendAdditiveBit(e[t])
               ? ft.CubismBlendMode_Additive
               : Live2DCubismCore.Utils.hasBlendMultiplicativeBit(e[t])
-              ? ft.CubismBlendMode_Multiplicative
-              : ft.CubismBlendMode_Normal;
+                ? ft.CubismBlendMode_Multiplicative
+                : ft.CubismBlendMode_Normal;
           }),
           (t.prototype.getDrawableInvertedMaskBit = function (t) {
             var e = this._model.drawables.constantFlags;
@@ -2918,7 +2918,7 @@
             return Live2DCubismCore.Utils.hasIsVisibleBit(e[t]);
           }),
           (t.prototype.getDrawableDynamicFlagVisibilityDidChange = function (
-            t
+            t,
           ) {
             var e = this._model.drawables.dynamicFlags;
             return Live2DCubismCore.Utils.hasVisibilityDidChangeBit(e[t]);
@@ -2928,7 +2928,7 @@
             return Live2DCubismCore.Utils.hasOpacityDidChangeBit(e[t]);
           }),
           (t.prototype.getDrawableDynamicFlagRenderOrderDidChange = function (
-            t
+            t,
           ) {
             var e = this._model.drawables.dynamicFlags;
             return Live2DCubismCore.Utils.hasRenderOrderDidChangeBit(e[t]);
@@ -3105,7 +3105,7 @@
                     .getValueByString("Curves")
                     .getValueByIndex(t)
                     .getValueByString("Id")
-                    .getRawString()
+                    .getRawString(),
                 );
             }),
             (t.prototype.isExistMotionCurveFadeInTime = function (t) {
@@ -3187,7 +3187,7 @@
                   .getValueByString("UserData")
                   .getValueByIndex(t)
                   .getValueByString("Value")
-                  .getRawString()
+                  .getRawString(),
               );
             }),
             t
@@ -3397,12 +3397,12 @@
             this._eyeBlinkParameterIds.getSize() > 64 &&
               n(
                 "too many eye blink targets : {0}",
-                this._eyeBlinkParameterIds.getSize()
+                this._eyeBlinkParameterIds.getSize(),
               ),
               this._lipSyncParameterIds.getSize() > 64 &&
                 n(
                   "too many lip sync targets : {0}",
-                  this._lipSyncParameterIds.getSize()
+                  this._lipSyncParameterIds.getSize(),
                 );
             var p,
               g,
@@ -3411,13 +3411,13 @@
                 this._fadeInSeconds <= 0
                   ? 1
                   : Nt.getEasingSine(
-                      (e - r.getFadeInStartTime()) / this._fadeInSeconds
+                      (e - r.getFadeInStartTime()) / this._fadeInSeconds,
                     ),
               _ =
                 this._fadeOutSeconds <= 0 || r.getEndTime() < 0
                   ? 1
                   : Nt.getEasingSine(
-                      (r.getEndTime() - e) / this._fadeOutSeconds
+                      (r.getEndTime() - e) / this._fadeOutSeconds,
                     ),
               m = o;
             if (this._isLoop)
@@ -3472,18 +3472,18 @@
                     f.at(g).fadeInTime < 0
                       ? d
                       : 0 == f.at(g).fadeInTime
-                      ? 1
-                      : Nt.getEasingSine(
-                          (e - r.getFadeInStartTime()) / f.at(g).fadeInTime
-                        )),
+                        ? 1
+                        : Nt.getEasingSine(
+                            (e - r.getFadeInStartTime()) / f.at(g).fadeInTime,
+                          )),
                     (B =
                       f.at(g).fadeOutTime < 0
                         ? _
                         : 0 == f.at(g).fadeOutTime || r.getEndTime() < 0
-                        ? 1
-                        : Nt.getEasingSine(
-                            (r.getEndTime() - e) / f.at(g).fadeOutTime
-                          )),
+                          ? 1
+                          : Nt.getEasingSine(
+                              (r.getEndTime() - e) / f.at(g).fadeOutTime,
+                            )),
                     (S = y + (p - y) * (this._weight * x * B));
                 }
                 t.setParameterValueByIndex(c, S, 1);
@@ -3606,22 +3606,22 @@
               this._motionData.curves.updateSize(
                 this._motionData.curveCount,
                 Dt,
-                !0
+                !0,
               ),
               this._motionData.segments.updateSize(
                 n.getMotionTotalSegmentCount(),
                 Ft,
-                !0
+                !0,
               ),
               this._motionData.points.updateSize(
                 n.getMotionTotalPointCount(),
                 Lt,
-                !0
+                !0,
               ),
               this._motionData.events.updateSize(
                 this._motionData.eventCount,
                 Rt,
-                !0
+                !0,
               );
             for (
               var s = 0, u = 0, l = 0;
@@ -3632,11 +3632,11 @@
                 ? (this._motionData.curves.at(l).type =
                     kt.CubismMotionCurveTarget_Model)
                 : "Parameter" == n.getMotionCurveTarget(l)
-                ? (this._motionData.curves.at(l).type =
-                    kt.CubismMotionCurveTarget_Parameter)
-                : "PartOpacity" == n.getMotionCurveTarget(l) &&
-                  (this._motionData.curves.at(l).type =
-                    kt.CubismMotionCurveTarget_PartOpacity),
+                  ? (this._motionData.curves.at(l).type =
+                      kt.CubismMotionCurveTarget_Parameter)
+                  : "PartOpacity" == n.getMotionCurveTarget(l) &&
+                    (this._motionData.curves.at(l).type =
+                      kt.CubismMotionCurveTarget_PartOpacity),
                 (this._motionData.curves.at(l).id = n.getMotionCurveId(l)),
                 (this._motionData.curves.at(l).baseSegmentIndex = u),
                 (this._motionData.curves.at(l).fadeInTime =
@@ -3729,7 +3729,7 @@
               this._motionData.events.at(i).fireTime > t &&
                 this._motionData.events.at(i).fireTime <= e &&
                 this._firedEventValues.pushBack(
-                  new Tt(this._motionData.events.at(i).value.s)
+                  new Tt(this._motionData.events.at(i).value.s),
                 );
             return this._firedEventValues;
           }),
@@ -3795,10 +3795,10 @@
                   "Add" == h.getValueByString("Blend").getString()
                     ? e.ExpressionBlendType_Add
                     : "Multiply" == h.getValueByString("Blend").getString()
-                    ? e.ExpressionBlendType_Multiply
-                    : "Overwrite" == h.getValueByString("Blend").getString()
-                    ? e.ExpressionBlendType_Overwrite
-                    : e.ExpressionBlendType_Add;
+                      ? e.ExpressionBlendType_Multiply
+                      : "Overwrite" == h.getValueByString("Blend").getString()
+                        ? e.ExpressionBlendType_Overwrite
+                        : e.ExpressionBlendType_Add;
                 var d = new r();
                 (d.parameterId = p),
                   (d.blendType = c),
@@ -3874,7 +3874,7 @@
                   var _ = p.getValueByIndex(d),
                     m = new r(),
                     f = Kt.getIdManager().getId(
-                      _.getValueByString("Id").getRawString()
+                      _.getValueByString("Id").getRawString(),
                     );
                   if (((m.partId = f), !_.getValueByString("Link").isNull()))
                     for (
@@ -3886,7 +3886,7 @@
                     ) {
                       var x = new r(),
                         B = Kt.getIdManager().getId(
-                          y.getValueByIndex(S).getString()
+                          y.getValueByIndex(S).getString(),
                         );
                       (x.partId = B), m.link.pushBack(x);
                     }
@@ -4076,7 +4076,7 @@
                   .getValueByString("UserData")
                   .getValueByIndex(t)
                   .getValueByString("Id")
-                  .getRawString()
+                  .getRawString(),
               );
           }),
           (t.prototype.getUserDataValue = function (t) {
@@ -4412,7 +4412,7 @@
                     .getValueByIndex(e)
                     .getValueByString("Source")
                     .getValueByString("Id")
-                    .getRawString()
+                    .getRawString(),
                 );
             }),
             (t.prototype.getOutputCount = function (t) {
@@ -4466,7 +4466,7 @@
                     .getValueByIndex(e)
                     .getValueByString("Destination")
                     .getValueByString("Id")
-                    .getRawString()
+                    .getRawString(),
                 );
             }),
             (t.prototype.getOutputType = function (t, e) {
@@ -4628,7 +4628,7 @@
                   (n = u[v].weight / e),
                     -1 == u[v].sourceParameterIndex &&
                       (u[v].sourceParameterIndex = t.getParameterIndex(
-                        u[v].source.id
+                        u[v].source.id,
                       )),
                     u[v].getNormalizedParameterValue(
                       f,
@@ -4640,7 +4640,7 @@
                       s.normalizationPosition,
                       s.normalizationAngle,
                       u[0].reflect,
-                      n
+                      n,
                     );
                 (o = me.degreesToRadian(-r.angle)),
                   (f.x = f.x * me.cos(o) - f.y * me.sin(o)),
@@ -4653,14 +4653,14 @@
                     this._options.wind,
                     0.001 * s.normalizationPosition.maximum,
                     i,
-                    5
+                    5,
                   );
                 for (v = 0; v < s.outputCount; ++v) {
                   var S = l[v].vertexIndex;
                   if (S < 1 || S >= s.particleCount) break;
                   -1 == l[v].destinationParameterIndex &&
                     (l[v].destinationParameterIndex = t.getParameterIndex(
-                      l[v].destination.id
+                      l[v].destination.id,
                     ));
                   var x = new be();
                   (x.x = h[S].position.x - h[S - 1].position.x),
@@ -4670,7 +4670,7 @@
                       h,
                       S,
                       l[v].reflect,
-                      this._options.gravity
+                      this._options.gravity,
                     ));
                   var B = l[v].destinationParameterIndex,
                     C =
@@ -4701,22 +4701,22 @@
                 this._physicsRig.settings.updateSize(
                   this._physicsRig.subRigCount,
                   ye,
-                  !0
+                  !0,
                 ),
                 this._physicsRig.inputs.updateSize(
                   i.getTotalInputCount(),
                   ve,
-                  !0
+                  !0,
                 ),
                 this._physicsRig.outputs.updateSize(
                   i.getTotalOutputCount(),
                   Se,
-                  !0
+                  !0,
                 ),
                 this._physicsRig.particles.updateSize(
                   i.getVertexCount(),
                   xe,
-                  !0
+                  !0,
                 );
               for (
                 var r = 0, h = 0, d = 0, _ = 0;
@@ -4726,11 +4726,11 @@
                 (this._physicsRig.settings.at(_).normalizationPosition.minimum =
                   i.getNormalizationPositionMinimumValue(_)),
                   (this._physicsRig.settings.at(
-                    _
+                    _,
                   ).normalizationPosition.maximum =
                     i.getNormalizationPositionMaximumValue(_)),
                   (this._physicsRig.settings.at(
-                    _
+                    _,
                   ).normalizationPosition.defalut =
                     i.getNormalizationPositionDefaultValue(_)),
                   (this._physicsRig.settings.at(_).normalizationAngle.minimum =
@@ -4756,20 +4756,20 @@
                       ? ((this._physicsRig.inputs.at(r + m).type =
                           Be.CubismPhysicsSource_X),
                         (this._physicsRig.inputs.at(
-                          r + m
+                          r + m,
                         ).getNormalizedParameterValue = n))
                       : "Y" == i.getInputType(_, m)
-                      ? ((this._physicsRig.inputs.at(r + m).type =
-                          Be.CubismPhysicsSource_Y),
-                        (this._physicsRig.inputs.at(
-                          r + m
-                        ).getNormalizedParameterValue = o))
-                      : "Angle" == i.getInputType(_, m) &&
-                        ((this._physicsRig.inputs.at(r + m).type =
-                          Be.CubismPhysicsSource_Angle),
-                        (this._physicsRig.inputs.at(
-                          r + m
-                        ).getNormalizedParameterValue = a)),
+                        ? ((this._physicsRig.inputs.at(r + m).type =
+                            Be.CubismPhysicsSource_Y),
+                          (this._physicsRig.inputs.at(
+                            r + m,
+                          ).getNormalizedParameterValue = o))
+                        : "Angle" == i.getInputType(_, m) &&
+                          ((this._physicsRig.inputs.at(r + m).type =
+                            Be.CubismPhysicsSource_Angle),
+                          (this._physicsRig.inputs.at(
+                            r + m,
+                          ).getNormalizedParameterValue = a)),
                     (this._physicsRig.inputs.at(r + m).source.targetType =
                       Ce.CubismPhysicsTargetType_Parameter),
                     (this._physicsRig.inputs.at(r + m).source.id =
@@ -4784,7 +4784,7 @@
                   ++m
                 )
                   (this._physicsRig.outputs.at(
-                    h + m
+                    h + m,
                   ).destinationParameterIndex = -1),
                     (this._physicsRig.outputs.at(h + m).vertexIndex =
                       i.getOutputVertexIndex(_, m)),
@@ -4802,15 +4802,15 @@
                         (this._physicsRig.outputs.at(h + m).getValue = s),
                         (this._physicsRig.outputs.at(h + m).getScale = p))
                       : "Y" == i.getOutputType(_, m)
-                      ? ((this._physicsRig.outputs.at(h + m).type =
-                          Be.CubismPhysicsSource_Y),
-                        (this._physicsRig.outputs.at(h + m).getValue = u),
-                        (this._physicsRig.outputs.at(h + m).getScale = g))
-                      : "Angle" == i.getOutputType(_, m) &&
-                        ((this._physicsRig.outputs.at(h + m).type =
-                          Be.CubismPhysicsSource_Angle),
-                        (this._physicsRig.outputs.at(h + m).getValue = l),
-                        (this._physicsRig.outputs.at(h + m).getScale = c)),
+                        ? ((this._physicsRig.outputs.at(h + m).type =
+                            Be.CubismPhysicsSource_Y),
+                          (this._physicsRig.outputs.at(h + m).getValue = u),
+                          (this._physicsRig.outputs.at(h + m).getScale = g))
+                        : "Angle" == i.getOutputType(_, m) &&
+                          ((this._physicsRig.outputs.at(h + m).type =
+                            Be.CubismPhysicsSource_Angle),
+                          (this._physicsRig.outputs.at(h + m).getValue = l),
+                          (this._physicsRig.outputs.at(h + m).getScale = c)),
                     (this._physicsRig.outputs.at(h + m).reflect =
                       i.getOutputReflect(_, m));
                 (h += this._physicsRig.settings.at(_).outputCount),
@@ -4840,11 +4840,11 @@
               for (var t, e, i, r = 0; r < this._physicsRig.subRigCount; ++r) {
                 (e = this._physicsRig.settings.at(r)),
                   ((t = this._physicsRig.particles.get(
-                    e.baseParticleIndex
+                    e.baseParticleIndex,
                   ))[0].initialPosition = new be(0, 0)),
                   (t[0].lastPosition = new be(
                     t[0].initialPosition.x,
-                    t[0].initialPosition.y
+                    t[0].initialPosition.y,
                   )),
                   (t[0].lastGravity = new be(0, -1)),
                   (t[0].lastGravity.y *= -1),
@@ -4854,15 +4854,15 @@
                   ((i = new be(0, 0)).y = t[n].radius),
                     (t[n].initialPosition = new be(
                       t[n - 1].initialPosition.x + i.x,
-                      t[n - 1].initialPosition.y + i.y
+                      t[n - 1].initialPosition.y + i.y,
                     )),
                     (t[n].position = new be(
                       t[n].initialPosition.x,
-                      t[n].initialPosition.y
+                      t[n].initialPosition.y,
                     )),
                     (t[n].lastPosition = new be(
                       t[n].initialPosition.x,
-                      t[n].initialPosition.y
+                      t[n].initialPosition.y,
                     )),
                     (t[n].lastGravity = new be(0, -1)),
                     (t[n].lastGravity.y *= -1),
@@ -4954,7 +4954,7 @@
             (t[m].position = t[m].position.add(c).add(d)),
             (_ = t[m].position.substract(t[m - 1].position)).normalize(),
             (t[m].position = t[m - 1].position.add(
-              _.multiplyByScaler(t[m].radius)
+              _.multiplyByScaler(t[m].radius),
             )),
             me.abs(t[m].position.x) < o && (t[m].position.x = 0),
             0 != l &&
@@ -5037,7 +5037,7 @@
                 t.addParameterValueById(
                   n.parameterId,
                   n.offset + n.peak * Math.sin(i / n.cycle),
-                  n.weight
+                  n.weight,
                 );
               }
             }),
@@ -5300,27 +5300,27 @@
                     0,
                     this.gl.RGBA,
                     this.gl.UNSIGNED_BYTE,
-                    null
+                    null,
                   ),
                   this.gl.texParameteri(
                     this.gl.TEXTURE_2D,
                     this.gl.TEXTURE_WRAP_S,
-                    this.gl.CLAMP_TO_EDGE
+                    this.gl.CLAMP_TO_EDGE,
                   ),
                   this.gl.texParameteri(
                     this.gl.TEXTURE_2D,
                     this.gl.TEXTURE_WRAP_T,
-                    this.gl.CLAMP_TO_EDGE
+                    this.gl.CLAMP_TO_EDGE,
                   ),
                   this.gl.texParameteri(
                     this.gl.TEXTURE_2D,
                     this.gl.TEXTURE_MIN_FILTER,
-                    this.gl.LINEAR
+                    this.gl.LINEAR,
                   ),
                   this.gl.texParameteri(
                     this.gl.TEXTURE_2D,
                     this.gl.TEXTURE_MAG_FILTER,
-                    this.gl.LINEAR
+                    this.gl.LINEAR,
                   ),
                   this.gl.bindTexture(this.gl.TEXTURE_2D, null),
                   (t = this.gl.createFramebuffer()),
@@ -5330,7 +5330,7 @@
                     this.gl.COLOR_ATTACHMENT0,
                     this.gl.TEXTURE_2D,
                     this._colorBuffer,
-                    0
+                    0,
                   ),
                   this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, r),
                   (this._maskTexture = new o(this._currentFrameNo, t));
@@ -5445,7 +5445,7 @@
                   0,
                   0,
                   this._clippingMaskBufferSize,
-                  this._clippingMaskBufferSize
+                  this._clippingMaskBufferSize,
                 ),
                   (this._maskRenderTexture = this.getMaskRenderTexture());
                 e.getMvpMatrix();
@@ -5453,7 +5453,7 @@
                   this.setupLayoutBounds(n),
                   this.gl.bindFramebuffer(
                     this.gl.FRAMEBUFFER,
-                    this._maskRenderTexture
+                    this._maskRenderTexture,
                   ),
                   this.gl.clearColor(1, 1, 1, 1),
                   this.gl.clear(this.gl.COLOR_BUFFER_BIT);
@@ -5468,7 +5468,7 @@
                   this._tmpBoundsOnModel.setRect(u),
                     this._tmpBoundsOnModel.expand(
                       0.05 * u.width,
-                      0.05 * u.height
+                      0.05 * u.height,
                     );
                   var h = l.width / this._tmpBoundsOnModel.width,
                     p = l.height / this._tmpBoundsOnModel.height;
@@ -5479,26 +5479,26 @@
                     this._tmpMatrix.scaleRelative(h, p),
                     this._tmpMatrix.translateRelative(
                       -this._tmpBoundsOnModel.x,
-                      -this._tmpBoundsOnModel.y
+                      -this._tmpBoundsOnModel.y,
                     ),
                     this._tmpMatrixForMask.setMatrix(
-                      this._tmpMatrix.getArray()
+                      this._tmpMatrix.getArray(),
                     ),
                     this._tmpMatrix.loadIdentity(),
                     this._tmpMatrix.translateRelative(l.x, l.y),
                     this._tmpMatrix.scaleRelative(h, p),
                     this._tmpMatrix.translateRelative(
                       -this._tmpBoundsOnModel.x,
-                      -this._tmpBoundsOnModel.y
+                      -this._tmpBoundsOnModel.y,
                     ),
                     this._tmpMatrixForDraw.setMatrix(
-                      this._tmpMatrix.getArray()
+                      this._tmpMatrix.getArray(),
                     ),
                     s._matrixForMask.setMatrix(
-                      this._tmpMatrixForMask.getArray()
+                      this._tmpMatrixForMask.getArray(),
                     ),
                     s._matrixForDraw.setMatrix(
-                      this._tmpMatrixForDraw.getArray()
+                      this._tmpMatrixForDraw.getArray(),
                     );
                   for (var g = s._clippingIdCount, c = 0; c < g; c++) {
                     var d = s._clippingIdList[c];
@@ -5514,7 +5514,7 @@
                         t.getDrawableVertexUvs(d),
                         t.getDrawableOpacity(d),
                         De.CubismBlendMode_Normal,
-                        !1
+                        !1,
                       ));
                   }
                 }
@@ -5561,7 +5561,7 @@
                   for (var u = 0; u < o; u++) {
                     (l = ~~(l = u % 2)),
                       ((p = this._clippingContextListForMask.at(
-                        r++
+                        r++,
                       ))._layoutChannelNo = n),
                       (p._layoutBounds.x = 0.5 * l),
                       (p._layoutBounds.y = 0),
@@ -5573,7 +5573,7 @@
                     (l = ~~(l = u % 2)),
                       (h = ~~(h = u / 2)),
                       ((p = this._clippingContextListForMask.at(
-                        r++
+                        r++,
                       ))._layoutChannelNo = n),
                       (p._layoutBounds.x = 0.5 * l),
                       (p._layoutBounds.y = 0.5 * h),
@@ -5586,7 +5586,7 @@
                     (l = ~~(l = u % 3)),
                       (h = ~~(h = u / 3)),
                       ((p = this._clippingContextListForMask.at(
-                        r++
+                        r++,
                       ))._layoutChannelNo = n),
                       (p._layoutBounds.x = l / 3),
                       (p._layoutBounds.y = h / 3),
@@ -5677,7 +5677,7 @@
             g,
             c,
             d,
-            _
+            _,
           ) {
             var m, f, y, v;
             if (
@@ -5695,7 +5695,7 @@
                 this.gl.bufferData(
                   this.gl.ARRAY_BUFFER,
                   r,
-                  this.gl.DYNAMIC_DRAW
+                  this.gl.DYNAMIC_DRAW,
                 ),
                 this.gl.enableVertexAttribArray(S.attributePositionLocation),
                 this.gl.vertexAttribPointer(
@@ -5704,14 +5704,14 @@
                   this.gl.FLOAT,
                   !1,
                   0,
-                  0
+                  0,
                 ),
                 null == a.uv && (a.uv = this.gl.createBuffer()),
                 this.gl.bindBuffer(this.gl.ARRAY_BUFFER, a.uv),
                 this.gl.bufferData(
                   this.gl.ARRAY_BUFFER,
                   o,
-                  this.gl.DYNAMIC_DRAW
+                  this.gl.DYNAMIC_DRAW,
                 ),
                 this.gl.enableVertexAttribArray(S.attributeTexCoordLocation),
                 this.gl.vertexAttribPointer(
@@ -5720,7 +5720,7 @@
                   this.gl.FLOAT,
                   !1,
                   0,
-                  0
+                  0,
                 );
               var x = t.getClippingContextBufferForMask()._layoutChannelNo,
                 B = t
@@ -5732,12 +5732,12 @@
                 B.R,
                 B.G,
                 B.B,
-                B.A
+                B.A,
               ),
                 this.gl.uniformMatrix4fv(
                   S.uniformClipMatrixLocation,
                   !1,
-                  t.getClippingContextBufferForMask()._matrixForMask.getArray()
+                  t.getClippingContextBufferForMask()._matrixForMask.getArray(),
                 );
               var C = t.getClippingContextBufferForMask()._layoutBounds;
               this.gl.uniform4f(
@@ -5745,7 +5745,7 @@
                 2 * C.x - 1,
                 2 * C.y - 1,
                 2 * C.getRight() - 1,
-                2 * C.getBottom() - 1
+                2 * C.getBottom() - 1,
               ),
                 (m = this.gl.ZERO),
                 (f = this.gl.ONE_MINUS_SRC_COLOR),
@@ -5759,7 +5759,7 @@
                 case De.CubismBlendMode_Normal:
                 default:
                   (S = this._shaderSets.at(
-                    l.ShaderNames_NormalPremultipliedAlpha + M
+                    l.ShaderNames_NormalPremultipliedAlpha + M,
                   )),
                     (m = this.gl.ONE),
                     (f = this.gl.ONE_MINUS_SRC_ALPHA),
@@ -5768,7 +5768,7 @@
                   break;
                 case De.CubismBlendMode_Additive:
                   (S = this._shaderSets.at(
-                    l.ShaderNames_AddPremultipliedAlpha + M
+                    l.ShaderNames_AddPremultipliedAlpha + M,
                   )),
                     (m = this.gl.ONE),
                     (f = this.gl.ONE),
@@ -5777,7 +5777,7 @@
                   break;
                 case De.CubismBlendMode_Multiplicative:
                   (S = this._shaderSets.at(
-                    l.ShaderNames_MultPremultipliedAlpha + M
+                    l.ShaderNames_MultPremultipliedAlpha + M,
                   )),
                     (m = this.gl.DST_COLOR),
                     (f = this.gl.ONE_MINUS_SRC_ALPHA),
@@ -5791,7 +5791,7 @@
                 this.gl.bufferData(
                   this.gl.ARRAY_BUFFER,
                   r,
-                  this.gl.DYNAMIC_DRAW
+                  this.gl.DYNAMIC_DRAW,
                 ),
                 this.gl.enableVertexAttribArray(S.attributePositionLocation),
                 this.gl.vertexAttribPointer(
@@ -5800,14 +5800,14 @@
                   this.gl.FLOAT,
                   !1,
                   0,
-                  0
+                  0,
                 ),
                 null == a.uv && (a.uv = this.gl.createBuffer()),
                 this.gl.bindBuffer(this.gl.ARRAY_BUFFER, a.uv),
                 this.gl.bufferData(
                   this.gl.ARRAY_BUFFER,
                   o,
-                  this.gl.DYNAMIC_DRAW
+                  this.gl.DYNAMIC_DRAW,
                 ),
                 this.gl.enableVertexAttribArray(S.attributeTexCoordLocation),
                 this.gl.vertexAttribPointer(
@@ -5816,7 +5816,7 @@
                   this.gl.FLOAT,
                   !1,
                   0,
-                  0
+                  0,
                 ),
                 b)
               ) {
@@ -5832,7 +5832,7 @@
                     !1,
                     t
                       .getClippingContextBufferForDraw()
-                      ._matrixForDraw.getArray()
+                      ._matrixForDraw.getArray(),
                   );
                 (x = t.getClippingContextBufferForDraw()._layoutChannelNo),
                   (B = t
@@ -5844,7 +5844,7 @@
                   B.R,
                   B.G,
                   B.B,
-                  B.A
+                  B.A,
                 );
               }
               this.gl.activeTexture(this.gl.TEXTURE0),
@@ -5853,14 +5853,14 @@
                 this.gl.uniformMatrix4fv(
                   S.uniformMatrixLocation,
                   !1,
-                  d.getArray()
+                  d.getArray(),
                 ),
                 this.gl.uniform4f(
                   S.uniformBaseColorLocation,
                   g.R,
                   g.G,
                   g.B,
-                  g.A
+                  g.A,
                 );
             }
             null == a.index && (a.index = this.gl.createBuffer()),
@@ -5868,7 +5868,7 @@
               this.gl.bufferData(
                 this.gl.ELEMENT_ARRAY_BUFFER,
                 n,
-                this.gl.DYNAMIC_DRAW
+                this.gl.DYNAMIC_DRAW,
               ),
               this.gl.blendFuncSeparate(m, f, y, v);
           }),
@@ -5883,19 +5883,19 @@
             for (var e = 0; e < 10; e++) this._shaderSets.pushBack(new h());
             (this._shaderSets.at(0).shaderProgram = this.loadShaderProgram(
               t.vertexShaderSrcSetupMask,
-              t.fragmentShaderSrcsetupMask
+              t.fragmentShaderSrcsetupMask,
             )),
               (this._shaderSets.at(1).shaderProgram = this.loadShaderProgram(
                 t.vertexShaderSrc,
-                t.fragmentShaderSrcPremultipliedAlpha
+                t.fragmentShaderSrcPremultipliedAlpha,
               )),
               (this._shaderSets.at(2).shaderProgram = this.loadShaderProgram(
                 t.vertexShaderSrcMasked,
-                t.fragmentShaderSrcMaskPremultipliedAlpha
+                t.fragmentShaderSrcMaskPremultipliedAlpha,
               )),
               (this._shaderSets.at(3).shaderProgram = this.loadShaderProgram(
                 t.vertexShaderSrcMasked,
-                t.fragmentShaderSrcMaskInvertedPremultipliedAlpha
+                t.fragmentShaderSrcMaskInvertedPremultipliedAlpha,
               )),
               (this._shaderSets.at(4).shaderProgram =
                 this._shaderSets.at(1).shaderProgram),
@@ -5912,347 +5912,347 @@
               (this._shaderSets.at(0).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(0).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(0).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(0).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(0).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(0).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(0).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(1).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(1).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(1).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(1).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(1).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(1).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(1).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(1).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(1).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(1).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(2).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(2).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(2).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(2).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(2).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(2).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(2).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(2).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(2).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(3).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(3).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(3).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(3).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(3).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(3).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(3).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(3).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(3).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(4).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(4).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(4).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(4).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(4).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(4).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(4).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(4).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(4).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(4).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(5).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(5).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(5).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(5).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(5).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(5).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(5).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(5).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(5).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(6).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(6).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(6).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(6).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(6).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(6).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(6).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(6).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(6).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(7).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(7).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(7).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(7).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(7).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(7).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(7).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(7).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(7).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(7).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(8).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(8).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(8).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(8).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(8).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(8).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(8).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(8).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(8).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 )),
               (this._shaderSets.at(9).attributePositionLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "a_position"
+                  "a_position",
                 )),
               (this._shaderSets.at(9).attributeTexCoordLocation =
                 this.gl.getAttribLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "a_texCoord"
+                  "a_texCoord",
                 )),
               (this._shaderSets.at(9).samplerTexture0Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "s_texture0"
+                  "s_texture0",
                 )),
               (this._shaderSets.at(9).samplerTexture1Location =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "s_texture1"
+                  "s_texture1",
                 )),
               (this._shaderSets.at(9).uniformMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "u_matrix"
+                  "u_matrix",
                 )),
               (this._shaderSets.at(9).uniformClipMatrixLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "u_clipMatrix"
+                  "u_clipMatrix",
                 )),
               (this._shaderSets.at(9).uniformChannelFlagLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "u_channelFlag"
+                  "u_channelFlag",
                 )),
               (this._shaderSets.at(9).uniformBaseColorLocation =
                 this.gl.getUniformLocation(
                   this._shaderSets.at(9).shaderProgram,
-                  "u_baseColor"
+                  "u_baseColor",
                 ));
           }),
           (i.prototype.loadShaderProgram = function (t, e) {
@@ -6361,7 +6361,7 @@
                 e,
                 e.getDrawableCount(),
                 e.getDrawableMasks(),
-                e.getDrawableMaskCounts()
+                e.getDrawableMaskCounts(),
               )),
               this._sortedDrawableIndexList.resize(e.getDrawableCount(), 0),
               t.prototype.initialize.call(this, e);
@@ -6382,7 +6382,7 @@
                 this.getModel(),
                 this.getModel().getDrawableCount(),
                 this.getModel().getDrawableMasks(),
-                this.getModel().getDrawableMaskCounts()
+                this.getModel().getDrawableMaskCounts(),
               );
           }),
           (e.prototype.getClippingMaskBufferSize = function () {
@@ -6406,7 +6406,7 @@
               (this.preDraw(),
               this._clippingManager.setupClippingContext(
                 this.getModel(),
-                this
+                this,
               )),
               this.preDraw();
             for (
@@ -6427,7 +6427,7 @@
                     ? this._clippingManager
                         .getClippingContextListForDraw()
                         .at(n)
-                    : null
+                    : null,
                 ),
                 this.setIsCulling(this.getModel().getDrawableCulling(n)),
                 this.drawMesh(
@@ -6439,7 +6439,7 @@
                   this.getModel().getDrawableVertexUvs(n),
                   this.getModel().getDrawableOpacity(n),
                   this.getModel().getDrawableBlendMode(n),
-                  this.getModel().getDrawableInvertedMaskBit(n)
+                  this.getModel().getDrawableInvertedMaskBit(n),
                 ));
             }
           }),
@@ -6473,13 +6473,13 @@
                   p,
                   this.isPremultipliedAlpha(),
                   this.getMvpMatrix(),
-                  l
+                  l,
                 ),
               this.gl.drawElements(
                 this.gl.TRIANGLES,
                 e,
                 this.gl.UNSIGNED_SHORT,
-                0
+                0,
               ),
               this.gl.useProgram(null),
               this.setClippingContextBufferForDraw(null),
@@ -6581,17 +6581,17 @@
             (this._motionManager = new Qe()),
             this._motionManager.setEventCallback(
               t.cubismDefaultMotionEventCallback,
-              this
+              this,
             ),
             (this._breathMotionManager = new Qe()),
             this._breathMotionManager.setEventCallback(
               t.cubismDefaultMotionEventCallback,
-              this
+              this,
             ),
             (this._beatMotionManager = new Qe()),
             this._beatMotionManager.setEventCallback(
               t.cubismDefaultMotionEventCallback,
-              this
+              this,
             ),
             (this._expressionManager = new Qe()),
             (this._dragManager = new Ze());
@@ -6633,7 +6633,7 @@
               null != this._moc && null != this._model
                 ? (this._modelMatrix = new Ke(
                     this._model.getCanvasWidth(),
-                    this._model.getCanvasHeight()
+                    this._model.getCanvasHeight(),
                   ))
                 : s("Failed to CreateModel().");
           }),
@@ -6786,22 +6786,22 @@
               ((g._jsonValue = new ri()),
               g._jsonValue.pushBack(g._json.getRoot().getValueByString(r)),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(o)
+                g._json.getRoot().getValueByString(i).getValueByString(o),
               ),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(h)
+                g._json.getRoot().getValueByString(i).getValueByString(h),
               ),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(l)
+                g._json.getRoot().getValueByString(i).getValueByString(l),
               ),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(a)
+                g._json.getRoot().getValueByString(i).getValueByString(a),
               ),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(s)
+                g._json.getRoot().getValueByString(i).getValueByString(s),
               ),
               g._jsonValue.pushBack(
-                g._json.getRoot().getValueByString(i).getValueByString(u)
+                g._json.getRoot().getValueByString(i).getValueByString(u),
               ),
               g._jsonValue.pushBack(g._json.getRoot().getValueByString(n))),
             g
@@ -6847,7 +6847,7 @@
                   .at(e.FrequestNode_HitAreas)
                   .getValueByIndex(t)
                   .getValueByString("Id")
-                  .getRawString()
+                  .getRawString(),
               );
           }),
           (g.prototype.getHitAreaName = function (t) {
@@ -7003,7 +7003,7 @@
                 return ni
                   .getIdManager()
                   .getId(
-                    r.getValueByString("Ids").getValueByIndex(t).getRawString()
+                    r.getValueByString("Ids").getValueByIndex(t).getRawString(),
                   );
             }
             return null;
@@ -7047,7 +7047,7 @@
                 return ni
                   .getIdManager()
                   .getId(
-                    r.getValueByString("Ids").getValueByIndex(t).getRawString()
+                    r.getValueByString("Ids").getValueByIndex(t).getRawString(),
                   );
             }
             return null;
@@ -7331,13 +7331,13 @@
               this.append(e, t);
             }, this)
           : Array.isArray(t)
-          ? t.forEach(function (t) {
-              this.append(t[0], t[1]);
-            }, this)
-          : t &&
-            Object.getOwnPropertyNames(t).forEach(function (e) {
-              this.append(e, t[e]);
-            }, this);
+            ? t.forEach(function (t) {
+                this.append(t[0], t[1]);
+              }, this)
+            : t &&
+              Object.getOwnPropertyNames(t).forEach(function (e) {
+                this.append(e, t[e]);
+              }, this);
     }
     function di(t) {
       if (t.bodyUsed) return Promise.reject(new TypeError("Already read"));
@@ -7373,33 +7373,35 @@
               ? "string" == typeof t
                 ? (this._bodyText = t)
                 : si.blob && Blob.prototype.isPrototypeOf(t)
-                ? (this._bodyBlob = t)
-                : si.formData && FormData.prototype.isPrototypeOf(t)
-                ? (this._bodyFormData = t)
-                : si.searchParams && URLSearchParams.prototype.isPrototypeOf(t)
-                ? (this._bodyText = t.toString())
-                : si.arrayBuffer &&
-                  si.blob &&
-                  (e = t) &&
-                  DataView.prototype.isPrototypeOf(e)
-                ? ((this._bodyArrayBuffer = fi(t.buffer)),
-                  (this._bodyInit = new Blob([this._bodyArrayBuffer])))
-                : si.arrayBuffer &&
-                  (ArrayBuffer.prototype.isPrototypeOf(t) || li(t))
-                ? (this._bodyArrayBuffer = fi(t))
-                : (this._bodyText = t = Object.prototype.toString.call(t))
+                  ? (this._bodyBlob = t)
+                  : si.formData && FormData.prototype.isPrototypeOf(t)
+                    ? (this._bodyFormData = t)
+                    : si.searchParams &&
+                        URLSearchParams.prototype.isPrototypeOf(t)
+                      ? (this._bodyText = t.toString())
+                      : si.arrayBuffer &&
+                          si.blob &&
+                          (e = t) &&
+                          DataView.prototype.isPrototypeOf(e)
+                        ? ((this._bodyArrayBuffer = fi(t.buffer)),
+                          (this._bodyInit = new Blob([this._bodyArrayBuffer])))
+                        : si.arrayBuffer &&
+                            (ArrayBuffer.prototype.isPrototypeOf(t) || li(t))
+                          ? (this._bodyArrayBuffer = fi(t))
+                          : (this._bodyText = t =
+                              Object.prototype.toString.call(t))
               : (this._bodyText = ""),
             this.headers.get("content-type") ||
               ("string" == typeof t
                 ? this.headers.set("content-type", "text/plain;charset=UTF-8")
                 : this._bodyBlob && this._bodyBlob.type
-                ? this.headers.set("content-type", this._bodyBlob.type)
-                : si.searchParams &&
-                  URLSearchParams.prototype.isPrototypeOf(t) &&
-                  this.headers.set(
-                    "content-type",
-                    "application/x-www-form-urlencoded;charset=UTF-8"
-                  ));
+                  ? this.headers.set("content-type", this._bodyBlob.type)
+                  : si.searchParams &&
+                    URLSearchParams.prototype.isPrototypeOf(t) &&
+                    this.headers.set(
+                      "content-type",
+                      "application/x-www-form-urlencoded;charset=UTF-8",
+                    ));
         }),
         si.blob &&
           ((this.blob = function () {
@@ -7441,7 +7443,7 @@
                 )
                   i[r] = String.fromCharCode(e[r]);
                 return i.join("");
-              })(this._bodyArrayBuffer)
+              })(this._bodyArrayBuffer),
             );
           if (this._bodyFormData)
             throw new Error("could not read FormData body as text");
@@ -7750,7 +7752,7 @@
             (r._idParamEyeBallX = Di.getIdManager().getId(Oi.ParamEyeBallX)),
             (r._idParamEyeBallY = Di.getIdManager().getId(Oi.ParamEyeBallY)),
             (r._idParamBodyAngleX = Di.getIdManager().getId(
-              Oi.ParamBodyAngleX
+              Oi.ParamBodyAngleX,
             )),
             (r._state = Pi.LoadAssets),
             (r._expressionCount = 0),
@@ -7891,8 +7893,8 @@
                       0,
                       0.5,
                       3.2345,
-                      0.5
-                    )
+                      0.5,
+                    ),
                   ),
                   i._breath.setParameters(t),
                   (i._state = Pi.LoadUserData),
@@ -7924,7 +7926,7 @@
                   ++e
                 )
                   i._eyeBlinkIds.pushBack(
-                    i._modelSetting.getEyeBlinkParameterId(e)
+                    i._modelSetting.getEyeBlinkParameterId(e),
                   );
                 (i._state = Pi.SetupLipSyncIds), p();
               },
@@ -7935,7 +7937,7 @@
                   ++e
                 )
                   i._lipSyncIds.pushBack(
-                    i._modelSetting.getLipSyncParameterId(e)
+                    i._modelSetting.getLipSyncParameterId(e),
                   );
                 (i._state = Pi.SetupLayout), g();
               },
@@ -7989,22 +7991,22 @@
                           n.texParameteri(
                             n.TEXTURE_2D,
                             n.TEXTURE_MIN_FILTER,
-                            n.LINEAR_MIPMAP_LINEAR
+                            n.LINEAR_MIPMAP_LINEAR,
                           ),
                           n.texParameteri(
                             n.TEXTURE_2D,
                             n.TEXTURE_MAG_FILTER,
-                            n.LINEAR
+                            n.LINEAR,
                           ),
                           n.texParameteri(
                             n.TEXTURE_2D,
                             n.TEXTURE_WRAP_S,
-                            n.CLAMP_TO_EDGE
+                            n.CLAMP_TO_EDGE,
                           ),
                           n.texParameteri(
                             n.TEXTURE_2D,
                             n.TEXTURE_WRAP_T,
-                            n.CLAMP_TO_EDGE
+                            n.CLAMP_TO_EDGE,
                           ),
                           n.pixelStorei(n.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1),
                           n.texImage2D(
@@ -8013,7 +8015,7 @@
                             n.RGBA,
                             n.RGBA,
                             n.UNSIGNED_BYTE,
-                            i[r]
+                            i[r],
                           ),
                           n.generateMipmap(n.TEXTURE_2D),
                           t.getRenderer().bindTexture(r, o),
@@ -8042,9 +8044,9 @@
               var e = !1;
               if (
                 (this._model.loadParameters(),
-                e = this._motionManager.updateMotion(this._model, t),
-                e = this._beatMotionManager.updateMotion(this._model, t),
-                e = this._breathMotionManager.updateMotion(this._model, t),
+                (e = this._motionManager.updateMotion(this._model, t)),
+                (e = this._beatMotionManager.updateMotion(this._model, t)),
+                (e = this._breathMotionManager.updateMotion(this._model, t)),
                 this._model.saveParameters(),
                 e ||
                   (null != this._eyeBlink &&
@@ -8065,7 +8067,7 @@
                   this._model.addParameterValueById(
                     this._lipSyncIds.at(r),
                     i,
-                    0.8
+                    0.8,
                   );
               null != this._pose && this._pose.updateParameters(this._model, t),
                 this._model.update();
@@ -8110,7 +8112,8 @@
           }),
           (e.prototype.startBeatMotion = function (t, e, i) {
             var r = this;
-            if (i == k.PriorityForce) this._beatMotionManager.setReservePriority(i);
+            if (i == k.PriorityForce)
+              this._beatMotionManager.setReservePriority(i);
             else if (!this._beatMotionManager.reserveMotion(i))
               return (
                 this._debugMode && H.printLog("[APP]can't start motion."), Ii
@@ -8147,7 +8150,8 @@
           }),
           (e.prototype.startBreathMotion = function (t, e, i) {
             var r = this;
-            if (i == k.PriorityForce) this._breathMotionManager.setReservePriority(i);
+            if (i == k.PriorityForce)
+              this._breathMotionManager.setReservePriority(i);
             else if (!this._breathMotionManager.reserveMotion(i))
               return (
                 this._debugMode && H.printLog("[APP]can't start motion."), Ii
@@ -8185,7 +8189,7 @@
           (e.prototype.startRandomMotion = function (t, e) {
             if (0 == this._modelSetting.getMotionCount(t)) return Ii;
             var i = Math.floor(
-              Math.random() * this._modelSetting.getMotionCount(t)
+              Math.random() * this._modelSetting.getMotionCount(t),
             );
             return this.startMotion(t, i, e);
           }),
@@ -8196,7 +8200,7 @@
                 ? this._expressionManager.startMotionPriority(
                     e,
                     !1,
-                    k.PriorityForce
+                    k.PriorityForce,
                   )
                 : this._debugMode &&
                   H.printLog("[APP]expression[{0}] is null", t);
@@ -8252,7 +8256,7 @@
                         h >= 0 && l.setFadeInTime(h),
                           (h = e._modelSetting.getMotionFadeOutTimeValue(
                             t,
-                            i
+                            i,
                           )) >= 0 && l.setFadeOutTime(h),
                           l.setEffectIds(e._eyeBlinkIds, e._lipSyncIds),
                           null != e._motions.getValue(n) &&
@@ -8336,7 +8340,7 @@
               H.printLog(
                 "[APP]tap point: {x: {0} y: {1}}",
                 t.toFixed(2),
-                e.toFixed(2)
+                e.toFixed(2),
               );
             for (var i = 0; i < this._models.getSize(); i++)
               this._models.at(i).hitTest(k.HitAreaNameHead, t, e)
@@ -8436,7 +8440,7 @@
                 (this.lapplive2dmanager = new Yi(this)),
                 !0)
               : (alert(
-                  "WebGLを初期化できません。ブラウザはサポートしていないようです。"
+                  "WebGLを初期化できません。ブラウザはサポートしていないようです。",
                 ),
                 (i = null),
                 !1);
@@ -8469,7 +8473,7 @@
               return H.printLog("failed to create vertexShader"), null;
             t.shaderSource(
               e,
-              "precision mediump float;attribute vec3 position;attribute vec2 uv;varying vec2 vuv;void main(void){   gl_Position = vec4(position, 1.0);   vuv = uv;}"
+              "precision mediump float;attribute vec3 position;attribute vec2 uv;varying vec2 vuv;void main(void){   gl_Position = vec4(position, 1.0);   vuv = uv;}",
             ),
               t.compileShader(e);
             var i = t.createShader(t.FRAGMENT_SHADER);
@@ -8477,7 +8481,7 @@
               return H.printLog("failed to create fragmentShader"), null;
             t.shaderSource(
               i,
-              "precision mediump float;varying vec2 vuv;uniform sampler2D texture;void main(void){   gl_FragColor = texture2D(texture, vuv);}"
+              "precision mediump float;varying vec2 vuv;uniform sampler2D texture;void main(void){   gl_FragColor = texture2D(texture, vuv);}",
             ),
               t.compileShader(i);
             var r = t.createProgram();
@@ -8545,7 +8549,7 @@
             if (this.models[t]) {
               var i = this.models[t];
               this.lappdelegate.lapplive2dmanager.getModel(
-                i.index
+                i.index,
               ).pm.lip_value = e;
             }
           }),
