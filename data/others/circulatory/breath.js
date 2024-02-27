@@ -1,5 +1,5 @@
 var breathStatus = {
-  rr: 20,
+  resiratoryRate: 20,
 };
 
 function sleep(milliseconds) {
@@ -28,17 +28,14 @@ async function breathNormal() {
 async function breath() {
   var isDefinedRr = true;
   while (isDefinedRr) {
-    await breathNormal();
-    console.log("breath");
-
     //Update HR Display
     TYRANO.kag.ftag.master_tag.ptext.start({
-      layer: "1",
+      layer: "0",
       page: "fore",
       x: 1140,
       y: 58,
       vertical: "false",
-      text: `RR: ${breathStatus.rr}`,
+      text: `RR: ${breathStatus.resiratoryRate}`,
       size: "26",
       color: "",
       bold: "bold",
@@ -48,6 +45,8 @@ async function breath() {
       overwrite: "true",
       isAsync: "true",
     });
+
+    await breathNormal();
   }
 }
 

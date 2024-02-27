@@ -1,8 +1,8 @@
 var seChannel = 0;
 var heartStatus = {
-  bpm: 65,
-  bpmMin: 60,
-  bpmMax: 70,
+  heartRate: 65,
+  heartRateMin: 60,
+  heartRateMax: 70,
   condition: 100,
 };
 
@@ -26,9 +26,9 @@ function bufCounter() {
   }
 }
 
-function playBeatSound(bpm) {
-  // If BPM is assigned, force playback at this BPM
-  var playBpm = bpm ? bpm : heartStatus.bpm;
+function playBeatSound(heartRate) {
+  // If heartRate is assigned, force playback at this heartRate
+  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var soundFileType = ".wav";
   var soundConfig = {
     volume: heartStatus.beatVol,
@@ -37,13 +37,13 @@ function playBeatSound(bpm) {
     isAsync: "true",
   };
 
-  if (playBpm < 50) {
+  if (playHeartRate < 50) {
     soundConfig.storage = "heartbeat/AC08_HB-22" + soundFileType;
-  } else if (playBpm >= 50) {
+  } else if (playHeartRate >= 50) {
     soundConfig.storage = "heartbeat/AC08_HB01" + soundFileType;
-  } else if (playBpm >= 90) {
+  } else if (playHeartRate >= 90) {
     soundConfig.storage = "heartbeat/AC08_HB11" + soundFileType;
-  } else if (playBpm >= 150) {
+  } else if (playHeartRate >= 150) {
     soundConfig.storage = "heartbeat/AC08_HB21" + soundFileType;
   } else {
     soundConfig.storage = "heartbeat/AC08_HB31" + soundFileType;
@@ -54,67 +54,61 @@ function playBeatSound(bpm) {
   bufCounter();
 }
 
-function playActorBeatMotion(bpm) {
-  // If BPM is assigned, force playback at this BPM
-  var playBpm = bpm ? bpm : heartStatus.bpm;
+function playActorBeatMotion(heartRate) {
+  // If heartRate is assigned, force playback at this heartRate
+  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: "HeartBeat",
     no: "0",
     isAsync: "true",
+    heartRate: heartStatus.heartRate.toString(),
+    intervalRate: "0.2",
   };
 
-  if (playBpm < 50) {
+  if (playHeartRate < 70) {
     motionConfig.no = "0";
-  } else if (playBpm >= 50) {
-    motionConfig.no = "0";
-  } else if (playBpm >= 90) {
+  } else if (playHeartRate >= 90) {
+    motionConfig.no = "1";
+  } else if (playHeartRate >= 120) {
     motionConfig.no = "2";
-  } else if (playBpm >= 120) {
+  } else if (playHeartRate >= 150) {
     motionConfig.no = "3";
-  } else if (playBpm >= 150) {
+  } else if (playHeartRate >= 180) {
     motionConfig.no = "4";
   }
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
-function playHeartBeatMotion(bpm, cond) {
-  // If BPM is assigned, force playback at this BPM
-  var playBpm = bpm ? bpm : heartStatus.bpm;
+function playHeartBeatMotion(heartRate, cond) {
+  // If heartRate is assigned, force playback at this heartRate
+  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
     name: "heart3",
     mtn: cond ? cond : "Normal",
     no: "0",
     isAsync: "true",
+    heartRate: heartStatus.heartRate.toString(),
+    intervalRate: "0.1",
   };
 
-  if (playBpm < 50) {
-    motionConfig.no = "0";
-  } else if (playBpm >= 50) {
-    motionConfig.no = "0";
-  } else if (playBpm >= 70) {
-    motionConfig.no = "1";
-  } else if (playBpm >= 90) {
-    motionConfig.no = "2";
-  } else if (playBpm >= 120) {
-    motionConfig.no = "3";
-  }
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
 // Normal beat
 async function beatRhythmNormal() {
+  console.log("Nomar");
   var random = randomRange(-3, 3);
   playActorBeatMotion();
   playHeartBeatMotion();
   playBeatSound();
-  await sleep(Math.floor(60000 / heartStatus.bpm));
-  // Slight variation in BPM (Between bpmMin and bpmMax)
+  await sleep(Math.floor(60000 / heartStatus.heartRate));
+  // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
-    heartStatus.bpm + random <= heartStatus.bpmMax &&
-    heartStatus.bpm + random >= heartStatus.bpmMin
+    heartStatus.heartRate + random <= heartStatus.heartRateMax &&
+    heartStatus.heartRate + random >= heartStatus.heartRateMin
   ) {
-    heartStatus.bpm = heartStatus.bpm + random;
+    heartStatus.heartRate = heartStatus.heartRate + random;
   }
 }
 
@@ -122,34 +116,30 @@ async function beatRhythmNormal() {
 async function beatRhythmPVC() {
   console.log("PVC");
   var random = randomRange(-3, 3);
-  playActorBeatMotion(heartStatus.bpm);
-  playHeartBeatMotion(heartStatus.bpm, "PVC");
-  playBeatSound(heartStatus.bpm - 60);
-  await sleep(Math.floor(60000 / heartStatus.bpm / 2));
-  playActorBeatMotion(heartStatus.bpm - 60);
-  playBeatSound(heartStatus.bpm - 60);
+  playActorBeatMotion(heartStatus.heartRate);
+  playHeartBeatMotion(heartStatus.heartRate, "PVC");
+  playBeatSound(heartStatus.heartRate - 60);
+  await sleep(Math.floor(60000 / heartStatus.heartRate / 2));
+  playActorBeatMotion(heartStatus.heartRate - 60);
+  playBeatSound(heartStatus.heartRate - 60);
   await sleep(
-    Math.floor(60000 / heartStatus.bpm / 2 + (60000 / heartStatus.bpm) * 1.5),
+    Math.floor(
+      60000 / heartStatus.heartRate / 2 + (60000 / heartStatus.heartRate) * 1.5,
+    ),
   );
-  // Slight variation in BPM (Between bpmMin and bpmMax)
+  // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
-    heartStatus.bpm + random <= heartStatus.bpmMax &&
-    heartStatus.bpm + random >= heartStatus.bpmMin
+    heartStatus.heartRate + random <= heartStatus.heartRateMax &&
+    heartStatus.heartRate + random >= heartStatus.heartRateMin
   ) {
-    heartStatus.bpm = heartStatus.bpm + random;
+    heartStatus.heartRate = heartStatus.heartRate + random;
   }
 }
 
 async function heartbeat() {
-  var isDefinedBpm = true;
-  while (isDefinedBpm) {
+  var isDefinedHeartRate = true;
+  while (isDefinedHeartRate) {
     var random = randomRange(0, heartStatus.condition);
-    if (random > 10) {
-      await beatRhythmNormal();
-    } else {
-      await beatRhythmPVC();
-    }
-
     //Update HR Display
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
@@ -157,7 +147,7 @@ async function heartbeat() {
       x: 1140,
       y: 16,
       vertical: "false",
-      text: `HR: ${heartStatus.bpm}`,
+      text: `HR: ${heartStatus.heartRate}`,
       size: "26",
       color: "",
       bold: "bold",
@@ -167,6 +157,12 @@ async function heartbeat() {
       overwrite: "true",
       isAsync: "true",
     });
+
+    if (random > 10) {
+      await beatRhythmNormal();
+    } else {
+      await beatRhythmPVC();
+    }
   }
 }
 
@@ -181,16 +177,16 @@ TYRANO.kag.ftag.master_tag.heartbeat_start = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.heartbeat_set_bpm = {
+TYRANO.kag.ftag.master_tag.heartbeat_set_heartRate = {
   kag: TYRANO.kag,
-  vital: ["bpm"],
+  vital: ["heartRate"],
   pm: {
-    bpm: "65",
+    heartRate: "65",
   },
   start: function (pm) {
-    heartStatus.bpm = parseInt(pm.bpm);
-    heartStatus.bpmMin = parseInt(pm.bpm) - 10;
-    heartStatus.bpmMax = parseInt(pm.bpm) + 10;
+    heartStatus.heartRate = parseInt(pm.heartRate);
+    heartStatus.heartRateMin = parseInt(pm.heartRate) - 10;
+    heartStatus.heartRateMax = parseInt(pm.heartRate) + 10;
 
     this.kag.ftag.nextOrder();
   },

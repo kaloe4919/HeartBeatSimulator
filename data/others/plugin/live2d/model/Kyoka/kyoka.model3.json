@@ -108,11 +108,6 @@
 					"FadeOutTime": 0
 				},
 				{
-					"File": "motions/Breath1Strong.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
 					"File": "motions/Breath2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
@@ -121,16 +116,21 @@
 					"File": "motions/Breath3.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/Breath4.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/Breath5.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
 				}
 			],
 			"HeartBeat": [
 				{
 					"File": "motions/HeartBeat1.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeat1Strong.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
@@ -146,6 +146,21 @@
 				},
 				{
 					"File": "motions/HeartBeat4.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat5.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat6.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeat7.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

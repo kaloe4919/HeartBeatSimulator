@@ -12,21 +12,6 @@
 					"File": "motions/HeartBeat1.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeat2.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeat3.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeat4.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
 				}
 			],
 			"PVC": [
@@ -37,23 +22,6 @@
 				},
 				{
 					"File": "motions/HeartBeatPVC2.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				}
-			],
-			"PVCPart": [
-				{
-					"File": "motions/HeartBeatPVCEnd1.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeatPVCEnd2.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/HeartBeatPVCEnd3.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

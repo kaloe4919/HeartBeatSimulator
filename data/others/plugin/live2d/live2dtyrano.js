@@ -399,12 +399,16 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
 
 TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
   kag: TYRANO.kag,
-  vital: ["name", "mtn"],
+  vital: ["name", "mtn", "hr"],
   pm: {
     name: "",
     mtn: "",
     no: "0",
     force: "true",
+    heartRate: "65",
+    // 1回の鼓動のうちの静止時間の割合
+    // 例：heartRate 60 で intervalRate が 0.3 の場合、0.7 秒で鼓動モーションが完了し、0.3 秒が interval となる
+    intervalRate: "0.2",
     isAsync: "true",
   },
 
@@ -415,7 +419,14 @@ TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
     _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
 
     //モデルを追加
-    _live2d_tyrano.tm.setBeatMotion(pm.name, pm.mtn, parseInt(pm.no), pm.force); //noを最後に渡す。
+    _live2d_tyrano.tm.setBeatMotion(
+      pm.name,
+      pm.mtn,
+      parseInt(pm.no),
+      pm.force,
+      parseInt(pm.heartRate),
+      parseFloat(pm.intervalRate),
+    ); //noを最後に渡す。
 
     if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
