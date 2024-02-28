@@ -442,6 +442,10 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
     mtn: "",
     no: "0",
     force: "true",
+    resiratoryRate: "20",
+    // 1回の呼吸のうちの静止時間の割合
+    // 例：resiratoryRate 60 で intervalRate が 0.3 の場合、0.7 秒で鼓動モーションが完了し、0.3 秒が interval となる
+    intervalRate: "0.2",
     isAsync: "true",
   },
 
@@ -457,6 +461,8 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
       pm.mtn,
       parseInt(pm.no),
       pm.force,
+      parseInt(pm.resiratoryRate),
+      parseFloat(pm.intervalRate),
     ); //noを最後に渡す。
 
     if (!"true" == pm.isAsync) {
@@ -494,6 +500,7 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
     name: "",
     expression: "",
     next: "true",
+    isAsync: "true",
   },
 
   start: function (pm) {
@@ -508,7 +515,7 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
     //モデルを追加
     _live2d_tyrano.tm.setExpression(pm.name, pm.expression); //noを最後に渡す。
 
-    if (pm.next == "true") {
+    if (pm.next == "true" || !"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
     }
     //canvas.style.opacity = 1;

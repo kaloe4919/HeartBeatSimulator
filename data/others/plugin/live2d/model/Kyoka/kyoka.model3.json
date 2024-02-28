@@ -19,6 +19,38 @@
 			{
 				"Name": "Shy2",
 				"File": "expressions/Shy2.exp3.json"
+			},
+			{
+				"Name": "BreathEffect1",
+				"File": "expressions/BreathEffect1.exp3.json"
+			},
+			{
+				"Name": "BreathEffect2",
+				"File": "expressions/BreathEffect2.exp3.json"
+			},
+			{
+				"Name": "CheekEffect1",
+				"File": "expressions/CheekEffect1.exp3.json"
+			},
+			{
+				"Name": "CheekEffect2",
+				"File": "expressions/CheekEffect2.exp3.json"
+			},
+			{
+				"Name": "Painful1",
+				"File": "expressions/Painful1.exp3.json"
+			},
+			{
+				"Name": "Painful2",
+				"File": "expressions/Painful2.exp3.json"
+			},
+			{
+				"Name": "BreathEffect0",
+				"File": "expressions/BreathEffect0.exp3.json"
+			},
+			{
+				"Name": "CheekEffect0",
+				"File": "expressions/CheekEffect0.exp3.json"
 			}
 		],
 		"Motions": {

@@ -5,22 +5,17 @@
 	"Parameters": [
 		{
 			"Id": "ParamEyeLFlat",
-			"Value": 0,
+			"Value": 0.3,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeRFlat",
-			"Value": 0,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeSize",
-			"Value": 0,
+			"Value": 0.3,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamEyeBallX",
-			"Value": -1,
+			"Value": -0.2,
 			"Blend": "Add"
 		},
 		{
@@ -29,13 +24,28 @@
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamMouthForm",
-			"Value": -1,
+			"Id": "ParamBrowForm",
+			"Value": 0.4,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamBrowY",
+			"Value": 0.4,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"Value": 0.4,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamCheek",
-			"Value": 1,
+			"Value": 0.5,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamBreathEffect",
+			"Value": 0.5,
 			"Blend": "Add"
 		}
 	]

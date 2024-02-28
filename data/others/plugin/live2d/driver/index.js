@@ -2017,6 +2017,26 @@
           (t.intervalRate = 0.2),
           t
         );
+      })(),
+      BreathStatus = (function () {
+        function t() {}
+        return (
+          (t.getResiratoryRate = function () {
+            return this.resiratoryRate;
+          }),
+          (t.setResiratoryRate = function (resiratoryRate) {
+            this.resiratoryRate = resiratoryRate;
+          }),
+          (t.getIntervalRate = function () {
+            return this.intervalRate;
+          }),
+          (t.setIntervalRate = function (intervalRate) {
+            this.intervalRate = intervalRate;
+          }),
+          (t.resiratoryRate = 20),
+          (t.intervalRate = 0.2),
+          t
+        );
       })();
     !(function (t) {
       var e = (function () {
@@ -8061,12 +8081,9 @@
             if (this._state == Pi.CompleteSetup) {
               var t = H.getDeltaTime();
               var heartRate = HeartStatus.getHeartRate();
-              var intervalRate = HeartStatus.getIntervalRate();
-              console.log(
-                heartRate,
-                intervalRate,
-                (heartRate / 60) * (1 + intervalRate),
-              );
+              var heartIntervalRate = HeartStatus.getIntervalRate();
+              var resiratoryRate = BreathStatus.getResiratoryRate();
+              var breathIntervalRate = BreathStatus.getIntervalRate();
               this._userTimeSeconds += t;
               var e = !1;
               if (
@@ -8074,9 +8091,12 @@
                 (e = this._motionManager.updateMotion(this._model, t)),
                 (e = this._beatMotionManager.updateMotion(
                   this._model,
-                  t * (heartRate / 60) * (1 + intervalRate),
+                  t * (heartRate / 60) * (1 + heartIntervalRate),
                 )),
-                (e = this._breathMotionManager.updateMotion(this._model, t)),
+                (e = this._breathMotionManager.updateMotion(
+                  this._model,
+                  t * (resiratoryRate / 20) * (1 + breathIntervalRate),
+                )),
                 this._model.saveParameters(),
                 e ||
                   (null != this._eyeBlink &&
@@ -8186,8 +8206,16 @@
               this._beatMotionManager.startMotionPriority(a, s, i)
             );
           }),
-          (e.prototype.startBreathMotion = function (t, e, i) {
+          (e.prototype.startBreathMotion = function (
+            t,
+            e,
+            i,
+            resiratoryRate,
+            intervalRate,
+          ) {
             var r = this;
+            BreathStatus.setResiratoryRate(resiratoryRate);
+            BreathStatus.setIntervalRate(intervalRate);
             if (i == k.PriorityForce)
               this._breathMotionManager.setReservePriority(i);
             else if (!this._breathMotionManager.reserveMotion(i))
@@ -8618,7 +8646,14 @@
                 .getModel(n.index)
                 .startBeatMotion(e, i, o, heartRate, intervalRate);
           }),
-          (t.prototype.setBreathMotion = function (t, e, i, r) {
+          (t.prototype.setBreathMotion = function (
+            t,
+            e,
+            i,
+            r,
+            resiratoryRate,
+            intervalRate,
+          ) {
             this.models[t] ||
               alert("Live2Dエラー：name=「" + t + "」は存在しません。");
             var n = this.models[t],
@@ -8626,7 +8661,7 @@
             "true" === r && (o = 3),
               this.lappdelegate.lapplive2dmanager
                 .getModel(n.index)
-                .startBreathMotion(e, i, o);
+                .startBreathMotion(e, i, o, resiratoryRate, intervalRate);
           }),
           (t.prototype.convertCanvasPos = function (t, e) {
             return this.lappdelegate.getView().onTouchesEnded(t, e);

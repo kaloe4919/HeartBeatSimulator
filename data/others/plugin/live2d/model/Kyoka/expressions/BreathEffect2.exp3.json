@@ -1,0 +1,17 @@
+{
+	"Type": "Live2D Expression",
+	"FadeInTime": 2,
+	"FadeOutTime": 2,
+	"Parameters": [
+		{
+			"Id": "ParamBreathEffect",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamCheek",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}

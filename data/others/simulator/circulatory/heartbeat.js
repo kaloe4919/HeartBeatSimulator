@@ -1,10 +1,5 @@
 var seChannel = 0;
-var heartStatus = {
-  heartRate: 65,
-  heartRateMin: 60,
-  heartRateMax: 70,
-  condition: 100,
-};
+var heartStatus = TYRANO.kag.hbsim.variables.heart_status;
 
 function sleep(milliseconds) {
   if (milliseconds < 200) {
@@ -37,13 +32,13 @@ function playBeatSound(heartRate) {
     isAsync: "true",
   };
 
-  if (playHeartRate < 50) {
+  if (playHeartRate <= 50) {
     soundConfig.storage = "heartbeat/AC08_HB-22" + soundFileType;
-  } else if (playHeartRate >= 50) {
+  } else if (playHeartRate <= 80) {
     soundConfig.storage = "heartbeat/AC08_HB01" + soundFileType;
-  } else if (playHeartRate >= 90) {
+  } else if (playHeartRate <= 110) {
     soundConfig.storage = "heartbeat/AC08_HB11" + soundFileType;
-  } else if (playHeartRate >= 150) {
+  } else if (playHeartRate <= 150) {
     soundConfig.storage = "heartbeat/AC08_HB21" + soundFileType;
   } else {
     soundConfig.storage = "heartbeat/AC08_HB31" + soundFileType;
@@ -66,15 +61,15 @@ function playActorBeatMotion(heartRate) {
     intervalRate: "0.2",
   };
 
-  if (playHeartRate < 70) {
+  if (playHeartRate <= 70) {
     motionConfig.no = "0";
-  } else if (playHeartRate >= 90) {
+  } else if (playHeartRate <= 90) {
     motionConfig.no = "1";
-  } else if (playHeartRate >= 120) {
+  } else if (playHeartRate <= 120) {
     motionConfig.no = "2";
-  } else if (playHeartRate >= 150) {
+  } else if (playHeartRate <= 150) {
     motionConfig.no = "3";
-  } else if (playHeartRate >= 180) {
+  } else if (playHeartRate <= 180) {
     motionConfig.no = "4";
   }
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
@@ -97,7 +92,6 @@ function playHeartBeatMotion(heartRate, cond) {
 
 // Normal beat
 async function beatRhythmNormal() {
-  console.log("Nomar");
   var random = randomRange(-3, 3);
   playActorBeatMotion();
   playHeartBeatMotion();
@@ -140,7 +134,10 @@ async function heartbeat() {
   var isDefinedHeartRate = true;
   while (isDefinedHeartRate) {
     var random = randomRange(0, heartStatus.condition);
-    //Update HR Display
+    // Synchronize heartStatus into TYRANO.kag.hbsim.variables
+    TYRANO.kag.hbsim.variables.heart_status = heartStatus;
+
+    // Update HR Display
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
@@ -187,6 +184,42 @@ TYRANO.kag.ftag.master_tag.heartbeat_set_heartRate = {
     heartStatus.heartRate = parseInt(pm.heartRate);
     heartStatus.heartRateMin = parseInt(pm.heartRate) - 10;
     heartStatus.heartRateMax = parseInt(pm.heartRate) + 10;
+
+    this.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.heartbeat_up_heartRate = {
+  kag: TYRANO.kag,
+  vital: ["value"],
+  pm: {
+    value: "0",
+  },
+  start: function (pm) {
+    console.log(
+      `heartRate up ${heartStatus.heartRate} → ${heartStatus.heartRate + parseInt(pm.value)}`,
+    );
+    heartStatus.heartRate += parseInt(pm.value);
+    heartStatus.heartRateMin += parseInt(pm.value) - 10;
+    heartStatus.heartRateMax += parseInt(pm.value) + 10;
+
+    this.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.heartbeat_down_heartRate = {
+  kag: TYRANO.kag,
+  vital: ["value"],
+  pm: {
+    value: "0",
+  },
+  start: function (pm) {
+    console.log(
+      `heartRate down ${heartStatus.heartRate} → ${heartStatus.heartRate - parseInt(pm.value)}`,
+    );
+    heartStatus.heartRate -= parseInt(pm.value);
+    heartStatus.heartRateMin -= parseInt(pm.value) - 10;
+    heartStatus.heartRateMax -= parseInt(pm.value) + 10;
 
     this.kag.ftag.nextOrder();
   },

@@ -20,8 +20,8 @@
 ;defaultChEffectSpeed=0.2s
 ;skipSpeed=30
 ;skipEffectIgnore=true
-;autoSpeed=1300
-;autoClickStop=true
+;autoSpeed=1600
+;autoClickStop=false
 ;autoSpeedWithText=60
 ;cursorDefault=default
 ;mediaFormatDefault=ogg

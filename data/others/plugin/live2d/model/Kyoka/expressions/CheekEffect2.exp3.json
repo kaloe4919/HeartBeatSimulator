@@ -1,0 +1,12 @@
+{
+	"Type": "Live2D Expression",
+	"FadeInTime": 2,
+	"FadeOutTime": 2,
+	"Parameters": [
+		{
+			"Id": "ParamCheek",
+			"Value": 1,
+			"Blend": "Add"
+		}
+	]
+}
