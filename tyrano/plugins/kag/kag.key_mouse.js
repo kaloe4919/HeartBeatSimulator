@@ -56,7 +56,7 @@ tyrano.plugin.kag.key_mouse = {
       (91 != keycode && 17 != keycode) || (that.kag.stat.is_skip = !1);
     });
     $(document).on("mousedown", function (e) {
-      that.clearSkip();
+      // that.clearSkip();
       var target = null;
       2 == e.which
         ? (target = that.map_mouse.center)
@@ -116,7 +116,7 @@ tyrano.plugin.kag.key_mouse = {
       });
       layer_obj_click
         .on("touchstart", function () {
-          that.clearSkip();
+          // that.clearSkip();
           that.timeoutId = setTimeout(function () {
             if (that[that.map_ges.hold.action]) {
               that.is_swipe = !0;
@@ -166,7 +166,7 @@ tyrano.plugin.kag.key_mouse = {
   },
   next: function () {
     if (this.kag.key_mouse.canClick()) {
-      this.clearSkip();
+      // this.clearSkip();
       $(".layer_event_click").trigger("click");
     }
   },
