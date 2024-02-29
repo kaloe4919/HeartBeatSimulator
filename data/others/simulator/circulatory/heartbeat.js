@@ -61,16 +61,16 @@ function playActorBeatMotion(heartRate) {
     intervalRate: "0.2",
   };
 
-  if (playHeartRate <= 70) {
+  if (playHeartRate <= 90) {
     motionConfig.no = "0";
-  } else if (playHeartRate <= 90) {
-    motionConfig.no = "1";
   } else if (playHeartRate <= 120) {
-    motionConfig.no = "2";
+    motionConfig.no = "1";
   } else if (playHeartRate <= 150) {
-    motionConfig.no = "3";
+    motionConfig.no = "1";
   } else if (playHeartRate <= 180) {
-    motionConfig.no = "4";
+    motionConfig.no = "2";
+  } else if (playHeartRate <= 210) {
+    motionConfig.no = "3";
   }
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
@@ -136,6 +136,9 @@ async function heartbeat() {
     var random = randomRange(0, heartStatus.condition);
     // Synchronize heartStatus into TYRANO.kag.hbsim.variables
     TYRANO.kag.hbsim.variables.heart_status = heartStatus;
+
+    // Update expression
+    TYRANO.kag.hbsim.expression.update();
 
     // Update HR Display
     TYRANO.kag.ftag.master_tag.ptext.start({

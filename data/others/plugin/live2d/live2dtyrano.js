@@ -500,7 +500,7 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
     name: "",
     expression: "",
     next: "true",
-    isAsync: "true",
+    isAsync: "false",
   },
 
   start: function (pm) {

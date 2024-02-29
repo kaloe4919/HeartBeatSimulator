@@ -10,10 +10,11 @@
 [live2d_show  name="heart3"  x="0.5"  y="-0.33"  scale="0.5"  ]
 [tb_start_tyrano_code]
 ;init sim
+[loadjs storage="simulator/init.js"]
+[loadjs storage="simulator/actor/expression.js"]
 [configdelay speed=100]
 [autostart]
 [layopt layer="0" visible="true"]
-[loadjs storage="simulator/init.js"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]

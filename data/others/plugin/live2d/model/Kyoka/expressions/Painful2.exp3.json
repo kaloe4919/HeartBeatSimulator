@@ -4,36 +4,6 @@
 	"FadeOutTime": 0.5,
 	"Parameters": [
 		{
-			"Id": "ParamEyeLOpen",
-			"Value": -0.2,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeROpen",
-			"Value": -0.2,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamMouthOpenY",
-			"Value": 1,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamMouthForm",
-			"Value": 2,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamBrowForm",
-			"Value": 0.7,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamBrowY",
-			"Value": 0.593,
-			"Blend": "Add"
-		},
-		{
 			"Id": "ParamEyeLFlat",
 			"Value": 0.3,
 			"Blend": "Add"
@@ -54,13 +24,23 @@
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamBreathEffect",
-			"Value": 1,
+			"Id": "ParamBrowForm",
+			"Value": 0.4,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamBrowY",
+			"Value": 0.4,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"Value": 0.4,
 			"Blend": "Add"
 		},
 		{
 			"Id": "ParamCheek",
-			"Value": 1,
+			"Value": 0.5,
 			"Blend": "Add"
 		}
 	]

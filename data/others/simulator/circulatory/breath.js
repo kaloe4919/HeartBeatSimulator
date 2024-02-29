@@ -20,43 +20,14 @@ function playActorBreathMotion() {
   };
 
   if (playResiratoryRate <= 20) {
-    if (prevResiratoryRate > 20) {
-      // TODO: 表情制御は別ファイルに分離する
-      console.log("Painful0");
-      TYRANO.kag.ftag.master_tag.live2d_expression.start({
-        name: "Kyoka",
-        expression: "Normal",
-      });
-    }
     motionConfig.no = "0";
   } else if (playResiratoryRate <= 25) {
-    if (prevResiratoryRate > 30) {
-      console.log("Painful0");
-      TYRANO.kag.ftag.master_tag.live2d_expression.start({
-        name: "Kyoka",
-        expression: "Normal",
-      });
-    }
     motionConfig.no = "1";
   } else if (playResiratoryRate <= 30) {
-    if (prevResiratoryRate < 30 || prevResiratoryRate >= 35) {
-      console.log("Painful1");
-      TYRANO.kag.ftag.master_tag.live2d_expression.start({
-        name: "Kyoka",
-        expression: "Painful1",
-      });
-    }
     motionConfig.no = "2";
   } else if (playResiratoryRate <= 35) {
     motionConfig.no = "3";
   } else if (playResiratoryRate <= 40) {
-    if (prevResiratoryRate < 40) {
-      console.log("Painful2");
-      TYRANO.kag.ftag.master_tag.live2d_expression.start({
-        name: "Kyoka",
-        expression: "Painful2",
-      });
-    }
     motionConfig.no = "4";
   }
 
@@ -75,6 +46,9 @@ async function breath() {
     // Update ResiratoryRate from heartRate
     var heartRate = TYRANO.kag.hbsim.variables.heart_status.heartRate;
     breathStatus.resiratoryRate = Math.round((heartRate / 65) * 15);
+
+    // Update expression
+    TYRANO.kag.hbsim.expression.update();
 
     // Update RR Display
     TYRANO.kag.ftag.master_tag.ptext.start({
