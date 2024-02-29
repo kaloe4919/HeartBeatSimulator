@@ -17,6 +17,8 @@
 
 [tb_start_tyrano_code]
 ;init vital panel
+[loadjs storage="simulator/ui/ecgPanel.js"]
+[show_ecg]
 [ptext layer="0" name="HR" text="HR: --" size="26" bold="bold" x=1140 y=16]
 [ptext layer="0" name="RR" text="RR: --" size="26" bold="bold" x=1140 y=58]
 [_tb_end_tyrano_code]
