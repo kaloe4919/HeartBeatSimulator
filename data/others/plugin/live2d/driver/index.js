@@ -2021,11 +2021,11 @@
       BreathStatus = (function () {
         function t() {}
         return (
-          (t.getResiratoryRate = function () {
-            return this.resiratoryRate;
+          (t.getRespiratoryRate = function () {
+            return this.respiratoryRate;
           }),
-          (t.setResiratoryRate = function (resiratoryRate) {
-            this.resiratoryRate = resiratoryRate;
+          (t.setRespiratoryRate = function (respiratoryRate) {
+            this.respiratoryRate = respiratoryRate;
           }),
           (t.getIntervalRate = function () {
             return this.intervalRate;
@@ -2033,7 +2033,7 @@
           (t.setIntervalRate = function (intervalRate) {
             this.intervalRate = intervalRate;
           }),
-          (t.resiratoryRate = 20),
+          (t.respiratoryRate = 20),
           (t.intervalRate = 0.2),
           t
         );
@@ -8082,7 +8082,7 @@
               var t = H.getDeltaTime();
               var heartRate = HeartStatus.getHeartRate();
               var heartIntervalRate = HeartStatus.getIntervalRate();
-              var resiratoryRate = BreathStatus.getResiratoryRate();
+              var respiratoryRate = BreathStatus.getRespiratoryRate();
               var breathIntervalRate = BreathStatus.getIntervalRate();
               this._userTimeSeconds += t;
               var e = !1;
@@ -8095,7 +8095,7 @@
                 )),
                 (e = this._breathMotionManager.updateMotion(
                   this._model,
-                  t * (resiratoryRate / 20) * (1 + breathIntervalRate),
+                  t * (respiratoryRate / 20) * (1 + breathIntervalRate),
                 )),
                 this._model.saveParameters(),
                 e ||
@@ -8210,11 +8210,11 @@
             t,
             e,
             i,
-            resiratoryRate,
+            respiratoryRate,
             intervalRate,
           ) {
             var r = this;
-            BreathStatus.setResiratoryRate(resiratoryRate);
+            BreathStatus.setRespiratoryRate(respiratoryRate);
             BreathStatus.setIntervalRate(intervalRate);
             if (i == k.PriorityForce)
               this._breathMotionManager.setReservePriority(i);
@@ -8651,7 +8651,7 @@
             e,
             i,
             r,
-            resiratoryRate,
+            respiratoryRate,
             intervalRate,
           ) {
             this.models[t] ||
@@ -8661,7 +8661,7 @@
             "true" === r && (o = 3),
               this.lappdelegate.lapplive2dmanager
                 .getModel(n.index)
-                .startBreathMotion(e, i, o, resiratoryRate, intervalRate);
+                .startBreathMotion(e, i, o, respiratoryRate, intervalRate);
           }),
           (t.prototype.convertCanvasPos = function (t, e) {
             return this.lappdelegate.getView().onTouchesEnded(t, e);

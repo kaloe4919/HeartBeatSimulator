@@ -1,5 +1,5 @@
 var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
-var prevResiratoryRate = 15;
+var prevRespiratoryRate = 15;
 
 function sleep(milliseconds) {
   if (milliseconds < 200) {
@@ -9,25 +9,25 @@ function sleep(milliseconds) {
 }
 
 function playActorBreathMotion() {
-  var playResiratoryRate = breathStatus.resiratoryRate;
+  var playRespiratoryRate = breathStatus.respiratoryRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: "Breath",
     no: "0",
     isAsync: "true",
-    resiratoryRate: playResiratoryRate.toString(),
+    respiratoryRate: playRespiratoryRate.toString(),
     intervalRate: "0.2",
   };
 
-  if (playResiratoryRate <= 20) {
+  if (playRespiratoryRate <= 20) {
     motionConfig.no = "0";
-  } else if (playResiratoryRate <= 25) {
+  } else if (playRespiratoryRate <= 25) {
     motionConfig.no = "1";
-  } else if (playResiratoryRate <= 30) {
+  } else if (playRespiratoryRate <= 30) {
     motionConfig.no = "2";
-  } else if (playResiratoryRate <= 35) {
+  } else if (playRespiratoryRate <= 35) {
     motionConfig.no = "3";
-  } else if (playResiratoryRate <= 40) {
+  } else if (playRespiratoryRate <= 40) {
     motionConfig.no = "4";
   }
 
@@ -35,17 +35,23 @@ function playActorBreathMotion() {
 }
 
 async function breathNormal() {
+  // Set values for vital monitor
+  TYRANO.kag.hbsim.variables.breathStatus.current = {
+    type: "Normal",
+    isAddedQue: false,
+  };
+
   playActorBreathMotion();
-  await sleep(Math.floor((60 / breathStatus.resiratoryRate) * 1000));
+  await sleep(Math.floor((60 / breathStatus.respiratoryRate) * 1000));
 }
 
 async function breath() {
   var isDefinedRr = true;
   while (isDefinedRr) {
     console.log("breath");
-    // Update ResiratoryRate from heartRate
+    // Update RespiratoryRate from heartRate
     var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
-    breathStatus.resiratoryRate = Math.round((heartRate / 65) * 15);
+    breathStatus.respiratoryRate = Math.round((heartRate / 65) * 15);
 
     // Update expression
     TYRANO.kag.hbsim.expression.update();
@@ -57,7 +63,7 @@ async function breath() {
       x: 1190,
       y: 157,
       vertical: "false",
-      text: `RR: ${breathStatus.resiratoryRate}`,
+      text: `RR: ${breathStatus.respiratoryRate}`,
       size: "20",
       hexColor: "#42e0f5",
       bold: "bold",
@@ -70,7 +76,7 @@ async function breath() {
 
     await breathNormal();
 
-    prevResiratoryRate = breathStatus.resiratoryRate;
+    prevRespiratoryRate = breathStatus.respiratoryRate;
   }
 }
 

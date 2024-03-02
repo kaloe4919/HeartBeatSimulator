@@ -1,13 +1,12 @@
 // y-axis of target to update value
-yIndex = 0;
+ecgYIndex = 0;
 // If heartbeat occurs, heartbeat waveform is converted to y-axis data and assigned
-yDataQue = [];
+ecgYDataQue = [];
 
-// 心拍数が多い時は Interval のフレームを短くする
+// 心拍数に応じて Interval のフレームを短くする
 function shortenIntervalByHeartRate(yData) {
   var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
   var shortenLength = Math.round(yData.length * (65 / heartRate));
-  console.log(yData.length, shortenLength);
   if (shortenLength >= 0) {
     return yData.splice(0, shortenLength);
   } else {
@@ -21,7 +20,6 @@ function updateEcg() {
 
   // 鼓動がある場合、鼓動を解析してキューを作成
   if (!current.isAddedQue) {
-    var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
     if (current.type === "Normal") {
       var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
@@ -35,7 +33,7 @@ function updateEcg() {
         .concat(rWave)
         .concat(stInterval)
         .concat(tWave);
-      yDataQue = que;
+      ecgYDataQue = que;
 
       TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
     } else if (current.type === "PVC") {
@@ -55,32 +53,32 @@ function updateEcg() {
         .concat(tWave)
         .concat(intervalPVC)
         .concat(rWavePVC);
-      yDataQue = que;
+      ecgYDataQue = que;
 
       TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
     }
   }
 
   var yValues = data.y;
-  if (yDataQue.length > 0) {
-    // キューがある場合、X軸をキューの値で更新する
+  if (ecgYDataQue.length > 0) {
+    // キューがある場合、Y軸をキューの値で更新する
     // 次の 3 フレームを初期化する
-    yValues.splice(yIndex, 4, yDataQue[0], null, null, null);
-    yDataQue.shift();
+    yValues.splice(ecgYIndex, 4, ecgYDataQue[0], null, null, null);
+    ecgYDataQue.shift();
   } else {
-    // キューがない場合、X軸を 0 で更新する
+    // キューがない場合、Y軸を 0 で更新する
     // 次の 3 フレームを初期化する
-    yValues.splice(yIndex, 4, 0, null, null, null);
+    yValues.splice(ecgYIndex, 4, 0, null, null, null);
   }
   data.y = yValues;
   Plotly.update("ecg", [data], TYRANO.kag.hbsim.chart.ecg.layout);
   TYRANO.kag.hbsim.chart.ecg.data = data;
 
-  // 更新したX軸が配列の最後の場合は Index を 0 に戻す
-  if (yIndex >= data.x.length - 1) {
-    yIndex = 0;
+  // 更新したY軸が配列の最後の場合は Index を 0 に戻す
+  if (ecgYIndex >= data.x.length - 1) {
+    ecgYIndex = 0;
   } else {
-    yIndex++;
+    ecgYIndex++;
   }
 }
 

@@ -1,5 +1,14 @@
 TYRANO.kag.hbsim = {};
-TYRANO.kag.hbsim.chart = { ecg: {}, rr: {} };
+TYRANO.kag.hbsim.chart = {
+  ecg: {
+    data: null,
+    layout: null,
+  },
+  rr: {
+    data: null,
+    layout: null,
+  },
+};
 TYRANO.kag.hbsim.variables = {
   heartStatus: {
     heartRate: 65,
@@ -13,7 +22,7 @@ TYRANO.kag.hbsim.variables = {
     },
   },
   breathStatus: {
-    resiratoryRate: 15,
+    respiratoryRate: 15,
     // used by vital monitors to output graphs
     current: {
       type: "Normal",

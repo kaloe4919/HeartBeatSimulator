@@ -442,9 +442,9 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
     mtn: "",
     no: "0",
     force: "true",
-    resiratoryRate: "20",
+    respiratoryRate: "20",
     // 1回の呼吸のうちの静止時間の割合
-    // 例：resiratoryRate 60 で intervalRate が 0.3 の場合、0.7 秒で鼓動モーションが完了し、0.3 秒が interval となる
+    // 例：respiratoryRate 60 で intervalRate が 0.3 の場合、0.7 秒で鼓動モーションが完了し、0.3 秒が interval となる
     intervalRate: "0.2",
     isAsync: "true",
   },
@@ -461,7 +461,7 @@ TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
       pm.mtn,
       parseInt(pm.no),
       pm.force,
-      parseInt(pm.resiratoryRate),
+      parseInt(pm.respiratoryRate),
       parseFloat(pm.intervalRate),
     ); //noを最後に渡す。
 

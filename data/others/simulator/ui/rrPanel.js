@@ -1,3 +1,104 @@
+// y-axis of target to update value
+rrYIndex = 0;
+// If breath occurs, breath waveform is converted to y-axis data and assigned
+rrYDataQue = [];
+
+// 呼吸数に応じて Interval のフレームを短くする
+function shortenIntervalByRespiratoryRate(yData) {
+  var respiratoryRate = TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
+  var shortenLength = Math.round(yData.length * (15 / respiratoryRate));
+  if (shortenLength >= 0) {
+    return yData.splice(yData[0], shortenLength);
+  } else {
+    return yData;
+  }
+}
+
+function smoothstep(x) {
+  return x * x * (3 - 2 * x);
+}
+
+// Create smoothstep values from 0 to max
+function createCurveData(max, length, isReverse) {
+  const xMin = 0;
+  const xMax = 1;
+
+  var values = [];
+
+  for (let i = xMin; i <= xMax; i += 1 / length) {
+    const x = i;
+    const y = smoothstep(x);
+
+    values.push(y * max);
+  }
+
+  if (isReverse) {
+    return values.reverse();
+  } else {
+    return values;
+  }
+}
+
+function updateRr() {
+  var current = TYRANO.kag.hbsim.variables.breathStatus.current;
+  var data = TYRANO.kag.hbsim.chart.rr.data;
+
+  // 呼吸がある場合、キューを作成
+  if (!current.isAddedQue) {
+    var respiratoryRate =
+      TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
+    // 呼吸の強さに応じてY軸のMax値を変動させる
+    var curveMaxValue = 2 * (respiratoryRate / 15);
+    // 呼吸の速さに応じてグラフの曲線を急にする
+    var curveLength = 75 / (respiratoryRate / 15);
+    // グラフのy軸の表示上限は 6
+    var inhaleCurve = createCurveData(
+      curveMaxValue <= 6 ? curveMaxValue : 6,
+      curveLength,
+    );
+    var exhaleCurve = createCurveData(
+      curveMaxValue <= 6 ? curveMaxValue : 6,
+      curveLength,
+      true,
+    );
+    var que = inhaleCurve.concat(exhaleCurve);
+    rrYDataQue = que;
+
+    TYRANO.kag.hbsim.variables.breathStatus.current.isAddedQue = true;
+  }
+
+  var yValues = data.y;
+  if (rrYDataQue.length > 0) {
+    // キューがある場合、Y軸をキューの値で更新する
+    // 次の 3 フレームを初期化する
+    yValues.splice(rrYIndex, 4, rrYDataQue[0], null, null, null);
+    rrYDataQue.shift();
+  } else {
+    // キューがない場合、Y軸を 0 で更新する
+    // 次の 3 フレームを初期化する
+    yValues.splice(rrYIndex, 4, 0, null, null, null);
+  }
+  data.y = yValues;
+  Plotly.update("rr", [data], TYRANO.kag.hbsim.chart.rr.layout);
+  TYRANO.kag.hbsim.chart.rr.data = data;
+
+  // 更新したY軸が配列の最後の場合は Index を 0 に戻す
+  if (rrYIndex >= data.x.length - 1) {
+    rrYIndex = 0;
+  } else {
+    rrYIndex++;
+  }
+}
+
+// Vital monitor update 50 times per second
+async function liveRr() {
+  var isDefinedRr = true;
+  while (isDefinedRr) {
+    updateRr();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+  }
+}
+
 TYRANO.kag.ftag.master_tag.show_rr = {
   pm: {
     layer: "0",
@@ -46,17 +147,27 @@ TYRANO.kag.ftag.master_tag.show_rr = {
       xValues.push(i.toString());
       yValues.push(null);
     }
-    var data = [
-      {
-        x: xValues,
-        y: yValues,
-        type: "scatter",
-        mode: "lines",
-        line: { color: "#42e0f5", width: 2, shape: "spline" },
-      },
-    ];
-    Plotly.newPlot("rr", data, layout);
+    var data = {
+      x: xValues,
+      y: yValues,
+      type: "scatter",
+      mode: "lines",
+      line: { color: "#42e0f5", width: 2, shape: "spline" },
+    };
+    Plotly.newPlot("rr", [data], layout);
     TYRANO.kag.hbsim.chart.rr.layout = layout;
+    TYRANO.kag.hbsim.chart.rr.data = data;
     TYRANO.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.start_rr = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+  start: function () {
+    liveRr();
+
+    this.kag.ftag.nextOrder();
   },
 };
