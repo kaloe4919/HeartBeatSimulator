@@ -3,6 +3,18 @@ yIndex = 0;
 // If heartbeat occurs, heartbeat waveform is converted to y-axis data and assigned
 yDataQue = [];
 
+// 心拍数が多い時は Interval のフレームを短くする
+function shortenIntervalByHeartRate(yData) {
+  var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
+  var shortenLength = Math.round(yData.length * (65 / heartRate));
+  console.log(yData.length, shortenLength);
+  if (shortenLength >= 0) {
+    return yData.splice(0, shortenLength);
+  } else {
+    return yData;
+  }
+}
+
 function updateEcg() {
   var current = TYRANO.kag.hbsim.variables.heartStatus.current;
   var data = TYRANO.kag.hbsim.chart.ecg.data;
@@ -11,12 +23,12 @@ function updateEcg() {
   if (!current.isAddedQue) {
     var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
     if (current.type === "Normal") {
-      var preInterval = [0, 0, 0];
+      var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
-      var prInterval = [0, 0, 0];
+      var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var rWave = [-1, 6, -2];
-      var stInterval = [0, 0, 0, 0, 0, 0];
-      var tWave = [0.5, 0.7, 1.5];
+      var stInterval = shortenIntervalByHeartRate([0, 0, 0, 0, 0, 0]);
+      var tWave = shortenIntervalByHeartRate([0.5, 0.7, 1.5]);
       var que = preInterval
         .concat(pWave)
         .concat(prInterval)
@@ -27,14 +39,14 @@ function updateEcg() {
 
       TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
     } else if (current.type === "PVC") {
-      var preInterval = [0, 0, 0];
+      var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
-      var prInterval = [0, 0, 0];
+      var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var rWave = [-1, 7, -2];
-      var stInterval = [0, 0, 0, 0, 0, 0];
-      var tWave = [0.5, 0.7, 1.5];
-      var intervalPVC = [0, 0, 0, 0, 0];
-      var rWavePVC = [0.5, 1, 9, -2, -2.5, -4, 0, 1];
+      var stInterval = shortenIntervalByHeartRate([0, 0, 0, 0, 0, 0]);
+      var tWave = shortenIntervalByHeartRate([0.5, 0.7, 1.5]);
+      var intervalPVC = shortenIntervalByHeartRate([0, 0, 0, 0, 0]);
+      var rWavePVC = [0.5, 1, 9, -2, -2.5, -4, -1, 0, 1];
       var que = preInterval
         .concat(pWave)
         .concat(prInterval)
