@@ -20,6 +20,7 @@
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
 [show_ecg]
+[start_ecg]
 [show_rr]
 [ptext layer="0" name="HR" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1190 y=78]
 [ptext layer="0" name="RR" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=157]

@@ -69,15 +69,13 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
         "" != _pm.clickse &&
           that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
         console.log(
-          `heartRate up ${TYRANO.kag.hbsim.variables.heart_status.heartRate} → ${TYRANO.kag.hbsim.variables.heart_status.heartRate + parseInt(_pm.value)}`,
+          `heartRate up ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${TYRANO.kag.hbsim.variables.heartStatus.heartRate + parseInt(_pm.value)}`,
         );
-        TYRANO.kag.hbsim.variables.heart_status.heartRate += parseInt(
+        TYRANO.kag.hbsim.variables.heartStatus.heartRate += parseInt(_pm.value);
+        TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += parseInt(
           _pm.value,
         );
-        TYRANO.kag.hbsim.variables.heart_status.heartRateMin += parseInt(
-          _pm.value,
-        );
-        TYRANO.kag.hbsim.variables.heart_status.heartRateMax += parseInt(
+        TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += parseInt(
           _pm.value,
         );
       });

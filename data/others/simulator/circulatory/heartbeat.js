@@ -1,5 +1,5 @@
 var seChannel = 0;
-var heartStatus = TYRANO.kag.hbsim.variables.heart_status;
+var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
 
 function sleep(milliseconds) {
   if (milliseconds < 200) {
@@ -92,6 +92,12 @@ function playHeartBeatMotion(heartRate, cond) {
 
 // Normal beat
 async function beatRhythmNormal() {
+  // Set values for vital monitor
+  TYRANO.kag.hbsim.variables.heartStatus.current = {
+    type: "Normal",
+    isAddedQue: false,
+  };
+
   var random = randomRange(-3, 3);
   playActorBeatMotion();
   playHeartBeatMotion();
@@ -109,6 +115,12 @@ async function beatRhythmNormal() {
 // PVC beat
 async function beatRhythmPVC() {
   console.log("PVC");
+  // Set values for vital monitor
+  TYRANO.kag.hbsim.variables.heartStatus.current = {
+    type: "PVC",
+    isAddedQue: false,
+  };
+
   var random = randomRange(-3, 3);
   playActorBeatMotion(heartStatus.heartRate);
   playHeartBeatMotion(heartStatus.heartRate, "PVC");
@@ -135,7 +147,7 @@ async function heartbeat() {
   while (isDefinedHeartRate) {
     var random = randomRange(0, heartStatus.condition);
     // Synchronize heartStatus into TYRANO.kag.hbsim.variables
-    TYRANO.kag.hbsim.variables.heart_status = heartStatus;
+    TYRANO.kag.hbsim.variables.heartStatus = heartStatus;
 
     // Update expression
     TYRANO.kag.hbsim.expression.update();

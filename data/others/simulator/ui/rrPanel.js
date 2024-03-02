@@ -27,6 +27,7 @@ TYRANO.kag.ftag.master_tag.show_rr = {
         dtick: 10,
         showticklabels: false,
         zeroline: false,
+        range: [0, 149],
       },
       yaxis: {
         automargin: false,

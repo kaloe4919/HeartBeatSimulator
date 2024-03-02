@@ -1,4 +1,4 @@
-var breathStatus = TYRANO.kag.hbsim.variables.breath_status;
+var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
 var prevResiratoryRate = 15;
 
 function sleep(milliseconds) {
@@ -44,7 +44,7 @@ async function breath() {
   while (isDefinedRr) {
     console.log("breath");
     // Update ResiratoryRate from heartRate
-    var heartRate = TYRANO.kag.hbsim.variables.heart_status.heartRate;
+    var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
     breathStatus.resiratoryRate = Math.round((heartRate / 65) * 15);
 
     // Update expression

@@ -2,9 +2,7 @@ TYRANO.kag.hbsim.expression = {
   current: "Normal",
   prevStatus: { resiratoryRate: 15 },
   update: function () {
-    var resiratoryRate =
-      TYRANO.kag.hbsim.variables.breath_status.resiratoryRate;
-    console.log(resiratoryRate, this.current);
+    var resiratoryRate = TYRANO.kag.hbsim.variables.breathStatus.resiratoryRate;
     if (
       resiratoryRate <= 20 &&
       this.current !== "Normal" &&
