@@ -1,33 +1,16 @@
-// x-axis of target to update value
-xIndex = 0;
-
-function sleep(milliseconds) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
-
-function updateEcg() {}
-
-// Vital monitor update 50 times per second
-async function liveEcg() {
-  var isDefinedEcg = true;
-  while (isDefinedEcg) {
-    sleep(20);
-  }
-}
-
-TYRANO.kag.ftag.master_tag.show_ecg = {
+TYRANO.kag.ftag.master_tag.show_rr = {
   pm: {
     layer: "0",
     page: "fore",
     width: "450",
-    height: "100",
+    height: "75",
     x: "830",
-    y: "10",
+    y: "110",
   },
   start: function (pm) {
-    // init ecg monitor
+    // init rr monitor
     var target_layer = TYRANO.kag.layer.getLayer(pm.layer, pm.page);
-    var chart = $("<div id='ecg'></div>");
+    var chart = $("<div id='rr'></div>");
     chart.css("position", "absolute");
     chart.css("left", pm.x + "px");
     chart.css("top", pm.y + "px");
@@ -51,10 +34,10 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         dtick: 1,
         showticklabels: false,
         zeroline: false,
-        range: [-8, 8],
+        range: [-6, 6],
       },
     };
-    // バイタルモニタは 1 秒あたり 50 フレームを持つアニメーションと解釈する
+    // バイタルモニタはフレームレート50のアニメーションとして解釈する
     // 3秒分表示するため 3 * 50 = 150 個のデータを作成する
     var xValues = [];
     var yValues = [];
@@ -68,11 +51,11 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         y: yValues,
         type: "scatter",
         mode: "lines",
-        line: { color: "#78f542", width: 2, shape: "spline" },
+        line: { color: "#42e0f5", width: 2, shape: "spline" },
       },
     ];
-    Plotly.newPlot("ecg", data, layout);
-    TYRANO.kag.hbsim.chart.ecg.layout = layout;
+    Plotly.newPlot("rr", data, layout);
+    TYRANO.kag.hbsim.chart.rr.layout = layout;
     TYRANO.kag.ftag.nextOrder();
   },
 };

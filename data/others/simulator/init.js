@@ -1,5 +1,5 @@
 TYRANO.kag.hbsim = {};
-TYRANO.kag.hbsim.chart = { ecg: null };
+TYRANO.kag.hbsim.chart = { ecg: {}, rr: {} };
 TYRANO.kag.hbsim.variables = {
   heart_status: {
     heartRate: 65,

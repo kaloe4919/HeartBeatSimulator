@@ -1301,6 +1301,7 @@ tyrano.plugin.kag.tag.ptext = {
     size: "",
     face: "",
     color: "",
+    hexColor: "",
     italic: "",
     bold: "",
     align: "left",
@@ -1323,7 +1324,11 @@ tyrano.plugin.kag.tag.ptext = {
       $("." + pm.name).html(pm.text);
       0 != pm.x && $("." + pm.name).css("left", parseInt(pm.x));
       0 != pm.y && $("." + pm.name).css("top", parseInt(pm.y));
-      "" != pm.color && $("." + pm.name).css("color", $.convertColor(pm.color));
+      "" != pm.color &&
+        $("." + pm.name).css(
+          "color",
+          pm.hexColor ? pm.hexColor : $.convertColor(pm.color),
+        );
       "" != pm.size && $("." + pm.name).css("font-size", parseInt(pm.size));
 
       if (!"true" == pm.isAsync) {
