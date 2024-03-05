@@ -60,11 +60,6 @@
 		"Motions": {
 			"Face": [
 				{
-					"File": "motions/BlinkDouble.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
 					"File": "motions/FaceNomal.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
@@ -164,7 +159,7 @@
 					"FadeOutTime": 0
 				}
 			],
-			"HeartBeat": [
+			"Normal": [
 				{
 					"File": "motions/HeartBeat1.motion3.json",
 					"FadeInTime": 0,
@@ -197,6 +192,43 @@
 				},
 				{
 					"File": "motions/HeartBeat7.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"PVC": [
+				{
+					"File": "motions/HeartBeatPVC1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC3.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC4.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC5.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC6.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC7.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

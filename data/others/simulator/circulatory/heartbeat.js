@@ -49,12 +49,12 @@ function playBeatSound(heartRate) {
   bufCounter();
 }
 
-function playActorBeatMotion(heartRate) {
+function playActorBeatMotion(heartRate, cond) {
   // If heartRate is assigned, force playback at this heartRate
   var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
     name: "Kyoka",
-    mtn: "HeartBeat",
+    mtn: cond ? cond : "Normal",
     no: "0",
     isAsync: "true",
     heartRate: heartStatus.heartRate.toString(),
@@ -122,11 +122,10 @@ async function beatRhythmPVC() {
   };
 
   var random = randomRange(-3, 3);
-  playActorBeatMotion(heartStatus.heartRate);
+  playActorBeatMotion(heartStatus.heartRate, "PVC");
   playHeartBeatMotion(heartStatus.heartRate, "PVC");
   playBeatSound(heartStatus.heartRate - 60);
   await sleep(Math.floor(60000 / heartStatus.heartRate / 2));
-  playActorBeatMotion(heartStatus.heartRate - 60);
   playBeatSound(heartStatus.heartRate - 60);
   await sleep(
     Math.floor(

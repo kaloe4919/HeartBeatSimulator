@@ -133,5 +133,11 @@
 			"Id": "PartSketch",
 			"Name": "[ 下絵 ]"
 		}
+	],
+	"CombinedParameters": [
+		[
+			"ParamBeatVentricle",
+			"ParamBeatVentricleCompression"
+		]
 	]
 }
