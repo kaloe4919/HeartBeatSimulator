@@ -26,7 +26,7 @@ function playBeatSound(heartRate) {
   var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var soundFileType = ".wav";
   var soundConfig = {
-    volume: heartStatus.beatVol,
+    volume: heartStatus.seVol,
     buf: seChannel.toString(),
     storage: "heartbeat/AC08_HB01" + soundFileType,
     isAsync: "true",
@@ -188,7 +188,7 @@ TYRANO.kag.ftag.master_tag.heartbeat_start = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.heartbeat_set_heartRate = {
+TYRANO.kag.ftag.master_tag.set_heartRate = {
   kag: TYRANO.kag,
   vital: ["heartRate"],
   pm: {
@@ -203,7 +203,7 @@ TYRANO.kag.ftag.master_tag.heartbeat_set_heartRate = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.heartbeat_up_heartRate = {
+TYRANO.kag.ftag.master_tag.up_heartRate_10 = {
   kag: TYRANO.kag,
   vital: ["value"],
   pm: {
@@ -221,7 +221,7 @@ TYRANO.kag.ftag.master_tag.heartbeat_up_heartRate = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.heartbeat_down_heartRate = {
+TYRANO.kag.ftag.master_tag.down_heartRate_10 = {
   kag: TYRANO.kag,
   vital: ["value"],
   pm: {
@@ -234,6 +234,20 @@ TYRANO.kag.ftag.master_tag.heartbeat_down_heartRate = {
     heartStatus.heartRate -= parseInt(pm.value);
     heartStatus.heartRateMin -= parseInt(pm.value) - 10;
     heartStatus.heartRateMax -= parseInt(pm.value) + 10;
+
+    this.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_heart_se_vol = {
+  kag: TYRANO.kag,
+  vital: ["vol"],
+  pm: {
+    vol: "100",
+  },
+  start: function (pm) {
+    console.log(`set heart beat se volume to ${pm.seVol}`);
+    heartStatus.seVol = parseInt(pm.seVol);
 
     this.kag.ftag.nextOrder();
   },

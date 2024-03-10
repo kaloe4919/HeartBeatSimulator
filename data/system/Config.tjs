@@ -20,7 +20,7 @@
 ;defaultChEffectSpeed=0.2s
 ;skipSpeed=30
 ;skipEffectIgnore=true
-;autoSpeed=1600
+;autoSpeed=1200
 ;autoClickStop=false
 ;autoSpeedWithText=60
 ;cursorDefault=default

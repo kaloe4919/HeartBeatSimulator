@@ -15,6 +15,7 @@ TYRANO.kag.hbsim.variables = {
     heartRateMin: 60,
     heartRateMax: 70,
     condition: 100,
+    seVol: 100,
     // used by vital monitors to output graphs
     current: {
       type: "Normal",
