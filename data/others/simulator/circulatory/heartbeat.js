@@ -34,11 +34,11 @@ function playBeatSound(heartRate) {
 
   if (playHeartRate <= 50) {
     soundConfig.storage = "heartbeat/AC08_HB-22" + soundFileType;
-  } else if (playHeartRate <= 80) {
+  } else if (playHeartRate <= 70) {
     soundConfig.storage = "heartbeat/AC08_HB01" + soundFileType;
-  } else if (playHeartRate <= 110) {
+  } else if (playHeartRate <= 90) {
     soundConfig.storage = "heartbeat/AC08_HB11" + soundFileType;
-  } else if (playHeartRate <= 150) {
+  } else if (playHeartRate <= 110) {
     soundConfig.storage = "heartbeat/AC08_HB21" + soundFileType;
   } else {
     soundConfig.storage = "heartbeat/AC08_HB31" + soundFileType;
@@ -190,14 +190,16 @@ TYRANO.kag.ftag.master_tag.heartbeat_start = {
 
 TYRANO.kag.ftag.master_tag.set_heartRate = {
   kag: TYRANO.kag,
-  vital: ["heartRate"],
+  vital: ["value"],
   pm: {
-    heartRate: "65",
+    value: "65",
   },
   start: function (pm) {
-    heartStatus.heartRate = parseInt(pm.heartRate);
-    heartStatus.heartRateMin = parseInt(pm.heartRate) - 10;
-    heartStatus.heartRateMax = parseInt(pm.heartRate) + 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRate = parseInt(pm.value);
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin =
+      parseInt(pm.value) - 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax =
+      parseInt(pm.value) + 10;
 
     this.kag.ftag.nextOrder();
   },
@@ -213,9 +215,11 @@ TYRANO.kag.ftag.master_tag.up_heartRate_10 = {
     console.log(
       `heartRate up ${heartStatus.heartRate} → ${heartStatus.heartRate + parseInt(pm.value)}`,
     );
-    heartStatus.heartRate += parseInt(pm.value);
-    heartStatus.heartRateMin += parseInt(pm.value) - 10;
-    heartStatus.heartRateMax += parseInt(pm.value) + 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRate += parseInt(pm.value);
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin +=
+      parseInt(pm.value) - 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax +=
+      parseInt(pm.value) + 10;
 
     this.kag.ftag.nextOrder();
   },
@@ -231,9 +235,11 @@ TYRANO.kag.ftag.master_tag.down_heartRate_10 = {
     console.log(
       `heartRate down ${heartStatus.heartRate} → ${heartStatus.heartRate - parseInt(pm.value)}`,
     );
-    heartStatus.heartRate -= parseInt(pm.value);
-    heartStatus.heartRateMin -= parseInt(pm.value) - 10;
-    heartStatus.heartRateMax -= parseInt(pm.value) + 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRate -= parseInt(pm.value);
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -=
+      parseInt(pm.value) - 10;
+    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -=
+      parseInt(pm.value) + 10;
 
     this.kag.ftag.nextOrder();
   },
@@ -247,7 +253,7 @@ TYRANO.kag.ftag.master_tag.set_heart_se_vol = {
   },
   start: function (pm) {
     console.log(`set heart beat se volume to ${pm.seVol}`);
-    heartStatus.seVol = parseInt(pm.seVol);
+    TYRANO.kag.hbsim.variables.heartStatus.seVol = parseInt(pm.seVol);
 
     this.kag.ftag.nextOrder();
   },

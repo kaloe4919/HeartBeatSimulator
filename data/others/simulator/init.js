@@ -10,6 +10,9 @@ TYRANO.kag.hbsim.chart = {
   },
 };
 TYRANO.kag.hbsim.variables = {
+  event: {
+    onTalkEvent: false,
+  },
   heartStatus: {
     heartRate: 65,
     heartRateMin: 60,

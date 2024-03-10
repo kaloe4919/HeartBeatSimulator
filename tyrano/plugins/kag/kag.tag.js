@@ -1438,7 +1438,7 @@ tyrano.plugin.kag.tag.mtext = {
       "font-style": pm.fontstyle,
       "font-size": pm.size + "px",
       "font-family": pm.face,
-      "z-index": "999",
+      "z-index": "99999999",
       text: "",
     };
     if ("" != pm.edge) {

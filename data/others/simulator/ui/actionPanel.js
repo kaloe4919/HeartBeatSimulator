@@ -24,7 +24,9 @@ TYRANO.kag.ftag.master_tag.talk_button = {
     "false" == pm.fix
       ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $("<div class='glink_button'>" + pm.text + "</div>");
+    var j_button = $(
+      "<div class='glink_button talk_button'>" + pm.text + "</div>",
+    );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
     j_button.css("z-index", 99999999);
@@ -70,6 +72,8 @@ TYRANO.kag.ftag.master_tag.talk_button = {
           that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
 
         // TODO: talk event
+        console.log("onclick talk button");
+        talkEventHandler();
       });
     })();
   },
@@ -101,7 +105,9 @@ TYRANO.kag.ftag.master_tag.action_button = {
     "false" == pm.fix
       ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $("<div class='glink_button'>" + pm.text + "</div>");
+    var j_button = $(
+      "<div class='glink_button action_button'>" + pm.text + "</div>",
+    );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
     j_button.css("z-index", 99999999);
@@ -147,6 +153,7 @@ TYRANO.kag.ftag.master_tag.action_button = {
           that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
 
         // TODO: open action menu
+        console.log("onclick action button");
       });
     })();
   },
@@ -178,7 +185,9 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
     "false" == pm.fix
       ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $("<div class='glink_button'>" + pm.text + "</div>");
+    var j_button = $(
+      "<div class='glink_button hacking_button'>" + pm.text + "</div>",
+    );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
     j_button.css("z-index", 99999999);
@@ -224,6 +233,7 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
           that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
 
         // TODO: open hacking menu
+        console.log("onclick hacking button");
       });
     })();
   },
@@ -255,7 +265,9 @@ TYRANO.kag.ftag.master_tag.option_button = {
     "false" == pm.fix
       ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $("<div class='glink_button'>" + pm.text + "</div>");
+    var j_button = $(
+      "<div class='glink_button option_button'>" + pm.text + "</div>",
+    );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
     j_button.css("z-index", 99999999);
@@ -301,7 +313,23 @@ TYRANO.kag.ftag.master_tag.option_button = {
           that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
 
         // TODO: open option menu
+        console.log("onclick option button");
       });
     })();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_visible_control_buttons = {
+  pm: {
+    visible: "true",
+  },
+  start: function (pm) {
+    var config = "true" == pm.visible ? "block" : "none";
+    $(".talk_button").css("display", config);
+    $(".action_button").css("display", config);
+    $(".hacking_button").css("display", config);
+    $(".option_button").css("display", config);
+
+    TYRANO.kag.ftag.nextOrder();
   },
 };

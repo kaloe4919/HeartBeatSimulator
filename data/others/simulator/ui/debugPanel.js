@@ -24,7 +24,9 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
     "false" == pm.fix
       ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $("<div class='glink_button'>" + pm.text + "</div>");
+    var j_button = $(
+      "<div class='glink_button heart_rate_button'>" + pm.text + "</div>",
+    );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
     j_button.css("z-index", 99999999);
@@ -80,5 +82,17 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
         );
       });
     })();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_visible_debug_buttons = {
+  pm: {
+    visible: "true",
+  },
+  start: function (pm) {
+    var config = "true" == pm.visible ? "block" : "none";
+    $(".heart_rate_button").css("display", config);
+
+    TYRANO.kag.ftag.nextOrder();
   },
 };

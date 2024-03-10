@@ -41,10 +41,6 @@
 				"File": "expressions/Painful2.exp3.json"
 			},
 			{
-				"Name": "Painful3",
-				"File": "expressions/Painful3.exp3.json"
-			},
-			{
 				"Name": "BreathEffect0",
 				"File": "expressions/BreathEffect0.exp3.json"
 			},
@@ -55,6 +51,18 @@
 			{
 				"Name": "Painful1",
 				"File": "expressions/Painful1.exp3.json"
+			},
+			{
+				"Name": "Angry1",
+				"File": "expressions/Angry1.exp3.json"
+			},
+			{
+				"Name": "Surprised1",
+				"File": "expressions/Surprised1.exp3.json"
+			},
+			{
+				"Name": "Painful3",
+				"File": "expressions/Painful3.exp3.json"
 			}
 		],
 		"Motions": {

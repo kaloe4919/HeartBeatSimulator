@@ -1,31 +1,9 @@
 {
 	"Type": "Live2D Expression",
-	"FadeInTime": 0.5,
-	"FadeOutTime": 0.5,
 	"Parameters": [
 		{
-			"Id": "ParamEyeBallX",
-			"Value": 0.5,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeBallY",
-			"Value": -1,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeLFlat",
-			"Value": 0.3,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamEyeRFlat",
-			"Value": 0.3,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamCheek",
-			"Value": 1,
+			"Id": "ParamEyeSize",
+			"Value": 0.6,
 			"Blend": "Add"
 		},
 		{
@@ -39,7 +17,37 @@
 			"Blend": "Add"
 		},
 		{
-			"Id": "ParamEyeSize",
+			"Id": "ParamMouthOpenY",
+			"Value": 0.6,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamMouthForm",
+			"Value": 1,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamCheek",
+			"Value": 0.5,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeLFlat",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeRFlat",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"Value": 0,
+			"Blend": "Add"
+		},
+		{
+			"Id": "ParamEyeBallY",
 			"Value": 0,
 			"Blend": "Add"
 		},
@@ -55,16 +63,6 @@
 		},
 		{
 			"Id": "ParamBrowForm",
-			"Value": 0,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamMouthForm",
-			"Value": 0,
-			"Blend": "Add"
-		},
-		{
-			"Id": "ParamMouthOpenY",
 			"Value": 0,
 			"Blend": "Add"
 		}

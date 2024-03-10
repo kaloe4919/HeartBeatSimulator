@@ -2,6 +2,11 @@ TYRANO.kag.hbsim.expression = {
   current: "Normal",
   prevStatus: { respiratoryRate: 15 },
   update: function () {
+    // do not change expression in talk event
+    if (TYRANO.kag.hbsim.variables.event.onTalkEvent) {
+      return;
+    }
+
     var respiratoryRate =
       TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
     if (
