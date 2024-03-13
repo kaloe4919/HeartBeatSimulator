@@ -9,16 +9,28 @@
 		"DisplayInfo": "Kyoka.cdi3.json",
 		"Expressions": [
 			{
-				"Name": "Shy1",
-				"File": "expressions/Shy1.exp3.json"
+				"Name": "Angry1",
+				"File": "expressions/Angry1.exp3.json"
 			},
 			{
-				"Name": "Normal",
-				"File": "expressions/Normal.exp3.json"
+				"Name": "Angry1_Cheek",
+				"File": "expressions/Angry1_Cheek.exp3.json"
 			},
 			{
-				"Name": "Shy2",
-				"File": "expressions/Shy2.exp3.json"
+				"Name": "Angry2_Cheek",
+				"File": "expressions/Angry2.exp3.json"
+			},
+			{
+				"Name": "Angry2_Cheek",
+				"File": "expressions/Angry2_Cheek.exp3.json"
+			},
+			{
+				"Name": "Angry2_Sweat",
+				"File": "expressions/Angry2_Sweat.exp3.json"
+			},
+			{
+				"Name": "BreathEffect0",
+				"File": "expressions/BreathEffect0.exp3.json"
 			},
 			{
 				"Name": "BreathEffect1",
@@ -29,6 +41,10 @@
 				"File": "expressions/BreathEffect2.exp3.json"
 			},
 			{
+				"Name": "CheekEffect0",
+				"File": "expressions/CheekEffect0.exp3.json"
+			},
+			{
 				"Name": "CheekEffect1",
 				"File": "expressions/CheekEffect1.exp3.json"
 			},
@@ -37,40 +53,48 @@
 				"File": "expressions/CheekEffect2.exp3.json"
 			},
 			{
-				"Name": "Painful2",
-				"File": "expressions/Painful2.exp3.json"
+				"Name": "LookDown1",
+				"File": "expressions/LookDown1.exp3.json"
 			},
 			{
-				"Name": "BreathEffect0",
-				"File": "expressions/BreathEffect0.exp3.json"
-			},
-			{
-				"Name": "CheekEffect0",
-				"File": "expressions/CheekEffect0.exp3.json"
+				"Name": "Normal",
+				"File": "expressions/Normal.exp3.json"
 			},
 			{
 				"Name": "Painful1",
 				"File": "expressions/Painful1.exp3.json"
 			},
 			{
-				"Name": "Angry1",
-				"File": "expressions/Angry1.exp3.json"
-			},
-			{
-				"Name": "Surprised1",
-				"File": "expressions/Surprised1.exp3.json"
+				"Name": "Painful2",
+				"File": "expressions/Painful2.exp3.json"
 			},
 			{
 				"Name": "Painful3",
 				"File": "expressions/Painful3.exp3.json"
 			},
 			{
-				"Name": "LookDown1",
-				"File": "expressions/LookDown1.exp3.json"
-			},
-			{
 				"Name": "Painful4",
 				"File": "expressions/Painful4.exp3.json"
+			},
+			{
+				"Name": "Shy1",
+				"File": "expressions/Shy1.exp3.json"
+			},
+			{
+				"Name": "Shy2",
+				"File": "expressions/Shy2.exp3.json"
+			},
+			{
+				"Name": "Surprised1",
+				"File": "expressions/Surprised1.exp3.json"
+			},
+			{
+				"Name": "Surprised1_Sweat",
+				"File": "expressions/Surprised1_Sweat.exp3.json"
+			},
+			{
+				"Name": "Surprised2",
+				"File": "expressions/Surprised2.exp3.json"
 			}
 		],
 		"Motions": {
