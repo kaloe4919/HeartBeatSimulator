@@ -26,25 +26,26 @@
 [tb_start_tyrano_code]
 ;fade out
 [layopt layer=message0 visible=false]
+[set_heart_se_vol vol=0]
 [image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
 [anim name=black opacity=0 time=0]
 [anim name=black opacity=255 time=1000 effect="easeOutExpo"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
-[mtext layer=2 x=0 y=280 width=1280 align="center" size=30 time=2000 text="聴診器で心音を聴かせてあげた。"]
+[mtext layer=2 x=0 y=280 width=1280 align="center" size=30 time=3000 text="聴診器で心音を聴かせてあげた。"]
 
-[_tb_end_tyrano_code]
-
-[wait  time="4000"  ]
-[tb_start_tyrano_code]
-;fade in
-[free layer=1 name=black time=1000]
-[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
 [calculate_heartRate value="25" operator="+" limit="90"]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;fade in
+[set_heart_se_vol vol=75]
+[free layer=1 name=black time=1000]
+[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [tb_start_text mode=1 ]

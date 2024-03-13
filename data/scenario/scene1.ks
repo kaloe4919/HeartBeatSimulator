@@ -76,8 +76,33 @@
 あ、先生だ。[p]
 心臓の調子？[p]
 まだちょっと変な動きする時あるけど……。[p]
+
+[_tb_end_text]
+
+[iscript]
+TYRANO.kag.ftag.master_tag.live2d_motion.start({
+name: "Kyoka",
+mtn: "Hand",
+no: "1",
+isAsync: "true",
+});
+[endscript]
+
+[live2d_expression  name="Kyoka"  expression="LookDown1"  ]
+[tb_start_text mode=1 ]
+#京香
 これのおかげで今のところ平気かな。[p]
 [_tb_end_text]
+
+[live2d_expression  name="Kyoka"  expression="Normal"  ]
+[iscript]
+TYRANO.kag.ftag.master_tag.live2d_motion.start({
+name: "Kyoka",
+mtn: "Hand",
+no: "0",
+isAsync: "true",
+});
+[endscript]
 
 *stand_by
 

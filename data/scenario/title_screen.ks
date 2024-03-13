@@ -9,8 +9,8 @@
 [bg  storage="lab1.png"  ]
 *title
 
-[glink  color="black"  text="はじめから"  x="75"  y="370"  size="20"  target="*start"  ]
-[glink  color="black"  text="つづきから"  x="75"  y="470"  size="20"  target="*load"  ]
+[glink  color="btn_20_black"  text="シミュレーション開始"  x="75"  y="370"  size="20"  target="*start"  width=""  height=""  _clickable_img=""  ]
+[glink  color="btn_20_black"  text="つづきから(WIP)"  x="75"  y="470"  size="20"  target="*load"  width=""  height=""  _clickable_img=""  ]
 [s  ]
 *start
 

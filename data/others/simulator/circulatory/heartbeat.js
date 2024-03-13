@@ -313,9 +313,10 @@ TYRANO.kag.ftag.master_tag.set_heart_se_vol = {
   kag: TYRANO.kag,
   vital: ["vol"],
   pm: {
-    vol: "100",
+    vol: "75",
   },
   start: function (pm) {
+    // TODO: 心音OFFの場合は強制的に0にする
     var vol = parseInt(pm.vol);
     console.log(`set heart beat se volume to ${vol}`);
     TYRANO.kag.hbsim.variables.heartStatus.seVol = parseInt(vol);

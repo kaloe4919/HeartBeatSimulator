@@ -39,25 +39,26 @@
 [tb_start_tyrano_code]
 ;fade out
 [layopt layer=message0 visible=false]
+[set_heart_se_vol vol=0]
 [image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
 [anim name=black opacity=0 time=0]
 [anim name=black opacity=255 time=1000 effect="easeOutExpo"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
-[mtext layer=2 x=0 y=280 width=1280 align="center" size=30 time=2000 text="しばらくラボの中を全力で逃げ回った。"]
+[mtext layer=2 x=0 y=280 width=1280 align="center" size=30 time=3000 text="しばらくラボの中を全力で逃げ回った。"]
 
-[_tb_end_tyrano_code]
-
-[wait  time="4000"  ]
-[tb_start_tyrano_code]
-;fade in
-[free layer=1 name=black time=1000]
-[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
 [calculate_heartRate value="60" operator="+" limit="140" limitForce="true"]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;fade in
+[set_heart_se_vol vol=75]
+[free layer=1 name=black time=1000]
+[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [live2d_expression  name="Kyoka"  expression="Painful4"  ]
