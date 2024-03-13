@@ -1,8 +1,9 @@
 function talkEventHandler() {
   TYRANO.kag.ftag.startTag("jump", {
-    storage: "talk_normal2.ks",
-    target: "talk_normal2",
+    storage: "talk_normal4.ks",
+    target: "talk_normal4",
   });
+
   // TYRANO.kag.ftag.startTag("jump", {
   //   storage: "talk_normal1.ks",
   //   target: "talk_normal1",

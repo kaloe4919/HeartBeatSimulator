@@ -95,6 +95,14 @@
 			{
 				"Name": "Surprised2",
 				"File": "expressions/Surprised2.exp3.json"
+			},
+			{
+				"Name": "Smile1",
+				"File": "expressions/Smile1.exp3.json"
+			},
+			{
+				"Name": "Smile2",
+				"File": "expressions/Smile2.exp3.json"
 			}
 		],
 		"Motions": {

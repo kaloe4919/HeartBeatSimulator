@@ -88,6 +88,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 [live2d_expression  name="Kyoka"  expression="LookDown1"  ]
 [tb_start_text mode=1 ]
 #京香
@@ -104,6 +105,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 *stand_by
 
 [tb_start_tyrano_code]

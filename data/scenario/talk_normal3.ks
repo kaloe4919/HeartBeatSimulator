@@ -86,9 +86,10 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 [tb_start_text mode=1 ]
 #
-（これがなかったらとっくに発作起きてるっての……。）[p]
+（ま、まったく、これがなかったらとっくに発作起きてるっての……。）[p]
 [_tb_end_text]
 
 [iscript]
@@ -100,6 +101,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 [jump  storage="scene1.ks"  target="*stand_by"  ]
 *talk_normal3_2
 

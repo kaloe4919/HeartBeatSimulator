@@ -78,6 +78,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 [tb_start_text mode=1 ]
 #
 （久しぶりに走ったから、心臓やば……。）[p]
@@ -92,6 +93,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
 [jump  storage="scene1.ks"  target="*stand_by"  ]
 *talk_normal2_2
 
