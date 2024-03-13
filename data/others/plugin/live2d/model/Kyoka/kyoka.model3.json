@@ -63,6 +63,14 @@
 			{
 				"Name": "Painful3",
 				"File": "expressions/Painful3.exp3.json"
+			},
+			{
+				"Name": "LookDown1",
+				"File": "expressions/LookDown1.exp3.json"
+			},
+			{
+				"Name": "Painful4",
+				"File": "expressions/Painful4.exp3.json"
 			}
 		],
 		"Motions": {
@@ -116,21 +124,6 @@
 				},
 				{
 					"File": "motions/Leaning2To3.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/SwitchOffHand.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/SwitchOnHand.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/SwitchOnHand2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
@@ -237,6 +230,18 @@
 				},
 				{
 					"File": "motions/HeartBeatPVC7.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"Hand": [
+				{
+					"File": "motions/HandOffChest.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HandOnChest.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

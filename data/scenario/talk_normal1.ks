@@ -44,7 +44,7 @@
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
-[set_heartRate value="90"]
+[calculate_heartRate value="25" operator="+" limit="90"]
 [_tb_end_tyrano_code]
 
 [tb_start_text mode=1 ]
@@ -84,7 +84,7 @@
 
 [live2d_mod  name="Kyoka"  x="-0.15"  y="0.1"  scale="1.5"  ]
 [tb_start_tyrano_code]
-[set_heartRate value="90"]
+[calculate_heartRate value="30" operator="+" limit="130"]
 [_tb_end_tyrano_code]
 
 [tb_start_text mode=1 ]
@@ -97,7 +97,7 @@
 *talk_normal1_2_1
 
 [tb_start_tyrano_code]
-[set_heartRate value="120"]
+[calculate_heartRate value="30" operator="+" limit="130"]
 [_tb_end_tyrano_code]
 
 [live2d_expression  name="Kyoka"  expression="Painful3"  ]
@@ -110,7 +110,7 @@
 [live2d_mod  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
 [live2d_expression  name="Kyoka"  expression="Painful2"  ]
 [tb_start_tyrano_code]
-[set_heartRate value="130"]
+[calculate_heartRate value="30" operator="+" limit="130" limitForce="true"]
 [_tb_end_tyrano_code]
 
 [tb_start_text mode=1 ]
