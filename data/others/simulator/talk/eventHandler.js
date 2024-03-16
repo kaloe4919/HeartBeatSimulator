@@ -1,4 +1,5 @@
 function talkEventHandler() {
+  // TODO: 心拍数によって発生する会話を変える
   var random = randomRange(1, 4);
   TYRANO.kag.ftag.startTag("jump", {
     storage: `talk_normal${random}.ks`,

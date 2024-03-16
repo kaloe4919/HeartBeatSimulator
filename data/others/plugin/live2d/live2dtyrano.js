@@ -397,9 +397,10 @@ TYRANO.kag.ftag.master_tag.live2d_motion = {
   },
 };
 
+// メインの鼓動モーションマネージャ
 TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
   kag: TYRANO.kag,
-  vital: ["name", "mtn", "hr"],
+  vital: ["name", "mtn", "heartRate"],
   pm: {
     name: "",
     mtn: "",
@@ -434,9 +435,48 @@ TYRANO.kag.ftag.master_tag.live2d_beat_motion = {
   },
 };
 
+// サブの鼓動モーションマネージャ(心房用)
+// 不整脈によって心房と心室の動きが異なる場合があるため分けている
+TYRANO.kag.ftag.master_tag.live2d_atrial_beat_motion = {
+  kag: TYRANO.kag,
+  vital: ["name", "mtn", "atrialHeartRate"],
+  pm: {
+    name: "",
+    mtn: "",
+    no: "0",
+    force: "true",
+    atrialHeartRate: "65",
+    // 1回の鼓動のうちの静止時間の割合
+    // 例：atrialHeartRate 60 で intervalRate が 0.3 の場合、0.7 秒で鼓動モーションが完了し、0.3 秒が interval となる
+    intervalRate: "0.2",
+    isAsync: "true",
+  },
+
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
+
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    //モデルを追加
+    _live2d_tyrano.tm.setAtrialBeatMotion(
+      pm.name,
+      pm.mtn,
+      parseInt(pm.no),
+      pm.force,
+      parseInt(pm.atrialHeartRate),
+      parseFloat(pm.intervalRate),
+    ); //noを最後に渡す。
+
+    if (!"true" == pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
+    }
+  },
+};
+
 TYRANO.kag.ftag.master_tag.live2d_breath_motion = {
   kag: TYRANO.kag,
-  vital: ["name", "mtn"],
+  vital: ["name", "mtn", "respiratoryRate"],
   pm: {
     name: "",
     mtn: "",

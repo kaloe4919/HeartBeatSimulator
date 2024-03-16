@@ -2007,14 +2007,28 @@
           (t.setHeartRate = function (heartRate) {
             this.heartRate = heartRate;
           }),
+          (t.getAtrialHeartRate = function () {
+            return this.atrialHeartRate;
+          }),
+          (t.setAtrialHeartRate = function (atrialHeartRate) {
+            this.atrialHeartRate = atrialHeartRate;
+          }),
           (t.getIntervalRate = function () {
             return this.intervalRate;
           }),
           (t.setIntervalRate = function (intervalRate) {
             this.intervalRate = intervalRate;
           }),
+          (t.getAtrialIntervalRate = function () {
+            return this.atrialIntervalRate;
+          }),
+          (t.setAtrialIntervalRate = function (atrialIntervalRate) {
+            this.atrialIntervalRate = atrialIntervalRate;
+          }),
           (t.heartRate = 65),
+          (t.atrialHeartRate = 65),
           (t.intervalRate = 0.2),
+          (t.atrialIntervalRate = 0.2),
           t
         );
       })(),
@@ -6597,6 +6611,7 @@
             (this._model = null),
             (this._motionManager = null),
             (this._beatMotionManager = null),
+            (this._atrialBeatMotionManager = null),
             (this._breathMotionManager = null),
             (this._expressionManager = null),
             (this._eyeBlink = null),
@@ -6630,6 +6645,11 @@
             ),
             (this._beatMotionManager = new Qe()),
             this._beatMotionManager.setEventCallback(
+              t.cubismDefaultMotionEventCallback,
+              this,
+            ),
+            (this._atrialBeatMotionManager = new Qe()),
+            this._atrialBeatMotionManager.setEventCallback(
               t.cubismDefaultMotionEventCallback,
               this,
             ),
@@ -8082,6 +8102,8 @@
               var t = H.getDeltaTime();
               var heartRate = HeartStatus.getHeartRate();
               var heartIntervalRate = HeartStatus.getIntervalRate();
+              var atrialHeartRate = HeartStatus.getAtrialHeartRate();
+              var atrialIntervalRate = HeartStatus.getAtrialIntervalRate();
               var respiratoryRate = BreathStatus.getRespiratoryRate();
               var breathIntervalRate = BreathStatus.getIntervalRate();
               this._userTimeSeconds += t;
@@ -8092,6 +8114,10 @@
                 (e = this._beatMotionManager.updateMotion(
                   this._model,
                   t * (heartRate / 60) * (1 + heartIntervalRate),
+                )),
+                (e = this._atrialBeatMotionManager.updateMotion(
+                  this._model,
+                  t * (atrialHeartRate / 60) * (1 + atrialIntervalRate),
                 )),
                 (e = this._breathMotionManager.updateMotion(
                   this._model,
@@ -8204,6 +8230,52 @@
               this._debugMode &&
                 H.printLog("[APP]start motion: [{0}_{1}", t, e),
               this._beatMotionManager.startMotionPriority(a, s, i)
+            );
+          }),
+          (e.prototype.startAtrialBeatMotion = function (
+            t,
+            e,
+            i,
+            atrialHeartRate,
+            intervalRate,
+          ) {
+            var r = this;
+            HeartStatus.setAtrialHeartRate(atrialHeartRate);
+            HeartStatus.setAtrialIntervalRate(intervalRate);
+            if (i == k.PriorityForce)
+              this._atrialBeatMotionManager.setReservePriority(i);
+            else if (!this._atrialBeatMotionManager.reserveMotion(i))
+              return (
+                this._debugMode && H.printLog("[APP]can't start motion."), Ii
+              );
+            var n = this._modelSetting.getMotionFileName(t, e),
+              o = wi.getFormatedString("{0}_{1}", t, e),
+              a = this._motions.getValue(o),
+              s = !1;
+            if (null == a) {
+              var u = n;
+              (u = this._modelHomeDir + u),
+                fetch(u)
+                  .then(function (t) {
+                    return t.arrayBuffer();
+                  })
+                  .then(function (i) {
+                    var n = i,
+                      o = n.byteLength;
+                    a = r.loadMotion(n, o, null);
+                    var l = r._modelSetting.getMotionFadeInTimeValue(t, e);
+                    l >= 0 && a.setFadeInTime(l),
+                      (l = r._modelSetting.getMotionFadeOutTimeValue(t, e)) >=
+                        0 && a.setFadeOutTime(l),
+                      a.setEffectIds(r._eyeBlinkIds, r._lipSyncIds),
+                      (s = !0),
+                      Ui(n, u);
+                  });
+            }
+            return (
+              this._debugMode &&
+                H.printLog("[APP]start motion: [{0}_{1}", t, e),
+              this._atrialBeatMotionManager.startMotionPriority(a, s, i)
             );
           }),
           (e.prototype.startBreathMotion = function (
@@ -8645,6 +8717,23 @@
               this.lappdelegate.lapplive2dmanager
                 .getModel(n.index)
                 .startBeatMotion(e, i, o, heartRate, intervalRate);
+          }),
+          (t.prototype.setAtrialBeatMotion = function (
+            t,
+            e,
+            i,
+            r,
+            atrialHeartRate,
+            intervalRate,
+          ) {
+            this.models[t] ||
+              alert("Live2Dエラー：name=「" + t + "」は存在しません。");
+            var n = this.models[t],
+              o = 2;
+            "true" === r && (o = 3),
+              this.lappdelegate.lapplive2dmanager
+                .getModel(n.index)
+                .startAtrialBeatMotion(e, i, o, atrialHeartRate, intervalRate);
           }),
           (t.prototype.setBreathMotion = function (
             t,
