@@ -1,13 +1,9 @@
 function talkEventHandler() {
+  var random = randomRange(1, 4);
   TYRANO.kag.ftag.startTag("jump", {
-    storage: "talk_normal4.ks",
-    target: "talk_normal4",
+    storage: `talk_normal${random}.ks`,
+    target: `talk_normal${random}`,
   });
-
-  // TYRANO.kag.ftag.startTag("jump", {
-  //   storage: "talk_normal1.ks",
-  //   target: "talk_normal1",
-  // });
 }
 
 TYRANO.kag.ftag.master_tag.start_talk_event = {
