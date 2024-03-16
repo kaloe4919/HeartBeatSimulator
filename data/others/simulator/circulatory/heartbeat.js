@@ -145,7 +145,7 @@ async function beatRhythmPVC() {
 async function heartbeat() {
   var isDefinedHeartRate = true;
   while (isDefinedHeartRate) {
-    var random = randomRange(0, heartStatus.condition);
+    var random = randomRange(0, 100);
     // Synchronize heartStatus into TYRANO.kag.hbsim.variables
     TYRANO.kag.hbsim.variables.heartStatus = heartStatus;
 
