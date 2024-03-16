@@ -75,13 +75,13 @@ function playActorBeatMotion(heartRate, cond) {
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
-function playHeartBeatMotion(heartRate, cond) {
+function playHeartBeatMotion(heartRate, cond, no) {
   // If heartRate is assigned, force playback at this heartRate
   var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
     name: "heart3",
     mtn: cond ? cond : "Normal",
-    no: "0",
+    no: no ? no : "0",
     isAsync: "true",
     heartRate: heartStatus.heartRate.toString(),
     intervalRate: "0.1",
@@ -122,8 +122,9 @@ async function beatRhythmPVC() {
   };
 
   var random = randomRange(-3, 3);
+  var randomMotion = randomRange(0, 1);
   playActorBeatMotion(heartStatus.heartRate, "PVC");
-  playHeartBeatMotion(heartStatus.heartRate, "PVC");
+  playHeartBeatMotion(heartStatus.heartRate, "PVC", randomMotion);
   playBeatSound(heartStatus.heartRate - 60);
   await sleep(Math.floor(60000 / heartStatus.heartRate / 2));
   playBeatSound(heartStatus.heartRate - 60);
