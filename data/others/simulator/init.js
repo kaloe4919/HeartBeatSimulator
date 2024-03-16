@@ -17,6 +17,8 @@ TYRANO.kag.hbsim = {
       heartRate: 65,
       heartRateMin: 60,
       heartRateMax: 70,
+      // used for arrhythmias that cause differences in heart rate of the ventricles and atria (VT, AF, etc)
+      atrialHeartRate: 65,
       // variable increase by rapid changes in heart rate
       burden: 0,
       // variable increase by changes in emotions

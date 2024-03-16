@@ -6,6 +6,44 @@
 			"Heart3.2048/texture_00.png"
 		],
 		"DisplayInfo": "Heart3.cdi3.json",
+		"Expressions": [
+			{
+				"Name": "SANodeNormalTurnOn",
+				"File": "expressions/SANodeNormalTurnOn.exp3.json"
+			},
+			{
+				"Name": "SANodeWarnTurnOn",
+				"File": "expressions/SANodeWarnTurnOn.exp3.json"
+			},
+			{
+				"Name": "SANodeTurnOff",
+				"File": "expressions/SANodeTurnOff.exp3.json"
+			},
+			{
+				"Name": "AVNodeNormalTurnOn",
+				"File": "expressions/AVNodeNormalTurnOn.exp3.json"
+			},
+			{
+				"Name": "AVNodeWarnTurnOn",
+				"File": "expressions/AVNodeWarnTurnOn.exp3.json"
+			},
+			{
+				"Name": "AVNodeTurnOff",
+				"File": "expressions/AVNodeTurnOff.exp3.json"
+			},
+			{
+				"Name": "VentricleNormalTurnOn",
+				"File": "expressions/VentricleNormalTurnOn.exp3.json"
+			},
+			{
+				"Name": "VentricleWarnTurnOn",
+				"File": "expressions/VentricleWarnTurnOn.exp3.json"
+			},
+			{
+				"Name": "VentricleTurnOff",
+				"File": "expressions/VentricleTurnOff.exp3.json"
+			}
+		],
 		"Motions": {
 			"Normal": [
 				{
@@ -22,6 +60,44 @@
 				},
 				{
 					"File": "motions/HeartBeatPVC2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"Normal_A": [
+				{
+					"File": "motions/HeartBeat1_A.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"Normal_V": [
+				{
+					"File": "motions/HeartBeat1_V.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"PVC_V": [
+				{
+					"File": "motions/HeartBeatPVC1_V.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatPVC2_V.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"VT_V": [
+				{
+					"File": "motions/HeartBeatVT1_V.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/HeartBeatVT2_V.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
