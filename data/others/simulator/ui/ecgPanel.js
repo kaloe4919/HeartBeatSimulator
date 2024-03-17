@@ -175,7 +175,7 @@ TYRANO.kag.ftag.master_tag.update_hr = {
       x: 1190,
       y: 78,
       vertical: "false",
-      text: `HR: ${TYRANO.kag.hbsim.variables.heartStatus.heartRate}`,
+      text: `HR: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.heartRate)}`,
       size: "20",
       hexColor: "#78f542",
       bold: "bold",

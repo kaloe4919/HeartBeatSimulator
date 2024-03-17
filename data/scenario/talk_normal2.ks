@@ -50,8 +50,9 @@
 
 [_tb_end_tyrano_code]
 
+[wait  time="3000"  ]
 [tb_start_tyrano_code]
-[calculate_heartRate value="60" operator="+" limit="140" limitForce="true"]
+[calculate_heartRate value="60" operator="+"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]

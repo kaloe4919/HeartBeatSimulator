@@ -58,8 +58,9 @@
 
 [_tb_end_tyrano_code]
 
+[wait  time="3000"  ]
 [tb_start_tyrano_code]
-[calculate_heartRate value="60" operator="+" limit="140" limitForce="true"]
+[calculate_heartRate value="60" operator="+"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -89,7 +90,7 @@ isAsync: "true",
 [wait  time="500"  ]
 [tb_start_text mode=1 ]
 #
-（ま、まったく、これがなかったらとっくに発作起きてるっての……。）[p]
+（やば、心臓暴れてる……。）[p]
 [_tb_end_text]
 
 [iscript]
