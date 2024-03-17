@@ -171,3 +171,27 @@ TYRANO.kag.ftag.master_tag.start_rr = {
     this.kag.ftag.nextOrder();
   },
 };
+
+TYRANO.kag.ftag.master_tag.update_rr = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+  start: function () {
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1190,
+      y: 157,
+      vertical: "false",
+      text: `RR: ${TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate}`,
+      size: "20",
+      hexColor: "#42e0f5",
+      bold: "bold",
+      align: "left",
+      name: "RR",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+  },
+};

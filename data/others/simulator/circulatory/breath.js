@@ -54,22 +54,7 @@ async function breath() {
     TYRANO.kag.hbsim.expression.update();
 
     // Update RR Display
-    TYRANO.kag.ftag.master_tag.ptext.start({
-      layer: "0",
-      page: "fore",
-      x: 1190,
-      y: 157,
-      vertical: "false",
-      text: `RR: ${breathStatus.respiratoryRate}`,
-      size: "20",
-      hexColor: "#42e0f5",
-      bold: "bold",
-      align: "left",
-      name: "RR",
-      zindex: "9999",
-      overwrite: "true",
-      isAsync: "true",
-    });
+    TYRANO.kag.ftag.master_tag.update_rr.start();
 
     await breathNormal();
 

@@ -204,22 +204,7 @@ async function heartbeat() {
     TYRANO.kag.hbsim.expression.update();
 
     // Update HR Display
-    TYRANO.kag.ftag.master_tag.ptext.start({
-      layer: "0",
-      page: "fore",
-      x: 1190,
-      y: 78,
-      vertical: "false",
-      text: `HR: ${heartStatus.heartRate}`,
-      size: "20",
-      hexColor: "#78f542",
-      bold: "bold",
-      align: "left",
-      name: "HR",
-      zindex: "9999",
-      overwrite: "true",
-      isAsync: "true",
-    });
+    TYRANO.kag.ftag.master_tag.update_hr.start();
 
     if (random > 10) {
       await beatRhythmNormal();
@@ -270,17 +255,25 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
   start: function (pm) {
     var value = parseInt(pm.value);
     var limit = parseInt(pm.limit);
+
+    // 負荷の加算
+    TYRANO.kag.hbsim.variables.heartStatus.burden += value;
+
     if (pm.operator === "+") {
       if (
         limit &&
         TYRANO.kag.hbsim.variables.heartStatus.heartRate + value >= limit
       ) {
         if (pm.limitForce === "true") {
+          console.log(
+            `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${limit}`,
+          );
           TYRANO.kag.hbsim.variables.heartStatus.heartRate = limit;
           TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = limit - 10;
           TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = limit + 10;
           return;
         } else {
+          console.log(`heartRate no change`);
           return;
         }
       }
@@ -289,6 +282,9 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
           TYRANO.kag.hbsim.variables.heartStatus.heartRate + value < limit) ||
         !limit
       ) {
+        console.log(
+          `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${TYRANO.kag.hbsim.variables.heartStatus.heartRate + value}`,
+        );
         TYRANO.kag.hbsim.variables.heartStatus.heartRate += value;
         TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += value;
         TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += value;
@@ -301,10 +297,14 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
         TYRANO.kag.hbsim.variables.heartStatus.heartRate - value <= limit
       ) {
         if (pm.limitForce === "true") {
+          console.log(
+            `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${limit}`,
+          );
           TYRANO.kag.hbsim.variables.heartStatus.heartRate = limit;
           TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = limit - 10;
           TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = limit + 10;
         } else {
+          console.log(`heartRate no change`);
           return;
         }
       }
@@ -313,6 +313,9 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
           TYRANO.kag.hbsim.variables.heartStatus.heartRate - value > limit) ||
         !limit
       ) {
+        console.log(
+          `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${TYRANO.kag.hbsim.variables.heartStatus.heartRate - value}`,
+        );
         TYRANO.kag.hbsim.variables.heartStatus.heartRate -= value;
         TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= value;
         TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= value;

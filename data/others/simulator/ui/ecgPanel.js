@@ -163,3 +163,27 @@ TYRANO.kag.ftag.master_tag.start_ecg = {
     this.kag.ftag.nextOrder();
   },
 };
+
+TYRANO.kag.ftag.master_tag.update_hr = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+  start: function () {
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1190,
+      y: 78,
+      vertical: "false",
+      text: `HR: ${TYRANO.kag.hbsim.variables.heartStatus.heartRate}`,
+      size: "20",
+      hexColor: "#78f542",
+      bold: "bold",
+      align: "left",
+      name: "HR",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+  },
+};

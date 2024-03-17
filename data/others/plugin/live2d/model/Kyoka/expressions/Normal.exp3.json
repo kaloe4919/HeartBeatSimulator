@@ -72,6 +72,11 @@
 			"Id": "Param4",
 			"Value": 0,
 			"Blend": "Add"
+		},
+		{
+			"Id": "ParamBreathEffect",
+			"Value": 0,
+			"Blend": "Add"
 		}
 	]
 }

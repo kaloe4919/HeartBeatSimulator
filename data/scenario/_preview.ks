@@ -54,8 +54,8 @@
 
 [tb_start_tyrano_code]
 ;init debug panel
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" size="20" text="↑" x="1110" y="318" width="50" height="56" _clickable_img="" fix="true"]
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="-10" size="20" text="↓" x="1110" y="390" width="50" height="56" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="+" size="20" text="↑" x="1110" y="318" width="50" height="56" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="-"  size="20" text="↓" x="1110" y="390" width="50" height="56" _clickable_img="" fix="true"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
