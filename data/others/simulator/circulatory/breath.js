@@ -2,9 +2,6 @@ var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
 var prevRespiratoryRate = 15;
 
 function sleep(milliseconds) {
-  if (milliseconds < 200) {
-    milliseconds = 200;
-  }
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 

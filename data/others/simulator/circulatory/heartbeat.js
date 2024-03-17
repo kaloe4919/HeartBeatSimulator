@@ -2,9 +2,6 @@ var seChannel = 0;
 var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
 
 function sleep(milliseconds) {
-  if (milliseconds < 200) {
-    milliseconds = 200;
-  }
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
@@ -49,7 +46,7 @@ function playBeatSound(heartRate) {
   bufCounter();
 }
 
-function playActorBeatMotion(heartRate, cond) {
+function playActorBeatMotion(cond, heartRate) {
   // If heartRate is assigned, force playback at this heartRate
   var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
@@ -57,7 +54,7 @@ function playActorBeatMotion(heartRate, cond) {
     mtn: cond ? cond : "Normal",
     no: "0",
     isAsync: "true",
-    heartRate: heartStatus.heartRate.toString(),
+    heartRate: playHeartRate.toString(),
     intervalRate: "0.2",
   };
 
@@ -75,23 +72,45 @@ function playActorBeatMotion(heartRate, cond) {
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
-function playHeartBeatMotion(heartRate, cond, no) {
+function playHeartBeatMotion(cond, no, heartRate) {
   // If heartRate is assigned, force playback at this heartRate
   var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
   var motionConfig = {
     name: "heart3",
-    mtn: cond ? cond : "Normal",
+    mtn: cond ? `${cond}_V` : "Normal_V",
     no: no ? no : "0",
     isAsync: "true",
-    heartRate: heartStatus.heartRate.toString(),
+    heartRate: playHeartRate.toString(),
     intervalRate: "0.1",
   };
 
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
 
+function playAtrialBeatMotion(cond, no, atrialHeartRate) {
+  // If heartRate is assigned, force playback at this heartRate
+  var playHeartRate = atrialHeartRate
+    ? atrialHeartRate
+    : heartStatus.atrialHeartRate;
+
+  var motionConfig = {
+    name: "heart3",
+    mtn: cond ? `${cond}_A` : "Normal_A",
+    no: no ? no : "0",
+    isAsync: "true",
+    atrialHeartRate: playHeartRate.toString(),
+    intervalRate: "0.1",
+  };
+
+  TYRANO.kag.ftag.master_tag.live2d_atrial_beat_motion.start(motionConfig);
+}
+
 // Normal beat
 async function beatRhythmNormal() {
+  // Synchronize heartRate into atrialHeartRate
+  TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
+    heartStatus.heartRate;
+
   // Set values for vital monitor
   TYRANO.kag.hbsim.variables.heartStatus.current = {
     type: "Normal",
@@ -100,9 +119,22 @@ async function beatRhythmNormal() {
 
   var random = randomRange(-3, 3);
   playActorBeatMotion();
+  playAtrialBeatMotion();
   playHeartBeatMotion();
   playBeatSound();
-  await sleep(Math.floor(60000 / heartStatus.heartRate));
+
+  // device lamp control
+  TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  TYRANO.kag.ftag.master_tag.live2d_sa_node_off.start();
+  TYRANO.kag.ftag.master_tag.live2d_av_node_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  TYRANO.kag.ftag.master_tag.live2d_av_node_off.start();
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.6));
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.2));
+
   // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
     heartStatus.heartRate + random <= heartStatus.heartRateMax &&
@@ -115,6 +147,10 @@ async function beatRhythmNormal() {
 // PVC beat
 async function beatRhythmPVC() {
   console.log("PVC");
+  // Synchronize heartRate into atrialHeartRate
+  TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
+    heartStatus.heartRate;
+
   // Set values for vital monitor
   TYRANO.kag.hbsim.variables.heartStatus.current = {
     type: "PVC",
@@ -123,16 +159,31 @@ async function beatRhythmPVC() {
 
   var random = randomRange(-3, 3);
   var randomMotion = randomRange(0, 1);
-  playActorBeatMotion(heartStatus.heartRate, "PVC");
-  playHeartBeatMotion(heartStatus.heartRate, "PVC", randomMotion);
+
+  playActorBeatMotion("PVC");
+  playAtrialBeatMotion();
+  playHeartBeatMotion("PVC", randomMotion);
+  playBeatSound();
+
+  // device lamp control
+  TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  TYRANO.kag.ftag.master_tag.live2d_sa_node_off.start();
+  TYRANO.kag.ftag.master_tag.live2d_av_node_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  TYRANO.kag.ftag.master_tag.live2d_av_node_off.start();
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.3));
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
+
   playBeatSound(heartStatus.heartRate - 60);
-  await sleep(Math.floor(60000 / heartStatus.heartRate / 2));
-  playBeatSound(heartStatus.heartRate - 60);
-  await sleep(
-    Math.floor(
-      60000 / heartStatus.heartRate / 2 + (60000 / heartStatus.heartRate) * 1.5,
-    ),
-  );
+
+  // device lamp control
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_warn_on.start();
+  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.5));
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
+  await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
+
   // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
     heartStatus.heartRate + random <= heartStatus.heartRateMax &&

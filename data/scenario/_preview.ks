@@ -2,76 +2,85 @@
 
 [mask time=10]
 [mask_off time=10]
-*talk_normal2
+[mask  time="1000"  effect="fadeIn"  color="0x000000"  ]
+[live2d_new  model_id="Kyoka"  breath="true"  lip_time="100"  lip="true"  jname="京香"  ]
+[wait  time="200"  ]
+[live2d_new  model_id="heart3"  breath="false"  lip_time="100"  ]
+[wait  time="200"  ]
+[live2d_show  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
+[live2d_show  name="heart3"  x="0.5"  y="-0.33"  scale="0.5"  ]
+[bg  storage="lab1.png"  time="1000"  ]
+[tb_start_tyrano_code]
+;init sim
+[loadjs storage="simulator/init.js"]
+[loadjs storage="simulator/actor/expression.js"]
+[loadjs storage="simulator/talk/eventHandler.js"]
+[loadjs storage="simulator/ui/ecgPanel.js"]
+[loadjs storage="simulator/ui/rrPanel.js"]
+[loadjs storage="simulator/ui/actionPanel.js"]
+[loadjs storage="simulator/ui/debugPanel.js"]
+[loadjs storage="simulator/circulatory/heartbeat.js"]
+[loadjs storage="simulator/circulatory/breath.js"]
+[configdelay speed=100]
+[autostart]
+[layopt layer="0" visible="true"]
+[layopt layer="1" visible="true"]
+[layopt layer="2" visible="true"]
+[_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
-;turn on event flags
-[start_talk_event]
+;init vital panel
+[show_ecg]
+[start_ecg]
+[show_rr]
+[start_rr]
+[ptext layer="0" name="HR" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1190 y=78]
+[ptext layer="0" name="RR" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=157]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;init action panel
+[talk_button color="btn_20_black" storage="scene1.ks" size="20" text="Talk" x="20" y="572" width="172" height="56" _clickable_img="" fix="true"]
+[action_button color="btn_20_black" storage="scene1.ks" size="20" text="Action" x="200" y="572" width="172" height="56" _clickable_img="" fix="true"]
+[hacking_button color="btn_20_black" storage="scene1.ks" size="20" text="Hacking" x="20" y="642" width="172" height="56" _clickable_img="" fix="true"]
+[option_button color="btn_20_black" storage="scene1.ks" size="20" text="Option" x="200" y="642" width="172" height="56" _clickable_img="" fix="true"]
+
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;init comment panel
+[position layer="message0" left=20 top=20 width=360 height=536 marginr=20 color=black opacity=100 visible="true"]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;init debug panel
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" size="20" text="↑" x="1110" y="318" width="50" height="56" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="-10" size="20" text="↓" x="1110" y="390" width="50" height="56" _clickable_img="" fix="true"]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;start life cycle
+[heartbeat_start]
+[breath_start]
+
+[_tb_end_tyrano_code]
+
+[tb_show_message_window  ]
+[tb_start_tyrano_code]
 ;hide buttons
 [set_visible_control_buttons visible="false"]
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 
-[live2d_expression  name="Kyoka"  expression="Angry1"  ]
+[mask_off  time="1000"  effect="fadeOut"  ]
 [tb_start_text mode=1 ]
 #京香
-先生……、また私のカバンの中勝手に見たでしょ？[p]
+あ、先生だ。[p]
+心臓の調子？[p]
+まだちょっと変な動きする時あるけど……。[p]
+
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="100"  width="240"  height=""  text="うーん、見た"  _clickable_img=""  target="*talk_normal2_1"  ]
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="うーん、見てない"  _clickable_img=""  target="*talk_normal2_2"  ]
-[s  ]
-*talk_normal2_1
-
-[tb_start_text mode=1 ]
-#京香
-ちょっと一発かますからそこに座りなさい。[p]
-[_tb_end_text]
-
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="100"  width="240"  height=""  text="逃げる"  _clickable_img=""  target="*talk_normal2_1_1"  ]
-[s  ]
-*talk_normal2_1_1
-
-[live2d_expression  name="Kyoka"  expression="Surprised1"  ]
-[tb_start_text mode=1 ]
-#京香
-あ、ちょっと待ちなさいっ！[p]
-[_tb_end_text]
-
-[tb_start_tyrano_code]
-;fade out
-[layopt layer=message0 visible=false]
-[set_heart_se_vol vol=0]
-[image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
-[anim name=black opacity=0 time=0]
-[anim name=black opacity=255 time=1000 effect="easeOutExpo"]
-[_tb_end_tyrano_code]
-
-[tb_start_tyrano_code]
-[mtext layer=2 x=0 y=280 width=1280 align="center" size=30 time=2000 text="しばらくラボの中を全力で逃げ回った。"]
-
-[_tb_end_tyrano_code]
-
-[wait  time="4000"  ]
-[tb_start_tyrano_code]
-;fade in
-[set_heart_se_vol vol=75]
-[free layer=1 name=black time=1000]
-[layopt layer=message0 visible=true]
-[_tb_end_tyrano_code]
-
-[tb_start_tyrano_code]
-[calculate_heartRate value="60" operator="+" limit="140" limitForce="true"]
-[_tb_end_tyrano_code]
-
-[live2d_expression  name="Kyoka"  expression="Painful4"  ]
-[tb_start_text mode=1 ]
-#京香
-はーっ、はーっ……。[p]
-なんで、そんなに逃げるの早いの……っ、ゴキブリかっ。[p]
-[_tb_end_text]
-
-[live2d_expression  name="Kyoka"  expression="Painful3"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
@@ -81,11 +90,14 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="500"  ]
+[live2d_expression  name="Kyoka"  expression="LookDown1"  ]
 [tb_start_text mode=1 ]
-#
-（久しぶりに走ったから、心臓やば……。）[p]
+#京香
+これのおかげで今のところ平気かな。[p]
 [_tb_end_text]
 
+[live2d_expression  name="Kyoka"  expression="Normal"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
@@ -95,14 +107,15 @@ isAsync: "true",
 });
 [endscript]
 
-[jump  storage="scene1.ks"  target="*stand_by"  ]
-*talk_normal2_2
+[wait  time="500"  ]
+*stand_by
 
-[tb_start_text mode=1 ]
-#京香
-ホントかなぁ……。[p]
-あやしい……。[p]
-[_tb_end_text]
+[tb_start_tyrano_code]
+;turn off event flags
+[end_talk_event]
+;show buttons
+[set_visible_control_buttons visible="true"]
+[set_visible_debug_buttons visible="true"]
+[_tb_end_tyrano_code]
 
-[live2d_expression  name="Kyoka"  expression="Normal"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[s  ]

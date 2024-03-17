@@ -562,6 +562,118 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
   },
 };
 
+TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] =
+      "SANodeNormalTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "SANodeNormalTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_sa_node_warn_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] = "SANodeWarnTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "SANodeWarnTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_sa_node_off = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] = "SANodeTurnOff";
+    _live2d_tyrano.tm.setExpression("heart3", "SANodeTurnOff");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_av_node_normal_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] =
+      "AVNodeNormalTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "AVNodeNormalTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_av_node_warn_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] = "AVNodeWarnTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "AVNodeWarnTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_av_node_off = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] = "AVNodeTurnOff";
+    _live2d_tyrano.tm.setExpression("heart3", "AVNodeTurnOff");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] =
+      "VentricleNormalTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "VentricleNormalTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_ventricle_warn_on = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] =
+      "VentricleWarnTurnOn";
+    _live2d_tyrano.tm.setExpression("heart3", "VentricleWarnTurnOn");
+  },
+};
+
+TYRANO.kag.ftag.master_tag.live2d_ventricle_off = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+
+  start: function () {
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+    TYRANO.kag.stat.live2d_models["heart3"]["expression"] = "VentricleTurnOff";
+    _live2d_tyrano.tm.setExpression("heart3", "VentricleTurnOff");
+  },
+};
+
 /*
  #[live2d_restore]
  :group
