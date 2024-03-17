@@ -56,6 +56,12 @@ function updateEcg() {
       ecgYDataQue = que;
 
       TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
+    } else if (current.type === "VT") {
+      var rWavePVC = [0.5, 1, 9, -2, -2.5, -4, -1, 0, 1];
+      var que = rWavePVC;
+      ecgYDataQue = que;
+
+      TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
     }
   }
 

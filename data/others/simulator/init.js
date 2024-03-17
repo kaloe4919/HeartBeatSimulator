@@ -15,6 +15,7 @@ TYRANO.kag.hbsim = {
     },
     heartStatus: {
       heartRate: 65,
+      prevHeartRate: 65,
       heartRateMin: 60,
       heartRateMax: 70,
       // used to control atrial motion, sync with heart rate
@@ -35,6 +36,10 @@ TYRANO.kag.hbsim = {
       // variable increase by compression or hacking or etc
       // high value cause to device malfunction
       deviceDamage: 0,
+      isAsyncAtrial: false,
+      isPVC: false,
+      isVT: false,
+      countVT: 0,
       isActiveDevice: true,
       seVol: 75,
       // used by vital monitors to output graphs

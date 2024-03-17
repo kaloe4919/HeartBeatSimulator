@@ -1,4 +1,3 @@
-var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
 var prevRespiratoryRate = 15;
 
 function sleep(milliseconds) {
@@ -6,7 +5,8 @@ function sleep(milliseconds) {
 }
 
 function playActorBreathMotion() {
-  var playRespiratoryRate = breathStatus.respiratoryRate;
+  var playRespiratoryRate =
+    TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: "Breath",
@@ -32,6 +32,7 @@ function playActorBreathMotion() {
 }
 
 async function breathNormal() {
+  var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
   // Set values for vital monitor
   TYRANO.kag.hbsim.variables.breathStatus.current = {
     type: "Normal",
@@ -43,6 +44,7 @@ async function breathNormal() {
 }
 
 async function breath() {
+  var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
   var isDefinedRr = true;
   while (isDefinedRr) {
     console.log("breath");
