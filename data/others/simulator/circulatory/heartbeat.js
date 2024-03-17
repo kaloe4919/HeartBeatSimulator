@@ -206,6 +206,9 @@ async function heartbeat() {
     // Update HR Display
     TYRANO.kag.ftag.master_tag.update_hr.start();
 
+    // Update Debug Outputs
+    TYRANO.kag.ftag.master_tag.update_debug_outputs.start();
+
     if (random > 10) {
       await beatRhythmNormal();
     } else {

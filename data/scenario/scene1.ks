@@ -24,6 +24,7 @@
 [layopt layer="0" visible="true"]
 [layopt layer="1" visible="true"]
 [layopt layer="2" visible="true"]
+
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -52,8 +53,12 @@
 
 [tb_start_tyrano_code]
 ;init debug panel
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="+" size="20" text="↑" x="1110" y="318" width="50" height="56" _clickable_img="" fix="true"]
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="-"  size="20" text="↓" x="1110" y="390" width="50" height="56" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="+" size="12" text="↑" x="1110" y="318" width="50" height="36" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="-"  size="12" text="↓" x="1110" y="370" width="50" height="36" _clickable_img="" fix="true"]
+[ptext layer="0" name="burden" text="burden: --" size="12" hexColor="#fff" x=1110 y=500]
+[ptext layer="0" name="stress" text="stress: --" size="12" hexColor="#fff" x=1110 y=520]
+[ptext layer="0" name="pressure" text="pressure: --" size="12" hexColor="#fff" x=1110 y=540]
+[ptext layer="0" name="deviceDmg" text="deviceDmg: --" size="12" hexColor="#fff" x=1110 y=560]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]

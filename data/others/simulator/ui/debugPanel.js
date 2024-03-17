@@ -91,3 +91,75 @@ TYRANO.kag.ftag.master_tag.set_visible_debug_buttons = {
     TYRANO.kag.ftag.nextOrder();
   },
 };
+
+TYRANO.kag.ftag.master_tag.update_debug_outputs = {
+  kag: TYRANO.kag,
+  vital: [],
+  pm: {},
+  start: function () {
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1110,
+      y: 500,
+      vertical: "false",
+      text: `burden: ${TYRANO.kag.hbsim.variables.heartStatus.burden}`,
+      size: "12",
+      hexColor: "#fff",
+      bold: "bold",
+      align: "left",
+      name: "burden",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1110,
+      y: 520,
+      vertical: "false",
+      text: `stress: ${TYRANO.kag.hbsim.variables.heartStatus.stress}`,
+      size: "12",
+      hexColor: "#fff",
+      bold: "bold",
+      align: "left",
+      name: "stress",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1110,
+      y: 540,
+      vertical: "false",
+      text: `pressure: ${TYRANO.kag.hbsim.variables.heartStatus.pressure}`,
+      size: "12",
+      hexColor: "#fff",
+      bold: "bold",
+      align: "left",
+      name: "pressure",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+    TYRANO.kag.ftag.master_tag.ptext.start({
+      layer: "0",
+      page: "fore",
+      x: 1110,
+      y: 560,
+      vertical: "false",
+      text: `deviceDmg: ${TYRANO.kag.hbsim.variables.heartStatus.deviceDamage}`,
+      size: "12",
+      hexColor: "#fff",
+      bold: "bold",
+      align: "left",
+      name: "deviceDmg",
+      zindex: "9999",
+      overwrite: "true",
+      isAsync: "true",
+    });
+  },
+};
