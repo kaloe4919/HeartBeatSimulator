@@ -146,15 +146,19 @@ async function beatRhythmNormal() {
 
   // 心拍数の復元値の適用(会話中は復元しない)
   if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
-    // 心臓負荷の設定
-    TYRANO.kag.hbsim.variables.heartStatus.burden = Math.floor(
-      recoveryValue * (100 / maxRecoveryValue),
+    // 心臓負荷の増減
+    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
+      heartStatus.burden,
+      recoveryValue,
     );
+    TYRANO.kag.hbsim.variables.heartStatus.burden -= getRecoveryBurden(
+      heartStatus.burden,
+    );
+
     // 心室の負荷を軽減
-    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
-      heartStatus.ventricleBurden - 0.5 <= 0
-        ? 0
-        : heartStatus.ventricleBurden - 0.5;
+    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden -=
+      getRecoveryVentricleBurden(heartStatus.ventricleBurden);
+
     if (heartStatus.heartRate - 65 >= 0) {
       TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
       TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= recoveryValue;
@@ -224,32 +228,16 @@ async function beatRhythmPVC() {
     maxRecoveryValue,
   );
 
-  // 心拍数の復元値の適用(会話中・心室の負荷が高い場合は復元しない)
+  // 心拍数の復元値の適用(会話中は復元しない)
   if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
-    // 心臓負荷の設定
-    TYRANO.kag.hbsim.variables.heartStatus.burden = Math.floor(
-      recoveryValue * (100 / maxRecoveryValue),
-    );
+    // 心臓負荷の増加
+    TYRANO.kag.hbsim.variables.heartStatus.burden += 5;
+
     // PVCが発生した場合心室に負荷をかける
-    // 連続してPVCが発生している場合はさらに負荷をかける
-    var moreBurden = heartStatus.isPVC ? 10 : 0;
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
-      heartStatus.ventricleBurden +
-        Math.floor(heartStatus.burden / 5) +
-        moreBurden >=
-      100
+      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5) >= 100
         ? 100
-        : heartStatus.ventricleBurden +
-          Math.floor(heartStatus.burden / 5) +
-          moreBurden;
-    // 心室の負荷が 50 を超えた場合 VT を発生させる
-    if (TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden >= 50) {
-      TYRANO.kag.hbsim.variables.heartStatus.isVT = true;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRate += 60;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += 60;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += 60;
-      return;
-    }
+        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5);
 
     if (heartStatus.heartRate - 65 >= 0) {
       TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
@@ -278,6 +266,13 @@ async function beatRhythmVT() {
   console.log("VT");
   var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
 
+  // 発生回数
+  // ventricleBurden[0, 100]の値によって[2, 5]の区間で変動
+  var randomCount = randomRange(
+    2,
+    2 + Math.ceil(heartStatus.ventricleBurden * 0.03),
+  );
+
   // 心拍数を強制的に上昇させる
   var increaseRate = heartStatus.countVT <= 1 ? 60 : 0;
   TYRANO.kag.hbsim.variables.heartStatus.heartRate += increaseRate;
@@ -305,11 +300,11 @@ async function beatRhythmVT() {
   heartStatus.countVT <= 0
     ? TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start()
     : TYRANO.kag.ftag.master_tag.live2d_ventricle_warn_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.5));
-  TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
   await sleep(Math.floor(60000 / heartStatus.heartRate));
+  TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
 
-  if (heartStatus.countVT >= 3) {
+  if (heartStatus.countVT >= randomCount) {
+    // VTの終了処理
     TYRANO.kag.hbsim.variables.heartStatus.heartRate =
       heartStatus.atrialHeartRate;
     TYRANO.kag.hbsim.variables.heartStatus.heartRateMin =
@@ -322,6 +317,7 @@ async function beatRhythmVT() {
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden = Math.floor(
       heartStatus.ventricleBurden / 2,
     );
+    TYRANO.kag.hbsim.variables.heartStatus.burden += 10;
     await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
   } else {
     TYRANO.kag.hbsim.variables.heartStatus.countVT++;
@@ -362,25 +358,38 @@ async function heartbeat() {
 
     // force VT
     if (heartStatus.isVT) {
-      // VT の場合、心房と心室の速度がずれるため心房用のループを非同期で回す
-      if (!heartStatus.isAsyncAtrial) {
-        TYRANO.kag.hbsim.variables.heartStatus.isAsyncAtrial = true;
-        atrialHeartbeat();
-      }
       await beatRhythmVT();
+
+      // TODO: 重度の発作の場合
+      // VT の場合、心房と心室の速度がずれるため心房用のループを非同期で回す
+      // if (!heartStatus.isAsyncAtrial) {
+      //   TYRANO.kag.hbsim.variables.heartStatus.isAsyncAtrial = true;
+      //   atrialHeartbeat();
+      // }
       continue;
     }
 
     // Arrhythmia caused by ventricle burden
-    if (heartStatus.ventricleBurden > random) {
+    if (heartStatus.ventricleBurden / 2 > random) {
+      // Synchronize heartRate into atrialHeartRate
       TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
         heartStatus.heartRate;
-      await beatRhythmPVC();
+
+      var randomForVentricleBurden = randomRange(0, 100);
+      // 負荷が上がるごとに重度の発作の確率が上がる
+      if (
+        getActiveVTRate(heartStatus.ventricleBurden) > randomForVentricleBurden
+      ) {
+        // VTの発生
+        TYRANO.kag.hbsim.variables.heartStatus.isVT = true;
+      } else {
+        await beatRhythmPVC();
+      }
       continue;
     }
 
+    // Arrhythmia caused by burden
     if (heartStatus.burden / 2 > random) {
-      // Arrhythmia caused by burden
       // Synchronize heartRate into atrialHeartRate
       TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
         heartStatus.heartRate;

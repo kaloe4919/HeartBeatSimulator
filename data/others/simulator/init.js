@@ -22,17 +22,17 @@ TYRANO.kag.hbsim = {
       // arrhythmias cause differences in ventricular and atrial heart rates (VT, AF, etc)
       atrialHeartRate: 65,
       // variable increase by rapid changes in heart rate
-      burden: 0,
+      burden: 10,
       // variable increase by changes in emotions
       stress: 0,
       // variable increase by compression or hacking
       pressure: 0,
       // high value cause to Atrial Fibrillation(AF)
-      saNodeBurden: 0,
+      saNodeBurden: 5,
       // high value cause to AV nodal reentrant tachycardia(SVT) and AV block
-      avNodeBurden: 0,
+      avNodeBurden: 5,
       // high value cause to Premature Ventricular Contractions(PVC) and Ventricular Tachycardia(VT)
-      ventricleBurden: 0,
+      ventricleBurden: 5,
       // variable increase by compression or hacking or etc
       // high value cause to device malfunction
       deviceDamage: 0,
