@@ -51,9 +51,13 @@
 [_tb_end_tyrano_code]
 
 [wait  time="3000"  ]
-[tb_start_tyrano_code]
-[calculate_heartRate value="60" operator="+"]
-[_tb_end_tyrano_code]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "60",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
 
 [tb_start_tyrano_code]
 ;fade in

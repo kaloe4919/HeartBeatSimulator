@@ -68,7 +68,7 @@ function playActorBeatMotion(cond, heartRate) {
   } else if (playHeartRate <= 180) {
     motionConfig.no = "2";
   } else if (playHeartRate <= 210) {
-    motionConfig.no = "3";
+    motionConfig.no = "2";
   }
   TYRANO.kag.ftag.master_tag.live2d_beat_motion.start(motionConfig);
 }
@@ -228,10 +228,13 @@ async function beatRhythmPVC() {
     maxRecoveryValue,
   );
 
-  // 心拍数の復元値の適用(会話中は復元しない)
+  // 心拍数の復元値の適用(会話中は復元しない) TODO: 関数に取り込む
   if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
     // 心臓負荷の増加
-    TYRANO.kag.hbsim.variables.heartStatus.burden += 5;
+    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
+      heartStatus.burden,
+      recoveryValue,
+    );
 
     // PVCが発生した場合心室に負荷をかける
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
@@ -314,10 +317,24 @@ async function beatRhythmVT() {
     TYRANO.kag.hbsim.variables.heartStatus.countVT = 0;
     TYRANO.kag.hbsim.variables.heartStatus.isVT = false;
     TYRANO.kag.hbsim.variables.heartStatus.isPVC = false;
+
+    // 心拍数の復元値を取得
+    var maxRecoveryValue = 10;
+    var recoveryValue = getRecoveryHeartRate(
+      65,
+      heartStatus.heartRate,
+      85,
+      maxRecoveryValue,
+    );
+    // 心臓負荷の増加
+
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden = Math.floor(
       heartStatus.ventricleBurden / 2,
     );
-    TYRANO.kag.hbsim.variables.heartStatus.burden += 10;
+    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
+      heartStatus.burden,
+      recoveryValue,
+    );
     await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
   } else {
     TYRANO.kag.hbsim.variables.heartStatus.countVT++;
@@ -442,6 +459,7 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
     limit: "",
     // trueにすると、加算/減算の結果が limit より大きい/小さい場合、limit の値が強制的に代入される
     limitForce: "false",
+    isAsync: "false",
   },
   start: function (pm) {
     var value = parseInt(pm.value);
@@ -510,7 +528,9 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
       }
     }
 
-    this.kag.ftag.nextOrder();
+    if (!"true" == pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
+    }
   },
 };
 

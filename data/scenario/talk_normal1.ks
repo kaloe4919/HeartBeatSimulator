@@ -38,9 +38,13 @@
 [_tb_end_tyrano_code]
 
 [wait  time="3000"  ]
-[tb_start_tyrano_code]
-[calculate_heartRate value="25" operator="+"]
-[_tb_end_tyrano_code]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "25",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
 
 [tb_start_tyrano_code]
 ;fade in
@@ -85,9 +89,13 @@
 [_tb_end_text]
 
 [live2d_mod  name="Kyoka"  x="-0.15"  y="0.1"  scale="1.5"  ]
-[tb_start_tyrano_code]
-[calculate_heartRate value="30" operator="+"]
-[_tb_end_tyrano_code]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "30",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
 
 [tb_start_text mode=1 ]
 #京香
@@ -98,11 +106,15 @@
 [s  ]
 *talk_normal1_2_1
 
-[tb_start_tyrano_code]
-[calculate_heartRate value="30" operator="+"]
-[_tb_end_tyrano_code]
-
 [live2d_expression  name="Kyoka"  expression="Painful3"  ]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "30",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
+
 [tb_start_text mode=1 ]
 #京香
 き、聴こえるけど……っ！[p]
@@ -111,9 +123,13 @@
 
 [live2d_mod  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
 [live2d_expression  name="Kyoka"  expression="Painful2"  ]
-[tb_start_tyrano_code]
-[calculate_heartRate value="30" operator="+"]
-[_tb_end_tyrano_code]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "30",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
 
 [tb_start_text mode=1 ]
 #京香

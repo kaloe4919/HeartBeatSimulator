@@ -54,9 +54,13 @@
 なっ！？[p]
 [_tb_end_text]
 
-[tb_start_tyrano_code]
-[calculate_heartRate value="20" operator="+"]
-[_tb_end_tyrano_code]
+[iscript]
+TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
+value: "20",
+operator: "+",
+isAsync: "true",
+});
+[endscript]
 
 [live2d_expression  name="Kyoka"  expression="Angry2_Cheek"  ]
 [tb_start_text mode=1 ]
