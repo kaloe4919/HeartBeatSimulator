@@ -48,7 +48,7 @@ function getRecoveryBurden(burden) {
   var deviationRate = deviationValue / 100;
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
   // 最大復元値は増加値より多めに設定する 増加値の最大は心拍数の復元値の最大値
-  var recoveryValue = (10 ** (deviationRate - 1.5) + 0.2) * 5;
+  var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
 
   return burden - recoveryValue <= 10 ? 0 : recoveryValue;
 }
@@ -63,7 +63,7 @@ function getRecoveryVentricleBurden(ventricleBurden) {
   // 乖離率
   var deviationRate = deviationValue / 100;
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
-  var recoveryValue = (10 ** (deviationRate - 1.5) + 0.1) * 5;
+  var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
 
   return ventricleBurden - recoveryValue <= 5 ? 0 : recoveryValue;
 }

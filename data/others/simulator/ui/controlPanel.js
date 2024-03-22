@@ -10,10 +10,6 @@ TYRANO.kag.ftag.master_tag.talk_button = {
     height: "",
     size: "30",
     fix: "false",
-    visible: "true",
-    clickse: "",
-    enterse: "",
-    leavese: "",
   },
   start: function (pm) {
     var target_layer = null;
@@ -28,13 +24,8 @@ TYRANO.kag.ftag.master_tag.talk_button = {
     j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
-    "true" == pm.visible ? j_button.show() : j_button.hide();
-    "" == pm.x
-      ? j_button.css("left", TYRANO.kag.stat.locate.x + "px")
-      : j_button.css("left", pm.x + "px");
-    "" == pm.y
-      ? j_button.css("top", TYRANO.kag.stat.locate.y + "px")
-      : j_button.css("top", pm.y + "px");
+    j_button.css("left", pm.x + "px");
+    j_button.css("top", pm.y + "px");
     "false" != pm.fix && j_button.addClass("fixlayer");
     "" != pm.width && j_button.css("width", pm.width + "px");
     "" != pm.height && j_button.css("height", pm.height + "px");
@@ -46,28 +37,7 @@ TYRANO.kag.ftag.master_tag.talk_button = {
   },
   setEvent: function (j_button, pm) {
     !(function () {
-      var _pm = pm;
-      j_button.hover(
-        function () {
-          "" != _pm.enterse &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.enterse,
-              stop: !0,
-            });
-        },
-        function () {
-          "" != _pm.leavese &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.leavese,
-              stop: !0,
-            });
-        },
-      );
       j_button.click(function (event) {
-        "" != _pm.clickse &&
-          that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
-
-        // TODO: talk event
         console.log("onclick talk button");
         talkEventHandler();
       });
@@ -87,10 +57,6 @@ TYRANO.kag.ftag.master_tag.action_button = {
     height: "",
     size: "30",
     fix: "false",
-    visible: "true",
-    clickse: "",
-    enterse: "",
-    leavese: "",
   },
   start: function (pm) {
     var target_layer = null;
@@ -105,13 +71,8 @@ TYRANO.kag.ftag.master_tag.action_button = {
     j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
-    "true" == pm.visible ? j_button.show() : j_button.hide();
-    "" == pm.x
-      ? j_button.css("left", TYRANO.kag.stat.locate.x + "px")
-      : j_button.css("left", pm.x + "px");
-    "" == pm.y
-      ? j_button.css("top", TYRANO.kag.stat.locate.y + "px")
-      : j_button.css("top", pm.y + "px");
+    j_button.css("left", pm.x + "px");
+    j_button.css("top", pm.y + "px");
     "false" != pm.fix && j_button.addClass("fixlayer");
     "" != pm.width && j_button.css("width", pm.width + "px");
     "" != pm.height && j_button.css("height", pm.height + "px");
@@ -123,27 +84,7 @@ TYRANO.kag.ftag.master_tag.action_button = {
   },
   setEvent: function (j_button, pm) {
     !(function () {
-      var _pm = pm;
-      j_button.hover(
-        function () {
-          "" != _pm.enterse &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.enterse,
-              stop: !0,
-            });
-        },
-        function () {
-          "" != _pm.leavese &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.leavese,
-              stop: !0,
-            });
-        },
-      );
       j_button.click(function (event) {
-        "" != _pm.clickse &&
-          that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
-
         // TODO: open action menu
         console.log("onclick action button");
       });
@@ -163,10 +104,6 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
     height: "",
     size: "30",
     fix: "false",
-    visible: "true",
-    clickse: "",
-    enterse: "",
-    leavese: "",
   },
   start: function (pm) {
     var target_layer = null;
@@ -181,13 +118,8 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
     j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
-    "true" == pm.visible ? j_button.show() : j_button.hide();
-    "" == pm.x
-      ? j_button.css("left", TYRANO.kag.stat.locate.x + "px")
-      : j_button.css("left", pm.x + "px");
-    "" == pm.y
-      ? j_button.css("top", TYRANO.kag.stat.locate.y + "px")
-      : j_button.css("top", pm.y + "px");
+    j_button.css("left", pm.x + "px");
+    j_button.css("top", pm.y + "px");
     "false" != pm.fix && j_button.addClass("fixlayer");
     "" != pm.width && j_button.css("width", pm.width + "px");
     "" != pm.height && j_button.css("height", pm.height + "px");
@@ -199,27 +131,7 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
   },
   setEvent: function (j_button, pm) {
     !(function () {
-      var _pm = pm;
-      j_button.hover(
-        function () {
-          "" != _pm.enterse &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.enterse,
-              stop: !0,
-            });
-        },
-        function () {
-          "" != _pm.leavese &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.leavese,
-              stop: !0,
-            });
-        },
-      );
       j_button.click(function (event) {
-        "" != _pm.clickse &&
-          that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
-
         // TODO: open hacking menu
         console.log("onclick hacking button");
       });
@@ -239,10 +151,6 @@ TYRANO.kag.ftag.master_tag.option_button = {
     height: "",
     size: "30",
     fix: "false",
-    visible: "true",
-    clickse: "",
-    enterse: "",
-    leavese: "",
   },
   start: function (pm) {
     var target_layer = null;
@@ -257,13 +165,8 @@ TYRANO.kag.ftag.master_tag.option_button = {
     j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
-    "true" == pm.visible ? j_button.show() : j_button.hide();
-    "" == pm.x
-      ? j_button.css("left", TYRANO.kag.stat.locate.x + "px")
-      : j_button.css("left", pm.x + "px");
-    "" == pm.y
-      ? j_button.css("top", TYRANO.kag.stat.locate.y + "px")
-      : j_button.css("top", pm.y + "px");
+    j_button.css("left", pm.x + "px");
+    j_button.css("top", pm.y + "px");
     "false" != pm.fix && j_button.addClass("fixlayer");
     "" != pm.width && j_button.css("width", pm.width + "px");
     "" != pm.height && j_button.css("height", pm.height + "px");
@@ -275,27 +178,7 @@ TYRANO.kag.ftag.master_tag.option_button = {
   },
   setEvent: function (j_button, pm) {
     !(function () {
-      var _pm = pm;
-      j_button.hover(
-        function () {
-          "" != _pm.enterse &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.enterse,
-              stop: !0,
-            });
-        },
-        function () {
-          "" != _pm.leavese &&
-            TYRANO.kag.ftag.startTag("playse", {
-              storage: _pm.leavese,
-              stop: !0,
-            });
-        },
-      );
       j_button.click(function (event) {
-        "" != _pm.clickse &&
-          that.kag.ftag.startTag("playse", { storage: _pm.clickse, stop: !0 });
-
         // TODO: open option menu
         console.log("onclick option button");
       });

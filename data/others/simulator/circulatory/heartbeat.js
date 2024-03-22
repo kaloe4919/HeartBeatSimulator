@@ -136,11 +136,11 @@ async function beatRhythmNormal() {
   await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.2));
 
   // 心拍数の復元値を取得
-  var maxRecoveryValue = 4;
+  var maxRecoveryValue = 3;
   var recoveryValue = getRecoveryHeartRate(
     65,
     heartStatus.heartRate,
-    85,
+    135,
     maxRecoveryValue,
   );
 
@@ -220,27 +220,30 @@ async function beatRhythmPVC() {
   await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
 
   // 心拍数の復元値を取得
-  var maxRecoveryValue = 10;
+  var maxRecoveryValue = 5;
   var recoveryValue = getRecoveryHeartRate(
     65,
     heartStatus.heartRate,
-    85,
+    135,
     maxRecoveryValue,
   );
 
   // 心拍数の復元値の適用(会話中は復元しない) TODO: 関数に取り込む
   if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
-    // 心臓負荷の増加
+    // 心臓負荷の増減
     TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
       heartStatus.burden,
       recoveryValue,
     );
+    TYRANO.kag.hbsim.variables.heartStatus.burden -= getRecoveryBurden(
+      heartStatus.burden,
+    );
 
     // PVCが発生した場合心室に負荷をかける
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
-      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5) >= 100
+      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 10) >= 100
         ? 100
-        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5);
+        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 10);
 
     if (heartStatus.heartRate - 65 >= 0) {
       TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
@@ -270,10 +273,10 @@ async function beatRhythmVT() {
   var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
 
   // 発生回数
-  // ventricleBurden[0, 100]の値によって[2, 5]の区間で変動
+  // ventricleBurden[0, 100]の値によって[2, 4]の区間で変動
   var randomCount = randomRange(
     2,
-    2 + Math.ceil(heartStatus.ventricleBurden * 0.03),
+    2 + Math.ceil(heartStatus.ventricleBurden * 0.02),
   );
 
   // 心拍数を強制的に上昇させる
@@ -319,18 +322,18 @@ async function beatRhythmVT() {
     TYRANO.kag.hbsim.variables.heartStatus.isPVC = false;
 
     // 心拍数の復元値を取得
-    var maxRecoveryValue = 10;
+    var maxRecoveryValue = 5;
     var recoveryValue = getRecoveryHeartRate(
       65,
       heartStatus.heartRate,
-      85,
+      135,
       maxRecoveryValue,
     );
     // 心臓負荷の増加
-
-    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden = Math.floor(
-      heartStatus.ventricleBurden / 2,
-    );
+    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
+      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5) >= 100
+        ? 100
+        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5);
     TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
       heartStatus.burden,
       recoveryValue,
