@@ -1,184 +1,108 @@
-TYRANO.kag.ftag.master_tag.talk_button = {
+TYRANO.kag.ftag.master_tag.control_menu = {
   pm: {
-    color: "black",
-    name: "",
-    text: "",
-    value: "0",
     x: "",
     y: "",
     width: "",
     height: "",
-    size: "30",
-    fix: "false",
   },
   start: function (pm) {
-    var target_layer = null;
-    "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
-      : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $(
-      "<div class='glink_button talk_button'>" + pm.text + "</div>",
+    var target_layer = TYRANO.kag.layer.getLayer("fix");
+    var $menu = $("<div class='control_menu fixlayer'>");
+    $menu.css({
+      position: "absolute",
+      "z-index": 10000,
+      left: `${pm.x}px`,
+      top: `${pm.y}px`,
+      width: `${pm.width}px`,
+      height: `${pm.height}px`,
+    });
+    $.setName($menu, "control_menu");
+    var $grid = $("<div class='control_menu_grid'>");
+    $grid.css({
+      display: "grid",
+      "grid-template-columns": "1fr 1fr",
+      "column-gap": "16px",
+      "row-gap": "16px",
+    });
+
+    // talk button
+    var $talkButton = $(
+      `<div class='glink_button btn_20_black talk_button'>Talk</div>`,
     );
-    j_button.css("position", "absolute");
-    j_button.css("cursor", "pointer");
-    j_button.css("z-index", 10000);
-    j_button.css("font-size", pm.size + "px");
-    j_button.addClass(pm.color);
-    j_button.css("left", pm.x + "px");
-    j_button.css("top", pm.y + "px");
-    "false" != pm.fix && j_button.addClass("fixlayer");
-    "" != pm.width && j_button.css("width", pm.width + "px");
-    "" != pm.height && j_button.css("height", pm.height + "px");
-    $.setName(j_button, pm.name);
-    this.setEvent(j_button, pm);
-    target_layer.append(j_button);
-    "false" == pm.fix && target_layer.show();
+    $talkButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setTalkButtonEvent($talkButton, pm);
+
+    // action button
+    var $actionButton = $(
+      `<div class='glink_button btn_20_black action_button'>Action</div>`,
+    );
+    $actionButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setActionButtonEvent($actionButton, pm);
+
+    // hacking button
+    var $hackingButton = $(
+      `<div class='glink_button btn_20_black hacking_button'>Hacking</div>`,
+    );
+    $hackingButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setHackingButtonEvent($hackingButton, pm);
+
+    // option button
+    var $optionButton = $(
+      `<div class='glink_button btn_20_black option_button'>Option</div>`,
+    );
+    $optionButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setOptionButtonEvent($optionButton, pm);
+
+    $grid.append($talkButton);
+    $grid.append($actionButton);
+    $grid.append($hackingButton);
+    $grid.append($optionButton);
+
+    $menu.append($grid);
+
+    target_layer.append($menu);
+    target_layer.show();
     TYRANO.kag.ftag.nextOrder();
   },
-  setEvent: function (j_button, pm) {
+  setTalkButtonEvent: function ($talkButton, pm) {
     !(function () {
-      j_button.click(function (event) {
+      $talkButton.click(function (event) {
         console.log("onclick talk button");
         talkEventHandler();
       });
     })();
   },
-};
-
-TYRANO.kag.ftag.master_tag.action_button = {
-  pm: {
-    color: "black",
-    name: "",
-    text: "",
-    value: "0",
-    x: "",
-    y: "",
-    width: "",
-    height: "",
-    size: "30",
-    fix: "false",
-  },
-  start: function (pm) {
-    var target_layer = null;
-    "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
-      : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $(
-      "<div class='glink_button action_button'>" + pm.text + "</div>",
-    );
-    j_button.css("position", "absolute");
-    j_button.css("cursor", "pointer");
-    j_button.css("z-index", 10000);
-    j_button.css("font-size", pm.size + "px");
-    j_button.addClass(pm.color);
-    j_button.css("left", pm.x + "px");
-    j_button.css("top", pm.y + "px");
-    "false" != pm.fix && j_button.addClass("fixlayer");
-    "" != pm.width && j_button.css("width", pm.width + "px");
-    "" != pm.height && j_button.css("height", pm.height + "px");
-    $.setName(j_button, pm.name);
-    this.setEvent(j_button, pm);
-    target_layer.append(j_button);
-    "false" == pm.fix && target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
-  },
-  setEvent: function (j_button, pm) {
+  setActionButtonEvent: function ($talkButton, pm) {
     !(function () {
-      j_button.click(function (event) {
+      $talkButton.click(function (event) {
         // TODO: open action menu
         console.log("onclick action button");
       });
     })();
   },
-};
-
-TYRANO.kag.ftag.master_tag.hacking_button = {
-  pm: {
-    color: "black",
-    name: "",
-    text: "",
-    value: "0",
-    x: "",
-    y: "",
-    width: "",
-    height: "",
-    size: "30",
-    fix: "false",
-  },
-  start: function (pm) {
-    var target_layer = null;
-    "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
-      : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $(
-      "<div class='glink_button hacking_button'>" + pm.text + "</div>",
-    );
-    j_button.css("position", "absolute");
-    j_button.css("cursor", "pointer");
-    j_button.css("z-index", 10000);
-    j_button.css("font-size", pm.size + "px");
-    j_button.addClass(pm.color);
-    j_button.css("left", pm.x + "px");
-    j_button.css("top", pm.y + "px");
-    "false" != pm.fix && j_button.addClass("fixlayer");
-    "" != pm.width && j_button.css("width", pm.width + "px");
-    "" != pm.height && j_button.css("height", pm.height + "px");
-    $.setName(j_button, pm.name);
-    this.setEvent(j_button, pm);
-    target_layer.append(j_button);
-    "false" == pm.fix && target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
-  },
-  setEvent: function (j_button, pm) {
+  setHackingButtonEvent: function ($hackingButton, pm) {
     !(function () {
-      j_button.click(function (event) {
+      $hackingButton.click(function (event) {
         // TODO: open hacking menu
         console.log("onclick hacking button");
       });
     })();
   },
-};
-
-TYRANO.kag.ftag.master_tag.option_button = {
-  pm: {
-    color: "black",
-    name: "",
-    text: "",
-    value: "0",
-    x: "",
-    y: "",
-    width: "",
-    height: "",
-    size: "30",
-    fix: "false",
-  },
-  start: function (pm) {
-    var target_layer = null;
-    "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
-      : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $(
-      "<div class='glink_button option_button'>" + pm.text + "</div>",
-    );
-    j_button.css("position", "absolute");
-    j_button.css("cursor", "pointer");
-    j_button.css("z-index", 10000);
-    j_button.css("font-size", pm.size + "px");
-    j_button.addClass(pm.color);
-    j_button.css("left", pm.x + "px");
-    j_button.css("top", pm.y + "px");
-    "false" != pm.fix && j_button.addClass("fixlayer");
-    "" != pm.width && j_button.css("width", pm.width + "px");
-    "" != pm.height && j_button.css("height", pm.height + "px");
-    $.setName(j_button, pm.name);
-    this.setEvent(j_button, pm);
-    target_layer.append(j_button);
-    "false" == pm.fix && target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
-  },
-  setEvent: function (j_button, pm) {
+  setOptionButtonEvent: function ($optionButton, pm) {
     !(function () {
-      j_button.click(function (event) {
+      $optionButton.click(function (event) {
         // TODO: open option menu
         console.log("onclick option button");
       });
@@ -186,16 +110,13 @@ TYRANO.kag.ftag.master_tag.option_button = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.set_visible_control_buttons = {
+TYRANO.kag.ftag.master_tag.set_visible_control_menu = {
   pm: {
     visible: "true",
   },
   start: function (pm) {
     var config = "true" == pm.visible ? "block" : "none";
-    $(".talk_button").css("display", config);
-    $(".action_button").css("display", config);
-    $(".hacking_button").css("display", config);
-    $(".option_button").css("display", config);
+    $(".control_menu").css("display", config);
 
     TYRANO.kag.ftag.nextOrder();
   },

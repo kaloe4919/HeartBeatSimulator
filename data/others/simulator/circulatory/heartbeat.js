@@ -338,7 +338,7 @@ async function beatRhythmVT() {
       heartStatus.burden,
       recoveryValue,
     );
-    await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
+    await sleep(Math.floor(60000 / heartStatus.heartRate) * 1);
   } else {
     TYRANO.kag.hbsim.variables.heartStatus.countVT++;
   }

@@ -6,7 +6,7 @@
 ;turn on event flags
 [start_talk_event]
 ;hide buttons
-[set_visible_control_buttons visible="false"]
+[set_visible_control_menu visible="false"]
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 

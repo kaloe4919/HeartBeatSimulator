@@ -39,11 +39,8 @@
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
-;init action panel
-[talk_button color="btn_20_black" storage="scene1.ks" size="20" text="Talk" x="20" y="572" width="172" height="56" _clickable_img="" fix="true"]
-[action_button color="btn_20_black" storage="scene1.ks" size="20" text="Action" x="200" y="572" width="172" height="56" _clickable_img="" fix="true"]
-[hacking_button color="btn_20_black" storage="scene1.ks" size="20" text="Hacking" x="20" y="642" width="172" height="56" _clickable_img="" fix="true"]
-[option_button color="btn_20_black" storage="scene1.ks" size="20" text="Option" x="200" y="642" width="172" height="56" _clickable_img="" fix="true"]
+;init control menu
+[control_menu x="20" y="572" width="360" height="128"]
 
 [_tb_end_tyrano_code]
 
@@ -75,7 +72,7 @@
 [tb_show_message_window  ]
 [tb_start_tyrano_code]
 ;hide buttons
-[set_visible_control_buttons visible="false"]
+[set_visible_control_menu visible="false"]
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 
@@ -121,7 +118,7 @@ isAsync: "true",
 ;turn off event flags
 [end_talk_event]
 ;show buttons
-[set_visible_control_buttons visible="true"]
+[set_visible_control_menu visible="true"]
 [set_visible_debug_buttons visible="true"]
 [_tb_end_tyrano_code]
 
