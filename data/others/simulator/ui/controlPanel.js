@@ -1,7 +1,6 @@
 TYRANO.kag.ftag.master_tag.talk_button = {
   pm: {
     color: "black",
-    ext: "",
     name: "",
     text: "",
     value: "0",
@@ -11,25 +10,22 @@ TYRANO.kag.ftag.master_tag.talk_button = {
     height: "",
     size: "30",
     fix: "false",
-    exp: "",
-    prevar: "",
     visible: "true",
     clickse: "",
     enterse: "",
     leavese: "",
-    auto_next: "yes",
   },
   start: function (pm) {
     var target_layer = null;
     "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
+      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
     var j_button = $(
       "<div class='glink_button talk_button'>" + pm.text + "</div>",
     );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
-    j_button.css("z-index", 99999999);
+    j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
     "true" == pm.visible ? j_button.show() : j_button.hide();
@@ -82,7 +78,6 @@ TYRANO.kag.ftag.master_tag.talk_button = {
 TYRANO.kag.ftag.master_tag.action_button = {
   pm: {
     color: "black",
-    ext: "",
     name: "",
     text: "",
     value: "0",
@@ -92,25 +87,22 @@ TYRANO.kag.ftag.master_tag.action_button = {
     height: "",
     size: "30",
     fix: "false",
-    exp: "",
-    prevar: "",
     visible: "true",
     clickse: "",
     enterse: "",
     leavese: "",
-    auto_next: "yes",
   },
   start: function (pm) {
     var target_layer = null;
     "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
+      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
     var j_button = $(
       "<div class='glink_button action_button'>" + pm.text + "</div>",
     );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
-    j_button.css("z-index", 99999999);
+    j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
     "true" == pm.visible ? j_button.show() : j_button.hide();
@@ -162,7 +154,6 @@ TYRANO.kag.ftag.master_tag.action_button = {
 TYRANO.kag.ftag.master_tag.hacking_button = {
   pm: {
     color: "black",
-    ext: "",
     name: "",
     text: "",
     value: "0",
@@ -172,25 +163,22 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
     height: "",
     size: "30",
     fix: "false",
-    exp: "",
-    prevar: "",
     visible: "true",
     clickse: "",
     enterse: "",
     leavese: "",
-    auto_next: "yes",
   },
   start: function (pm) {
     var target_layer = null;
     "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
+      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
     var j_button = $(
       "<div class='glink_button hacking_button'>" + pm.text + "</div>",
     );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
-    j_button.css("z-index", 99999999);
+    j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
     "true" == pm.visible ? j_button.show() : j_button.hide();
@@ -242,7 +230,6 @@ TYRANO.kag.ftag.master_tag.hacking_button = {
 TYRANO.kag.ftag.master_tag.option_button = {
   pm: {
     color: "black",
-    ext: "",
     name: "",
     text: "",
     value: "0",
@@ -252,25 +239,22 @@ TYRANO.kag.ftag.master_tag.option_button = {
     height: "",
     size: "30",
     fix: "false",
-    exp: "",
-    prevar: "",
     visible: "true",
     clickse: "",
     enterse: "",
     leavese: "",
-    auto_next: "yes",
   },
   start: function (pm) {
     var target_layer = null;
     "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer()).css("z-index", 999999)
+      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
       : (target_layer = TYRANO.kag.layer.getLayer("fix"));
     var j_button = $(
       "<div class='glink_button option_button'>" + pm.text + "</div>",
     );
     j_button.css("position", "absolute");
     j_button.css("cursor", "pointer");
-    j_button.css("z-index", 99999999);
+    j_button.css("z-index", 10000);
     j_button.css("font-size", pm.size + "px");
     j_button.addClass(pm.color);
     "true" == pm.visible ? j_button.show() : j_button.hide();

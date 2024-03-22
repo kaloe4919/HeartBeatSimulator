@@ -6939,18 +6939,14 @@
   border: solid 2px #141414;
   box-shadow: inset 0 2px 0 #666;
   box-sizing: border-box;
-  transition: .2s ease-out;
 }
 
 .btn_20_black:hover {
   background-color: #444;
-  box-shadow: inset 0 2px 0 #666, 0 4px 0 #141414;
-  transform: translateY(-4px);
 }
 
 .btn_20_black:active {
   background-color: #222;
-  transform: scale(.96);
 }
 
 

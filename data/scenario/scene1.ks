@@ -15,7 +15,7 @@
 [loadjs storage="simulator/talk/eventHandler.js"]
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
-[loadjs storage="simulator/ui/actionPanel.js"]
+[loadjs storage="simulator/ui/controlPanel.js"]
 [loadjs storage="simulator/ui/debugPanel.js"]
 [loadjs storage="simulator/circulatory/heartbeatUtil.js"]
 [loadjs storage="simulator/circulatory/heartbeat.js"]
