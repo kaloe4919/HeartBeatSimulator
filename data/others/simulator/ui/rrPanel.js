@@ -181,7 +181,7 @@ TYRANO.kag.ftag.master_tag.update_rr = {
       layer: "0",
       page: "fore",
       x: 1190,
-      y: 78,
+      y: 58,
       vertical: "false",
       text: `RR: ${TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate}`,
       size: "20",

@@ -18,15 +18,14 @@
 だから、その、たまには私が先生のを聴かないとアンフェアというか……。[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  text="聴診器を貸してあげる"  x="100"  y="100"  width="240"  height=""  _clickable_img=""  target="*talk_normal1_1"  ]
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="直接聴かせてあげる"  _clickable_img=""  target="*talk_normal1_2"  ]
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  target="*talk_normal1_3"  text="だーめ"  x="100"  y="260"  width="240"  height=""  _clickable_img=""  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  text="聴診器を貸してあげる"  x="100"  y="180"  width="240"  height=""  _clickable_img=""  target="*talk_normal1_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="直接聴かせてあげる"  _clickable_img=""  target="*talk_normal1_2"  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  target="*talk_normal1_3"  text="だーめ"  x="100"  y="340"  width="240"  height=""  _clickable_img=""  ]
 [s  ]
 *talk_normal1_1
 
 [tb_start_tyrano_code]
 ;fade out
-[layopt layer=message0 visible=false]
 [set_heart_se_vol vol=0]
 [image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
 [anim name=black opacity=0 time=0]
@@ -51,7 +50,6 @@ isAsync: "true",
 ;fade in
 [set_heart_se_vol vol=75]
 [free layer=1 name=black time=1000]
-[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [tb_start_text mode=1 ]
@@ -64,7 +62,7 @@ isAsync: "true",
 （先生の心音聞いちゃった……。）[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="もっと聴いてもいいよ"  x="100"  y="100"  height=""  _clickable_img=""  target="*talk_normal1_1_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="もっと聴いてもいいよ"  x="100"  y="180"  height=""  _clickable_img=""  target="*talk_normal1_1_1"  ]
 [s  ]
 *talk_normal1_1_1
 
@@ -103,7 +101,7 @@ isAsync: "true",
 うわっ、ちょっと……！[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="どう？聴こえる？"  x="100"  y="100"  height=""  _clickable_img=""  target="*talk_normal1_2_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="どう？聴こえる？"  x="100"  y="180"  height=""  _clickable_img=""  target="*talk_normal1_2_1"  ]
 [s  ]
 *talk_normal1_2_1
 
@@ -122,7 +120,7 @@ isAsync: "true",
 い、一旦離して！[p]
 [_tb_end_text]
 
-[live2d_mod  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
+[live2d_mod  name="Kyoka"  x="-0.07"  y="-0.12"  scale="1"  ]
 [live2d_expression  name="Kyoka"  expression="Painful2"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
@@ -137,7 +135,7 @@ isAsync: "true",
 はぁっ、はぁっ……。[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  x="100"  y="100"  text="大丈夫？"  height=""  _clickable_img=""  target="*talk_normal1_2_2"  ]
+[glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  x="100"  y="180"  text="大丈夫？"  height=""  _clickable_img=""  target="*talk_normal1_2_2"  ]
 [s  ]
 *talk_normal1_2_2
 

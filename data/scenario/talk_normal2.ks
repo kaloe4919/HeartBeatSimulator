@@ -17,8 +17,8 @@
 先生……、また私のカバンの中勝手に見たでしょ？[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="100"  width="240"  height=""  text="うーん、見た"  _clickable_img=""  target="*talk_normal2_1"  ]
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="うーん、見てない"  _clickable_img=""  target="*talk_normal2_2"  ]
+[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="うーん、見た"  _clickable_img=""  target="*talk_normal2_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="うーん、見てない"  _clickable_img=""  target="*talk_normal2_2"  ]
 [s  ]
 *talk_normal2_1
 
@@ -27,7 +27,7 @@
 ちょっと一発かますからそこに座りなさい。[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="100"  width="240"  height=""  text="逃げる"  _clickable_img=""  target="*talk_normal2_1_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="逃げる"  _clickable_img=""  target="*talk_normal2_1_1"  ]
 [s  ]
 *talk_normal2_1_1
 
@@ -39,7 +39,6 @@
 
 [tb_start_tyrano_code]
 ;fade out
-[layopt layer=message0 visible=false]
 [set_heart_se_vol vol=0]
 [image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
 [anim name=black opacity=0 time=0]
@@ -64,7 +63,6 @@ isAsync: "true",
 ;fade in
 [set_heart_se_vol vol=75]
 [free layer=1 name=black time=1000]
-[layopt layer=message0 visible=true]
 [_tb_end_tyrano_code]
 
 [live2d_expression  name="Kyoka"  expression="Painful4"  ]

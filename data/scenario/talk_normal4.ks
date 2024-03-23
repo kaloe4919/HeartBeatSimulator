@@ -16,9 +16,9 @@
 先生、なんかおすすめのゲームとかないの？[p]
 [_tb_end_text]
 
-[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="100"  width="240"  height=""  text="これは？（RPG）"  _clickable_img=""  target="*talk_normal4_1"  ]
-[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="これは？（格闘）"  _clickable_img=""  target="*talk_normal4_2"  ]
-[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="これは？（BL）"  _clickable_img=""  target="*talk_normal4_3"  ]
+[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="これは？（RPG）"  _clickable_img=""  target="*talk_normal4_1"  ]
+[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="これは？（格闘）"  _clickable_img=""  target="*talk_normal4_2"  ]
+[glink  color="btn_20_black"  storage="talk_normal4.ks"  size="20"  x="100"  y="340"  width="240"  height=""  text="これは？（BL）"  _clickable_img=""  target="*talk_normal4_3"  ]
 [s  ]
 *talk_normal4_1
 

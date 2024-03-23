@@ -179,7 +179,7 @@ TYRANO.kag.ftag.master_tag.update_hr = {
       layer: "0",
       page: "fore",
       x: 1090,
-      y: 78,
+      y: 58,
       vertical: "false",
       text: `HR: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.heartRate)}`,
       size: "20",
