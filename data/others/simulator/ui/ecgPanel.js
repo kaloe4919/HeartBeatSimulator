@@ -101,7 +101,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
   pm: {
     layer: "0",
     page: "fore",
-    width: "900",
+    width: "864",
     height: "90",
     x: "396",
     y: "20",
