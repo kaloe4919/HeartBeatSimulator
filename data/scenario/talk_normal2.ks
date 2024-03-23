@@ -17,20 +17,24 @@
 先生……、また私のカバンの中勝手に見たでしょ？[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="うーん、見た"  _clickable_img=""  target="*talk_normal2_1"  ]
 [glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="うーん、見てない"  _clickable_img=""  target="*talk_normal2_2"  ]
 [s  ]
 *talk_normal2_1
 
+[tb_fuki_start  ]
 [tb_start_text mode=1 ]
 #京香
 ちょっと一発かますからそこに座りなさい。[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal2.ks"  size="20"  x="100"  y="180"  width="240"  height=""  text="逃げる"  _clickable_img=""  target="*talk_normal2_1_1"  ]
 [s  ]
 *talk_normal2_1_1
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Surprised1"  ]
 [tb_start_text mode=1 ]
 #京香
@@ -101,6 +105,7 @@ isAsync: "true",
 [jump  storage="scene1.ks"  target="*stand_by"  ]
 *talk_normal2_2
 
+[tb_fuki_start  ]
 [tb_start_text mode=1 ]
 #京香
 ホントかなぁ……。[p]

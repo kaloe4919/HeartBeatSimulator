@@ -18,12 +18,14 @@
 だから、その、たまには私が先生のを聴かないとアンフェアというか……。[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  text="聴診器を貸してあげる"  x="100"  y="180"  width="240"  height=""  _clickable_img=""  target="*talk_normal1_1"  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  x="100"  y="260"  width="240"  height=""  text="直接聴かせてあげる"  _clickable_img=""  target="*talk_normal1_2"  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  target="*talk_normal1_3"  text="だーめ"  x="100"  y="340"  width="240"  height=""  _clickable_img=""  ]
 [s  ]
 *talk_normal1_1
 
+[tb_fuki_start  ]
 [tb_start_tyrano_code]
 ;fade out
 [set_heart_se_vol vol=0]
@@ -62,10 +64,12 @@ isAsync: "true",
 （先生の心音聞いちゃった……。）[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="もっと聴いてもいいよ"  x="100"  y="180"  height=""  _clickable_img=""  target="*talk_normal1_1_1"  ]
 [s  ]
 *talk_normal1_1_1
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Shy2"  ]
 [tb_start_text mode=1 ]
 #京香
@@ -81,6 +85,7 @@ isAsync: "true",
 [jump  storage="scene1.ks"  target="*stand_by"  ]
 *talk_normal1_2
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Surprised1"  ]
 [tb_start_text mode=1 ]
 #京香
@@ -101,10 +106,12 @@ isAsync: "true",
 うわっ、ちょっと……！[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  text="どう？聴こえる？"  x="100"  y="180"  height=""  _clickable_img=""  target="*talk_normal1_2_1"  ]
 [s  ]
 *talk_normal1_2_1
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Painful3"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
@@ -135,10 +142,12 @@ isAsync: "true",
 はぁっ、はぁっ……。[p]
 [_tb_end_text]
 
+[tb_fuki_stop  ]
 [glink  color="btn_20_black"  storage="talk_normal1.ks"  size="20"  width="240"  x="100"  y="180"  text="大丈夫？"  height=""  _clickable_img=""  target="*talk_normal1_2_2"  ]
 [s  ]
 *talk_normal1_2_2
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Shy1"  ]
 [tb_start_text mode=1 ]
 #京香
@@ -150,6 +159,7 @@ isAsync: "true",
 [jump  storage="scene1.ks"  target="*stand_by"  ]
 *talk_normal1_3
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Angry1"  ]
 [tb_start_text mode=1 ]
 #京香
