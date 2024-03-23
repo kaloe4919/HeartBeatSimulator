@@ -5,8 +5,8 @@
 [wait  time="200"  ]
 [live2d_new  model_id="heart3"  breath="false"  lip_time="100"  ]
 [wait  time="200"  ]
-[live2d_show  name="Kyoka"  x="-0.1"  y="-0.03"  scale="1.1"  ]
-[live2d_show  name="heart3"  x="0.5"  y="-0.33"  scale="0.5"  ]
+[live2d_show  name="Kyoka"  x="-0.07"  y="-0.12"  scale="1"  ]
+[live2d_show  name="heart3"  x="0.6"  y="-0.33"  scale="0.5"  ]
 [bg  storage="lab1.png"  time="1000"  ]
 [tb_start_tyrano_code]
 ;init sim
@@ -33,10 +33,8 @@
 ;init vital panel
 [show_ecg]
 [start_ecg]
-[show_rr]
-[start_rr]
-[ptext layer="0" name="HR" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1190 y=78]
-[ptext layer="0" name="RR" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=157]
+[ptext layer="0" name="HR" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1090 y=78]
+[ptext layer="0" name="RR" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=78]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -52,15 +50,15 @@
 
 [tb_start_tyrano_code]
 ;init debug panel
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="+" size="12" text="↑" x="1110" y="318" width="50" height="36" _clickable_img="" fix="true"]
-[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="-"  size="12" text="↓" x="1110" y="370" width="50" height="36" _clickable_img="" fix="true"]
-[ptext layer="0" name="burden" text="burden: --" size="12" hexColor="#fff" x=1110 y=500]
-[ptext layer="0" name="saNodeBurden" text="saBurden: --" size="12" hexColor="#fff" x=1110 y=520]
-[ptext layer="0" name="avNodeBurden" text="avBurden: --" size="12" hexColor="#fff" x=1110 y=540]
-[ptext layer="0" name="ventricleBurden" text="vBurden: --" size="12" hexColor="#fff" x=1110 y=560]
-[ptext layer="0" name="stress" text="stress: --" size="12" hexColor="#fff" x=1110 y=580]
-[ptext layer="0" name="pressure" text="pressure: --" size="12" hexColor="#fff" x=1110 y=600]
-[ptext layer="0" name="deviceDmg" text="deviceDmg: --" size="12" hexColor="#fff" x=1110 y=620]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="+" size="12" text="↑" x="1160" y="318" width="50" height="36" _clickable_img="" fix="true"]
+[change_heart_rate_button color="btn_20_black" storage="scene1.ks" value="10" operator="-"  size="12" text="↓" x="1160" y="370" width="50" height="36" _clickable_img="" fix="true"]
+[ptext layer="0" name="burden" text="burden: --" size="12" hexColor="#fff" x=1160 y=500]
+[ptext layer="0" name="saNodeBurden" text="saBurden: --" size="12" hexColor="#fff" x=1160 y=520]
+[ptext layer="0" name="avNodeBurden" text="avBurden: --" size="12" hexColor="#fff" x=1160 y=540]
+[ptext layer="0" name="ventricleBurden" text="vBurden: --" size="12" hexColor="#fff" x=1160 y=560]
+[ptext layer="0" name="stress" text="stress: --" size="12" hexColor="#fff" x=1160 y=580]
+[ptext layer="0" name="pressure" text="pressure: --" size="12" hexColor="#fff" x=1160 y=600]
+[ptext layer="0" name="deviceDmg" text="deviceDmg: --" size="12" hexColor="#fff" x=1160 y=620]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]

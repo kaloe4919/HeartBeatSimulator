@@ -27,13 +27,6 @@ TYRANO.kag.ftag.master_tag.action_menu = {
       "text-align": "center",
       padding: "16px 16px 0",
     });
-    var $closeMenuButton = $("<div class='close_menu_button'>");
-    var $closeMenuButtonWrapper = $("<div class='close_menu_button_wrapper'>");
-    $closeMenuButtonWrapper.css({
-      position: "absolute",
-      right: "8px",
-      top: "calc(50% - 8px)",
-    });
     var $grid = $("<div class='action_menu_grid'>");
     $grid.css({
       display: "grid",
@@ -73,6 +66,16 @@ TYRANO.kag.ftag.master_tag.action_menu = {
     });
     this.setSyringeButtonEvent($syringeButton, pm);
 
+    // close button
+    var $closeMenuButton = $("<div class='close_menu_button'>");
+    var $closeMenuButtonWrapper = $("<div class='close_menu_button_wrapper'>");
+    $closeMenuButtonWrapper.css({
+      position: "absolute",
+      right: "8px",
+      top: "calc(50% - 8px)",
+    });
+    this.setCloseButtonEvent($closeMenuButton, pm);
+
     $grid.append($touchButton);
     $grid.append($stethoscopeButton);
     $grid.append($syringeButton);
@@ -109,6 +112,13 @@ TYRANO.kag.ftag.master_tag.action_menu = {
       $syringeButton.click(function (event) {
         // TODO: syringe event
         console.log("onclick syringe button");
+      });
+    })();
+  },
+  setCloseButtonEvent: function ($closeMenuButton, pm) {
+    !(function () {
+      $closeMenuButton.click(function (event) {
+        $(".action_menu").css("display", "none");
       });
     })();
   },

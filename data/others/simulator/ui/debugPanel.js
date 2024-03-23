@@ -69,7 +69,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 500,
       vertical: "false",
       text: `burden: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.burden)}`,
@@ -85,7 +85,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 520,
       vertical: "false",
       text: `saBurden: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.saNodeBurden)}`,
@@ -101,7 +101,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 540,
       vertical: "false",
       text: `avBurden: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.avNodeBurden)}`,
@@ -117,7 +117,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 560,
       vertical: "false",
       text: `vBurden: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden)}`,
@@ -133,7 +133,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 580,
       vertical: "false",
       text: `stress: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.stress)}`,
@@ -149,7 +149,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 600,
       vertical: "false",
       text: `pressure: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.pressure)}`,
@@ -165,7 +165,7 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1110,
+      x: 1160,
       y: 620,
       vertical: "false",
       text: `deviceDmg: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.deviceDamage)}`,

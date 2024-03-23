@@ -101,10 +101,10 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
   pm: {
     layer: "0",
     page: "fore",
-    width: "450",
-    height: "100",
-    x: "830",
-    y: "10",
+    width: "900",
+    height: "90",
+    x: "396",
+    y: "20",
   },
   start: function (pm) {
     // init ecg monitor
@@ -126,7 +126,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         dtick: 10,
         showticklabels: false,
         zeroline: false,
-        range: [0, 149],
+        range: [0, 299],
       },
       yaxis: {
         automargin: false,
@@ -134,14 +134,14 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         dtick: 1,
         showticklabels: false,
         zeroline: false,
-        range: [-8, 8],
+        range: [-7, 8],
       },
     };
     // バイタルモニタは 1 秒あたり 50 フレームを持つアニメーションと解釈する
-    // 3秒分表示するため 3 * 50 = 150 個のデータを作成する
+    // 6秒分表示するため 6 * 50 = 300 個のデータを作成する
     var xValues = [];
     var yValues = [];
-    for (var i = 0; i < 150; i++) {
+    for (var i = 0; i < 300; i++) {
       xValues.push(i.toString());
       yValues.push(null);
     }
@@ -178,7 +178,7 @@ TYRANO.kag.ftag.master_tag.update_hr = {
     TYRANO.kag.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
-      x: 1190,
+      x: 1090,
       y: 78,
       vertical: "false",
       text: `HR: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.heartRate)}`,
