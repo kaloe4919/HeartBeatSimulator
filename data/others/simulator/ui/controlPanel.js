@@ -7,7 +7,7 @@ TYRANO.kag.ftag.master_tag.control_menu = {
   },
   start: function (pm) {
     var target_layer = TYRANO.kag.layer.getLayer("fix");
-    var $menu = $("<div class='control_menu fixlayer'>");
+    var $menu = $("<div class='control_menu'>");
     $menu.css({
       position: "absolute",
       "z-index": 10000,
@@ -88,9 +88,7 @@ TYRANO.kag.ftag.master_tag.control_menu = {
     !(function () {
       $talkButton.click(function (event) {
         console.log("onclick action button");
-        TYRANO.kag.ftag.master_tag.set_visible_action_menu.start({
-          visible: "true",
-        });
+        $(".action_menu").css("display", "block");
       });
     })();
   },

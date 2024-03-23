@@ -9,6 +9,11 @@
 [wait  time="200"  ]
 [live2d_show  name="Kyoka"  x="-0.07"  y="-0.12"  scale="1"  ]
 [live2d_show  name="heart3"  x="0.6"  y="-0.33"  scale="0.5"  ]
+[tb_start_tyrano_code]
+;set dummy character for fuki effect
+[chara_show  name="京香"  time="0"  wait="false"  left="491"  top="238"  width="480"  height="480"  reflect="false"  storage="chara/1/black_transparent.png"  ]
+[_tb_end_tyrano_code]
+
 [bg  storage="lab1.png"  time="1000"  ]
 [tb_start_tyrano_code]
 ;init sim
@@ -47,7 +52,7 @@
 
 [tb_start_tyrano_code]
 ;init comment panel
-[position layer="message0" left=20 top=20 width=360 height=536 marginr=20 color=black opacity=100 visible="true"]
+[position layer="message0" left=20 top=20 width=360 height=536 marginr=20 color=black opacity=100 visible="false"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -70,7 +75,6 @@
 
 [_tb_end_tyrano_code]
 
-[tb_show_message_window  ]
 [tb_start_tyrano_code]
 ;hide buttons
 [set_visible_control_menu visible="false"]
@@ -79,6 +83,7 @@
 [_tb_end_tyrano_code]
 
 [mask_off  time="1000"  effect="fadeOut"  ]
+[tb_fuki_start  ]
 [tb_start_text mode=1 ]
 #京香
 あ、先生だ。[p]
@@ -115,6 +120,11 @@ isAsync: "true",
 
 [wait  time="500"  ]
 *stand_by
+
+[tb_fuki_stop  ]
+[tb_start_text mode=1 ]
+#
+[_tb_end_text]
 
 [tb_start_tyrano_code]
 ;turn off event flags

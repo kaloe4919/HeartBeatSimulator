@@ -138,9 +138,9 @@ async function beatRhythmNormal() {
   // 心拍数の復元値を取得
   var maxRecoveryValue = 3;
   var recoveryValue = getRecoveryHeartRate(
-    65,
+    heartStatus.baseHeartRate,
     heartStatus.heartRate,
-    135,
+    100,
     maxRecoveryValue,
   );
 
@@ -222,9 +222,9 @@ async function beatRhythmPVC() {
   // 心拍数の復元値を取得
   var maxRecoveryValue = 5;
   var recoveryValue = getRecoveryHeartRate(
-    65,
+    heartStatus.baseHeartRate,
     heartStatus.heartRate,
-    135,
+    100,
     maxRecoveryValue,
   );
 
@@ -324,9 +324,9 @@ async function beatRhythmVT() {
     // 心拍数の復元値を取得
     var maxRecoveryValue = 5;
     var recoveryValue = getRecoveryHeartRate(
-      65,
+      heartStatus.baseHeartRate,
       heartStatus.heartRate,
-      135,
+      100,
       maxRecoveryValue,
     );
     // 心臓負荷の増加

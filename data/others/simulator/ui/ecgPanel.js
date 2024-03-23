@@ -101,10 +101,10 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
   pm: {
     layer: "0",
     page: "fore",
-    width: "864",
+    width: "1280",
     height: "90",
-    x: "396",
-    y: "20",
+    x: "0",
+    y: "0",
   },
   start: function (pm) {
     // init ecg monitor
@@ -126,7 +126,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         dtick: 10,
         showticklabels: false,
         zeroline: false,
-        range: [0, 299],
+        range: [0, 499],
       },
       yaxis: {
         automargin: false,
@@ -138,10 +138,10 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
       },
     };
     // バイタルモニタは 1 秒あたり 50 フレームを持つアニメーションと解釈する
-    // 6秒分表示するため 6 * 50 = 300 個のデータを作成する
+    // 10秒分表示するため 10 * 50 = 500 個のデータを作成する
     var xValues = [];
     var yValues = [];
-    for (var i = 0; i < 300; i++) {
+    for (var i = 0; i < 500; i++) {
       xValues.push(i.toString());
       yValues.push(null);
     }

@@ -10,6 +10,7 @@
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 
+[tb_fuki_start  ]
 [tb_start_text mode=1 ]
 #京香
 先生、なんかおすすめのゲームとかないの？[p]

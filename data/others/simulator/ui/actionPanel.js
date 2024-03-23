@@ -7,7 +7,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
   },
   start: function (pm) {
     var target_layer = TYRANO.kag.layer.getLayer("fix");
-    var $menu = $("<div class='action_menu fixlayer'>");
+    var $menu = $("<div class='action_menu'>");
     $menu.css({
       position: "absolute",
       "z-index": 10001,

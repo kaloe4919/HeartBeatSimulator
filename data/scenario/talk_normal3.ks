@@ -10,6 +10,7 @@
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 
+[tb_fuki_start  ]
 [live2d_expression  name="Kyoka"  expression="Angry1"  ]
 [tb_start_text mode=1 ]
 #京香

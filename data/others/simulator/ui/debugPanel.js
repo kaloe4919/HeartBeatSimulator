@@ -1,7 +1,6 @@
 TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
   pm: {
     color: "black",
-    ext: "",
     name: "",
     text: "",
     value: "0",
@@ -10,36 +9,33 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
     y: "",
     width: "",
     height: "",
-    size: "30",
-    fix: "false",
   },
   start: function (pm) {
-    var target_layer = null;
-    "false" == pm.fix
-      ? (target_layer = TYRANO.kag.layer.getFreeLayer())
-      : (target_layer = TYRANO.kag.layer.getLayer("fix"));
-    var j_button = $(
-      "<div class='glink_button heart_rate_button'>" + pm.text + "</div>",
+    var target_layer = TYRANO.kag.layer.getLayer("fix");
+    var $button = $(
+      "<div class='glink_button btn_20_black heart_rate_button'>" +
+        pm.text +
+        "</div>",
     );
-    j_button.css("position", "absolute");
-    j_button.css("cursor", "pointer");
-    j_button.css("z-index", 10000);
-    j_button.css("font-size", pm.size + "px");
-    j_button.addClass(pm.color);
-    j_button.css("left", pm.x + "px");
-    j_button.css("top", pm.y + "px");
-    "false" != pm.fix && j_button.addClass("fixlayer");
-    "" != pm.width && j_button.css("width", pm.width + "px");
-    "" != pm.height && j_button.css("height", pm.height + "px");
-    $.setName(j_button, pm.name);
-    this.setEvent(j_button, pm);
-    target_layer.append(j_button);
-    "false" == pm.fix && target_layer.show();
+    $button.css({
+      position: "absolute",
+      "z-index": 10000,
+      left: `${pm.x}px`,
+      top: `${pm.y}px`,
+      width: `${pm.width}px`,
+      height: "auto",
+      cursor: "pointer",
+      "font-size": "16px",
+    });
+    $.setName($button, pm.name);
+    this.setEvent($button, pm);
+    target_layer.append($button);
+    target_layer.show();
     TYRANO.kag.ftag.nextOrder();
   },
-  setEvent: function (j_button, pm) {
+  setEvent: function ($button, pm) {
     !(function () {
-      j_button.click(function (event) {
+      $button.click(function (event) {
         TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
           value: pm.value,
           operator: pm.operator,

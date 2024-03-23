@@ -14,6 +14,7 @@ TYRANO.kag.hbsim = {
       onTalkEvent: false,
     },
     heartStatus: {
+      baseHeartRate: 65,
       heartRate: 65,
       prevHeartRate: 65,
       heartRateMin: 60,
