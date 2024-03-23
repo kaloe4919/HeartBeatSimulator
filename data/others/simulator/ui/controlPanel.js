@@ -12,9 +12,9 @@ TYRANO.kag.ftag.master_tag.control_menu = {
       position: "absolute",
       "z-index": 10000,
       left: `${pm.x}px`,
-      top: `${pm.y}px`,
+      bottom: `${pm.y}px`,
       width: `${pm.width}px`,
-      height: `${pm.height}px`,
+      height: "auto",
     });
     $.setName($menu, "control_menu");
     var $grid = $("<div class='control_menu_grid'>");
@@ -45,6 +45,16 @@ TYRANO.kag.ftag.master_tag.control_menu = {
     });
     this.setActionButtonEvent($actionButton, pm);
 
+    // play button
+    var $playButton = $(
+      `<div class='glink_button btn_20_black play_button'>Play</div>`,
+    );
+    $playButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setPlayButtonEvent($playButton, pm);
+
     // hacking button
     var $hackingButton = $(
       `<div class='glink_button btn_20_black hacking_button'>Hacking</div>`,
@@ -55,20 +65,10 @@ TYRANO.kag.ftag.master_tag.control_menu = {
     });
     this.setHackingButtonEvent($hackingButton, pm);
 
-    // option button
-    var $optionButton = $(
-      `<div class='glink_button btn_20_black option_button'>Option</div>`,
-    );
-    $optionButton.css({
-      cursor: "pointer",
-      "font-size": "18px",
-    });
-    this.setOptionButtonEvent($optionButton, pm);
-
     $grid.append($talkButton);
     $grid.append($actionButton);
+    $grid.append($playButton);
     $grid.append($hackingButton);
-    $grid.append($optionButton);
 
     $menu.append($grid);
 
@@ -87,8 +87,18 @@ TYRANO.kag.ftag.master_tag.control_menu = {
   setActionButtonEvent: function ($talkButton, pm) {
     !(function () {
       $talkButton.click(function (event) {
-        // TODO: open action menu
         console.log("onclick action button");
+        TYRANO.kag.ftag.master_tag.set_visible_action_menu.start({
+          visible: "true",
+        });
+      });
+    })();
+  },
+  setPlayButtonEvent: function ($playButton, pm) {
+    !(function () {
+      $playButton.click(function (event) {
+        // TODO: open play menu
+        console.log("onclick play button");
       });
     })();
   },
@@ -97,14 +107,6 @@ TYRANO.kag.ftag.master_tag.control_menu = {
       $hackingButton.click(function (event) {
         // TODO: open hacking menu
         console.log("onclick hacking button");
-      });
-    })();
-  },
-  setOptionButtonEvent: function ($optionButton, pm) {
-    !(function () {
-      $optionButton.click(function (event) {
-        // TODO: open option menu
-        console.log("onclick option button");
       });
     })();
   },

@@ -18,6 +18,7 @@
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
 [loadjs storage="simulator/ui/controlPanel.js"]
+[loadjs storage="simulator/ui/actionPanel.js"]
 [loadjs storage="simulator/ui/debugPanel.js"]
 [loadjs storage="simulator/circulatory/heartbeatUtil.js"]
 [loadjs storage="simulator/circulatory/heartbeat.js"]
@@ -42,8 +43,8 @@
 
 [tb_start_tyrano_code]
 ;init control menu
-[control_menu x="20" y="572" width="360" height="128"]
-
+[control_menu x="20" y="32" width="360"]
+[action_menu x="20" y="164" width="360"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -75,6 +76,7 @@
 [tb_start_tyrano_code]
 ;hide buttons
 [set_visible_control_menu visible="false"]
+[set_visible_action_menu visible="false"]
 [set_visible_debug_buttons visible="false"]
 [_tb_end_tyrano_code]
 
