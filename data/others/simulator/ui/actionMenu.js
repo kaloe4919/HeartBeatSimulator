@@ -9,6 +9,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
     var target_layer = TYRANO.kag.layer.getLayer("fix");
     var $menu = $("<div class='action_menu'>");
     $menu.css({
+      display: "none",
       position: "absolute",
       "z-index": 10001,
       left: `${pm.x}px`,
@@ -36,15 +37,15 @@ TYRANO.kag.ftag.master_tag.action_menu = {
       padding: "16px",
     });
 
-    // touch button
-    var $touchButton = $(
-      `<div class='glink_button btn_20_black touch_button'>触診</div>`,
+    // survey button
+    var $surveyButton = $(
+      `<div class='glink_button btn_20_black survey_button'>調べる</div>`,
     );
-    $touchButton.css({
+    $surveyButton.css({
       cursor: "pointer",
       "font-size": "16px",
     });
-    this.setTouchButtonEvent($touchButton, pm);
+    this.setSurveyButtonEvent($surveyButton, pm);
 
     // stethoscope button
     var $stethoscopeButton = $(
@@ -76,7 +77,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
     });
     this.setCloseButtonEvent($closeMenuButton, pm);
 
-    $grid.append($touchButton);
+    $grid.append($surveyButton);
     $grid.append($stethoscopeButton);
     $grid.append($syringeButton);
 
@@ -90,18 +91,18 @@ TYRANO.kag.ftag.master_tag.action_menu = {
     target_layer.show();
     TYRANO.kag.ftag.nextOrder();
   },
-  setTouchButtonEvent: function ($touchButton, pm) {
+  setSurveyButtonEvent: function ($surveyButton, pm) {
     !(function () {
-      $touchButton.click(function (event) {
-        // TODO: touch event
-        console.log("onclick touch button");
+      $surveyButton.click(function (event) {
+        // TODO: survey event
+        console.log("onclick survey button");
         talkEventHandler();
       });
     })();
   },
-  setStethoscopeButtonEvent: function ($touchButton, pm) {
+  setStethoscopeButtonEvent: function ($surveyButton, pm) {
     !(function () {
-      $touchButton.click(function (event) {
+      $surveyButton.click(function (event) {
         // TODO: stethoscope event
         console.log("onclick stethoscope button");
       });

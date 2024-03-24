@@ -81,6 +81,10 @@ TYRANO.kag.ftag.master_tag.control_menu = {
       $talkButton.click(function (event) {
         console.log("onclick talk button");
         talkEventHandler();
+
+        // close other menu
+        $(".action_menu").css("display", "none");
+        $(".play_menu").css("display", "none");
       });
     })();
   },
@@ -89,14 +93,20 @@ TYRANO.kag.ftag.master_tag.control_menu = {
       $talkButton.click(function (event) {
         console.log("onclick action button");
         $(".action_menu").css("display", "block");
+
+        // close other menu
+        $(".play_menu").css("display", "none");
       });
     })();
   },
   setPlayButtonEvent: function ($playButton, pm) {
     !(function () {
       $playButton.click(function (event) {
-        // TODO: open play menu
         console.log("onclick play button");
+        $(".play_menu").css("display", "block");
+
+        // close other menu
+        $(".action_menu").css("display", "none");
       });
     })();
   },
@@ -105,6 +115,10 @@ TYRANO.kag.ftag.master_tag.control_menu = {
       $hackingButton.click(function (event) {
         // TODO: open hacking menu
         console.log("onclick hacking button");
+
+        // close other menu
+        $(".action_menu").css("display", "none");
+        $(".play_menu").css("display", "none");
       });
     })();
   },
