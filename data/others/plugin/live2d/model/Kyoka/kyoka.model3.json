@@ -277,6 +277,18 @@
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
+			],
+			"TouchHead": [
+				{
+					"File": "motions/TouchHead.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/TouchHead2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
 			]
 		}
 	},

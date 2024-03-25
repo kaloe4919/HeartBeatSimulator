@@ -7,4 +7,5 @@
 
 ;=========変数宣言部分 
 [iscript] 
+f['random']=0; 
 [endscript] 

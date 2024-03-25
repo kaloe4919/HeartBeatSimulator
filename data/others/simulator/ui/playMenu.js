@@ -83,9 +83,15 @@ TYRANO.kag.ftag.master_tag.play_menu = {
   setTouchButtonEvent: function ($touchButton, pm) {
     !(function () {
       $touchButton.click(function (event) {
-        // TODO: touch event
         console.log("onclick touch button");
-        talkEventHandler();
+        touchEventHandler();
+
+        // close other menu
+        $(".control_menu").css("display", "none");
+        $(".play_menu").css("display", "none");
+
+        // open touch event menu
+        $(".touch_event_menu").css("display", "block");
       });
     })();
   },
@@ -94,6 +100,10 @@ TYRANO.kag.ftag.master_tag.play_menu = {
       $touchButton.click(function (event) {
         // TODO: breathHold event
         console.log("onclick breathHold button");
+
+        // close other menu
+        $(".control_menu").css("display", "none");
+        $(".play_menu").css("display", "none");
       });
     })();
   },
