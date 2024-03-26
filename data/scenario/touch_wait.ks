@@ -20,6 +20,7 @@
 [s  ]
 *touch_chest
 
+[jump  storage="touch_chest.ks"  target="*touch_chest_event"  ]
 [s  ]
 *touch_stomach
 

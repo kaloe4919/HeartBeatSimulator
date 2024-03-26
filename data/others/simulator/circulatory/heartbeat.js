@@ -159,7 +159,7 @@ async function beatRhythmNormal() {
     TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden -=
       getRecoveryVentricleBurden(heartStatus.ventricleBurden);
 
-    if (heartStatus.heartRate - 65 >= 0) {
+    if (heartStatus.heartRate - heartStatus.baseHeartRate >= 0) {
       TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
       TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= recoveryValue;
       TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= recoveryValue;
@@ -245,7 +245,7 @@ async function beatRhythmPVC() {
         ? 100
         : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 10);
 
-    if (heartStatus.heartRate - 65 >= 0) {
+    if (heartStatus.heartRate - heartStatus.baseHeartRate >= 0) {
       TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
       TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= recoveryValue;
       TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= recoveryValue;
@@ -436,11 +436,12 @@ TYRANO.kag.ftag.master_tag.heartbeat_start = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.set_heartRate = {
+TYRANO.kag.ftag.master_tag.set_heart_rate = {
   kag: TYRANO.kag,
   vital: ["value"],
   pm: {
     value: "65",
+    isAsync: "false",
   },
   start: function (pm) {
     var value = parseInt(pm.value);
@@ -448,7 +449,27 @@ TYRANO.kag.ftag.master_tag.set_heartRate = {
     TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = value - 10;
     TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = value + 10;
 
-    this.kag.ftag.nextOrder();
+    if (!"true" == pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
+    }
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_base_heart_rate = {
+  kag: TYRANO.kag,
+  vital: ["value"],
+  pm: {
+    value: "65",
+    isAsync: "false",
+  },
+  start: function (pm) {
+    var value = parseInt(pm.value);
+    console.log(`baseHeartRate change to ${value}`);
+    TYRANO.kag.hbsim.variables.heartStatus.baseHeartRate = value;
+
+    if (!"true" == pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
+    }
   },
 };
 
@@ -537,7 +558,7 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.up_heartRate_10 = {
+TYRANO.kag.ftag.master_tag.up_heart_rate_10 = {
   kag: TYRANO.kag,
   vital: ["value"],
   pm: {
@@ -556,7 +577,7 @@ TYRANO.kag.ftag.master_tag.up_heartRate_10 = {
   },
 };
 
-TYRANO.kag.ftag.master_tag.down_heartRate_10 = {
+TYRANO.kag.ftag.master_tag.down_heart_rate_10 = {
   kag: TYRANO.kag,
   vital: ["value"],
   pm: {

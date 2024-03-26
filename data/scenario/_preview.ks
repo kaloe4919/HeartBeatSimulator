@@ -54,6 +54,7 @@
 [action_menu x="20" y="164" width="360"]
 [play_menu x="20" y="164" width="360"]
 [touch_event_menu x="20" y="32" width="172"]
+[touch_chest_event_menu x="20" y="32" width="172"]
 [touch_event_area]
 ;init current mode label
 [ptext layer="0" name="mode" text="" size="18" hexColor="#fff" bold="bold" x=20 y=100]
