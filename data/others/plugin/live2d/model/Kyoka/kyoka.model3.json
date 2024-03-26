@@ -289,6 +289,13 @@
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
+			],
+			"TouchEar": [
+				{
+					"File": "motions/TouchEar1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
 			]
 		}
 	},

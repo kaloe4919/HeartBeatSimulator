@@ -13,6 +13,7 @@
 [s  ]
 *touch_ear
 
+[jump  storage="touch_ear.ks"  target="*touch_ear_event"  ]
 [s  ]
 *touch_neck
 

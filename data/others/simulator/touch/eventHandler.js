@@ -29,6 +29,13 @@ function touchHeadEventHandler() {
   });
 }
 
+function touchEarEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_wait.ks`,
+    target: `touch_ear`,
+  });
+}
+
 function returnTouchEventHandler() {
   // display current mode to init
   TYRANO.kag.ftag.master_tag.ptext.start({

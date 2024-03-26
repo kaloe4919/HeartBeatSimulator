@@ -1,18 +1,18 @@
-[_tb_system_call storage=system/_touch_head.ks]
+[_tb_system_call storage=system/_touch_ear.ks]
 
-*touch_head_event
+*touch_ear_event
 
 [tb_eval  exp="f.random=Math.floor(Math.random()*(2-1+1)+1)"  name="random"  cmd="="  op="r"  val="1"  val_2="2"  ]
-[jump  storage="touch_head.ks"  target="*touch_head_event1"  cond="f.random==1"  ]
-[jump  storage="touch_head.ks"  target="*touch_head_event2"  cond="f.random==2"  ]
+[jump  storage="touch_ear.ks"  target="*touch_ear_event1"  cond="f.random==1"  ]
+[jump  storage="touch_ear.ks"  target="*touch_ear_event2"  cond="f.random==2"  ]
 [s  ]
-*touch_head_event1
+*touch_ear_event1
 
 [tb_fuki_start  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
-mtn: "TouchHead",
+mtn: "TouchEar",
 no: "0",
 isAsync: "true",
 });
@@ -22,7 +22,7 @@ isAsync: "true",
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
 value: "20",
 operator: "+",
-limit: "90",
+limit: "100",
 limitForce: "true",
 isAsync: "true",
 });
@@ -30,19 +30,20 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #京香
-えへへ……。[p]
+ちょっ、くすぐったいって！[p]
 [_tb_end_text]
 
 [tb_fuki_stop  ]
 [wait  time="200"  ]
 [jump  storage="touch_wait.ks"  target="*touch_wait"  ]
-*touch_head_event2
+*touch_ear_event2
 
+[tb_fuki_start  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
-mtn: "TouchHead",
-no: "1",
+mtn: "TouchEar",
+no: "0",
 isAsync: "true",
 });
 [endscript]
@@ -51,11 +52,17 @@ isAsync: "true",
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
 value: "20",
 operator: "+",
-limit: "90",
+limit: "100",
 limitForce: "true",
 isAsync: "true",
 });
 [endscript]
 
-[wait  time="2000"  ]
+[tb_start_text mode=1 ]
+#京香
+そこは耳っ！[p]
+[_tb_end_text]
+
+[tb_fuki_stop  ]
+[wait  time="200"  ]
 [jump  storage="touch_wait.ks"  target="*touch_wait"  ]
