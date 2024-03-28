@@ -89,9 +89,6 @@ TYRANO.kag.ftag.master_tag.play_menu = {
         // close other menu
         $(".control_menu").css("display", "none");
         $(".play_menu").css("display", "none");
-
-        // open touch event menu
-        $(".touch_event_menu").css("display", "block");
       });
     })();
   },

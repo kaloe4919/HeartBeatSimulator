@@ -127,7 +127,7 @@ TYRANO.kag.ftag.master_tag.touch_chest_event_menu = {
     !(function () {
       $compressButton.click(function (event) {
         console.log("onclick return button");
-        // stopTouchChestEventHandler();
+        stopTouchChestEventHandler();
 
         // close other menu
         $(".touch_chest_event_menu").css("display", "none");

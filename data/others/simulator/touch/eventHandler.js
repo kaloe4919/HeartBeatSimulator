@@ -37,13 +37,16 @@ function touchEarEventHandler() {
 }
 
 function touchChestEventHandler() {
-  // hide touch event menu
-  TYRANO.kag.ftag.master_tag.set_visible_touch_event_menu.start({
-    visible: "false",
-  });
   TYRANO.kag.ftag.startTag("jump", {
     storage: `touch_wait.ks`,
     target: `touch_chest`,
+  });
+}
+
+function stopTouchChestEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_chest.ks`,
+    target: `stop_touch_chest`,
   });
 }
 

@@ -130,6 +130,16 @@ isAsync: "true",
 [wait  time="500"  ]
 *stand_by
 
+[iscript]
+;init expression
+TYRANO.kag.ftag.master_tag.live2d_motion.start({
+name: "Kyoka",
+mtn: "Face",
+no: "0",
+isAsync: "true",
+});
+[endscript]
+
 [tb_fuki_stop  ]
 [tb_start_text mode=1 ]
 #

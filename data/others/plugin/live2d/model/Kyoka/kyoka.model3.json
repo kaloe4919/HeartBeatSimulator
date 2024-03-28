@@ -302,6 +302,11 @@
 					"File": "motions/TouchChest1.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/TouchChest2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
 				}
 			]
 		}
