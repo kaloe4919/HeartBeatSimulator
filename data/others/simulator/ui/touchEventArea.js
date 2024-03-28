@@ -33,6 +33,21 @@ TYRANO.kag.ftag.master_tag.touch_event_area = {
     });
     this.setTouchEarEvent($earArea);
 
+    // neck area
+    var $neckArea = $("<div class='touch_event_area touch_event_neck_area'>");
+    $neckArea.css({
+      display: "none",
+      position: "absolute",
+      "z-index": 10002,
+      cursor: "pointer",
+      top: "360px",
+      left: "640px",
+      width: "90px",
+      height: "70px",
+      opacity: 0,
+    });
+    this.setTouchNeckEvent($neckArea);
+
     // chest area
     var $chestArea = $("<div class='touch_event_area touch_event_chest_area'>");
     $chestArea.css({
@@ -50,6 +65,7 @@ TYRANO.kag.ftag.master_tag.touch_event_area = {
 
     target_layer.append($headArea);
     target_layer.append($earArea);
+    target_layer.append($neckArea);
     target_layer.append($chestArea);
     target_layer.show();
     TYRANO.kag.ftag.nextOrder();
@@ -70,6 +86,17 @@ TYRANO.kag.ftag.master_tag.touch_event_area = {
       $earArea.click(function (event) {
         console.log("onclick ear");
         touchEarEventHandler();
+
+        // hide other area
+        $(".touch_event_area").css("display", "none");
+      });
+    })();
+  },
+  setTouchNeckEvent: function ($neckArea) {
+    !(function () {
+      $neckArea.click(function (event) {
+        console.log("onclick neck");
+        touchNeckEventHandler();
 
         // hide other area
         $(".touch_event_area").css("display", "none");

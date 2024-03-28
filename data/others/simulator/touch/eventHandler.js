@@ -24,22 +24,29 @@ function touchEventHandler() {
 
 function touchHeadEventHandler() {
   TYRANO.kag.ftag.startTag("jump", {
-    storage: `touch_wait.ks`,
-    target: `touch_head`,
+    storage: `touch_head.ks`,
+    target: `touch_head_event`,
   });
 }
 
 function touchEarEventHandler() {
   TYRANO.kag.ftag.startTag("jump", {
-    storage: `touch_wait.ks`,
-    target: `touch_ear`,
+    storage: `touch_ear.ks`,
+    target: `touch_ear_event`,
+  });
+}
+
+function touchNeckEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_neck.ks`,
+    target: `touch_neck_event`,
   });
 }
 
 function touchChestEventHandler() {
   TYRANO.kag.ftag.startTag("jump", {
-    storage: `touch_wait.ks`,
-    target: `touch_chest`,
+    storage: `touch_chest.ks`,
+    target: `touch_chest_event`,
   });
 }
 
