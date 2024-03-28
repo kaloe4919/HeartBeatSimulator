@@ -108,12 +108,17 @@
 		"Motions": {
 			"Face": [
 				{
-					"File": "motions/FaceNomal.motion3.json",
+					"File": "motions/FaceNormal.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				},
 				{
 					"File": "motions/FaceToShy1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/FaceToShy2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
@@ -156,11 +161,6 @@
 				},
 				{
 					"File": "motions/Leaning2To3.motion3.json",
-					"FadeInTime": 0,
-					"FadeOutTime": 0
-				},
-				{
-					"File": "motions/Touch.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}
@@ -274,6 +274,37 @@
 				},
 				{
 					"File": "motions/HandOnChest.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"TouchHead": [
+				{
+					"File": "motions/TouchHead.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/TouchHead2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"TouchEar": [
+				{
+					"File": "motions/TouchEar1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"TouchChest": [
+				{
+					"File": "motions/TouchChest1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/TouchChest2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

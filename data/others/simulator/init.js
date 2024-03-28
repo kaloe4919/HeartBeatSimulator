@@ -14,6 +14,7 @@ TYRANO.kag.hbsim = {
       onTalkEvent: false,
     },
     heartStatus: {
+      // heartRate recovers to this rate
       baseHeartRate: 65,
       heartRate: 65,
       prevHeartRate: 65,

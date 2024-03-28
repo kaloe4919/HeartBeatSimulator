@@ -18,11 +18,14 @@
 [loadjs storage="simulator/init.js"]
 [loadjs storage="simulator/actor/expression.js"]
 [loadjs storage="simulator/talk/eventHandler.js"]
+[loadjs storage="simulator/touch/eventHandler.js"]
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
 [loadjs storage="simulator/ui/controlMenu.js"]
 [loadjs storage="simulator/ui/actionMenu.js"]
 [loadjs storage="simulator/ui/playMenu.js"]
+[loadjs storage="simulator/ui/touchEventMenu.js"]
+[loadjs storage="simulator/ui/touchEventArea.js"]
 [loadjs storage="simulator/ui/debugPanel.js"]
 [loadjs storage="simulator/circulatory/heartbeatUtil.js"]
 [loadjs storage="simulator/circulatory/heartbeat.js"]
@@ -48,6 +51,11 @@
 [control_menu x="20" y="32" width="360"]
 [action_menu x="20" y="164" width="360"]
 [play_menu x="20" y="164" width="360"]
+[touch_event_menu x="20" y="32" width="172"]
+[touch_chest_event_menu x="20" y="32" width="172"]
+[touch_event_area]
+;init current mode label
+[ptext layer="0" name="mode" text="" size="18" hexColor="#fff" bold="bold" x=20 y=100]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -119,6 +127,16 @@ isAsync: "true",
 
 [wait  time="500"  ]
 *stand_by
+
+[iscript]
+;init expression
+TYRANO.kag.ftag.master_tag.live2d_motion.start({
+name: "Kyoka",
+mtn: "Face",
+no: "0",
+isAsync: "true",
+});
+[endscript]
 
 [tb_fuki_stop  ]
 [tb_start_text mode=1 ]

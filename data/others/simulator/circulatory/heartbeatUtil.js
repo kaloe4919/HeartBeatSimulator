@@ -76,7 +76,5 @@ function getActiveVTRate(ventricleBurden) {
   var ventricleBurdenRate = ventricleBurden / 100;
   var activeVTRate = 10 ** (ventricleBurdenRate - 1) * 100;
 
-  console.log(activeVTRate);
-
   return activeVTRate;
 }
