@@ -129,7 +129,6 @@ isAsync: "true",
 *stand_by
 
 [iscript]
-;init expression
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
 mtn: "Face",
