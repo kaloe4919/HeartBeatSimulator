@@ -5,7 +5,7 @@ rrYDataQue = [];
 
 // 呼吸数に応じて Interval のフレームを短くする
 function shortenIntervalByRespiratoryRate(yData) {
-  var respiratoryRate = TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
+  var respiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
   var shortenLength = Math.round(yData.length * (15 / respiratoryRate));
   if (shortenLength >= 0) {
     return yData.splice(yData[0], shortenLength);
@@ -40,13 +40,11 @@ function createCurveData(max, length, isReverse) {
 }
 
 function updateRr() {
-  var current = TYRANO.kag.hbsim.variables.breathStatus.current;
-  var data = TYRANO.kag.hbsim.chart.rr.data;
+  var stat = TYRANO.kag.stat.f;
 
   // 呼吸がある場合、キューを作成
-  if (!current.isAddedQue) {
-    var respiratoryRate =
-      TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
+  if (!stat.isRrAddedQue) {
+    var respiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
     // 呼吸の強さに応じてY軸のMax値を変動させる
     var curveMaxValue = 2 * (respiratoryRate / 15);
     // 呼吸の速さに応じてグラフの曲線を急にする
@@ -64,10 +62,10 @@ function updateRr() {
     var que = inhaleCurve.concat(exhaleCurve);
     rrYDataQue = que;
 
-    TYRANO.kag.hbsim.variables.breathStatus.current.isAddedQue = true;
+    TYRANO.kag.stat.f.isRrAddedQue = true;
   }
 
-  var yValues = data.y;
+  var yValues = stat.rrChartData.y;
   if (rrYDataQue.length > 0) {
     // キューがある場合、Y軸をキューの値で更新する
     // 次の 3 フレームを初期化する
@@ -78,12 +76,15 @@ function updateRr() {
     // 次の 3 フレームを初期化する
     yValues.splice(rrYIndex, 4, 0, null, null, null);
   }
-  data.y = yValues;
-  Plotly.update("rr", [data], TYRANO.kag.hbsim.chart.rr.layout);
-  TYRANO.kag.hbsim.chart.rr.data = data;
+  TYRANO.kag.stat.f.rrChartData.y = yValues;
+  Plotly.update(
+    "rr",
+    [TYRANO.kag.stat.f.rrChartData],
+    TYRANO.kag.stat.f.rrChartLayout,
+  );
 
   // 更新したY軸が配列の最後の場合は Index を 0 に戻す
-  if (rrYIndex >= data.x.length - 1) {
+  if (rrYIndex >= stat.rrChartData.x.length - 1) {
     rrYIndex = 0;
   } else {
     rrYIndex++;
@@ -155,8 +156,8 @@ TYRANO.kag.ftag.master_tag.show_rr = {
       line: { color: "#42e0f5", width: 2, shape: "spline" },
     };
     Plotly.newPlot("rr", [data], layout);
-    TYRANO.kag.hbsim.chart.rr.layout = layout;
-    TYRANO.kag.hbsim.chart.rr.data = data;
+    TYRANO.kag.stat.f.rrChartLayout = layout;
+    TYRANO.kag.stat.f.rrChartData = data;
     TYRANO.kag.ftag.nextOrder();
   },
 };
@@ -183,7 +184,7 @@ TYRANO.kag.ftag.master_tag.update_rr = {
       x: 1190,
       y: 58,
       vertical: "false",
-      text: `RR: ${TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate}`,
+      text: `RR: ${TYRANO.kag.stat.f.respiratoryRate}`,
       size: "20",
       hexColor: "#42e0f5",
       bold: "bold",

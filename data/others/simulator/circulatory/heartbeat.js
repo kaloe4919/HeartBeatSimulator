@@ -18,12 +18,12 @@ function bufCounter() {
 }
 
 function playBeatSound(heartRate) {
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
+  var playHeartRate = heartRate ? heartRate : stat.heartRate;
   var soundFileType = ".wav";
   var soundConfig = {
-    volume: heartStatus.seVol,
+    volume: stat.beatVol,
     buf: seChannel.toString(),
     storage: "heartbeat/AC08_HB01" + soundFileType,
     isAsync: "true",
@@ -47,9 +47,9 @@ function playBeatSound(heartRate) {
 }
 
 function playActorBeatMotion(cond, heartRate) {
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
+  var playHeartRate = heartRate ? heartRate : stat.heartRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: cond ? cond : "Normal",
@@ -74,9 +74,9 @@ function playActorBeatMotion(cond, heartRate) {
 }
 
 function playHeartBeatMotion(cond, no, heartRate) {
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : heartStatus.heartRate;
+  var playHeartRate = heartRate ? heartRate : stat.heartRate;
   var motionConfig = {
     name: "heart3",
     mtn: cond ? `${cond}_V` : "Normal_V",
@@ -90,11 +90,9 @@ function playHeartBeatMotion(cond, no, heartRate) {
 }
 
 function playAtrialBeatMotion(cond, no, atrialHeartRate) {
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = atrialHeartRate
-    ? atrialHeartRate
-    : heartStatus.atrialHeartRate;
+  var playHeartRate = atrialHeartRate ? atrialHeartRate : stat.atrialHeartRate;
 
   var motionConfig = {
     name: "heart3",
@@ -110,12 +108,10 @@ function playAtrialBeatMotion(cond, no, atrialHeartRate) {
 
 // Normal beat
 async function beatRhythmNormal() {
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // Set values for vital monitor
-  TYRANO.kag.hbsim.variables.heartStatus.current = {
-    type: "Normal",
-    isAddedQue: false,
-  };
+  TYRANO.kag.stat.f.ecgQueType = "Normal";
+  TYRANO.kag.stat.f.isEcgAddedQue = false;
 
   var random = randomRange(-3, 3);
   playActorBeatMotion();
@@ -125,72 +121,65 @@ async function beatRhythmNormal() {
 
   // device lamp control
   TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.1));
   TYRANO.kag.ftag.master_tag.live2d_sa_node_off.start();
   TYRANO.kag.ftag.master_tag.live2d_av_node_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.1));
   TYRANO.kag.ftag.master_tag.live2d_av_node_off.start();
   TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.6));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.6));
   TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.2));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.2));
 
   // 心拍数の復元値を取得
   var maxRecoveryValue = 3;
   var recoveryValue = getRecoveryHeartRate(
-    heartStatus.baseHeartRate,
-    heartStatus.heartRate,
+    stat.baseHeartRate,
+    stat.heartRate,
     100,
     maxRecoveryValue,
   );
 
   // 心拍数の復元値の適用(会話中は復元しない)
-  if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
+  if (!TYRANO.kag.stat.f.onTalkEvent) {
     // 心臓負荷の増減
-    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
-      heartStatus.burden,
-      recoveryValue,
-    );
-    TYRANO.kag.hbsim.variables.heartStatus.burden -= getRecoveryBurden(
-      heartStatus.burden,
-    );
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
+    TYRANO.kag.stat.f.burden -= getRecoveryBurden(stat.burden);
 
     // 心室の負荷を軽減
-    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden -=
-      getRecoveryVentricleBurden(heartStatus.ventricleBurden);
+    TYRANO.kag.stat.f.ventricleBurden -= getRecoveryVentricleBurden(
+      stat.ventricleBurden,
+    );
 
-    if (heartStatus.heartRate - heartStatus.baseHeartRate >= 0) {
-      TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= recoveryValue;
+    if (stat.heartRate - stat.baseHeartRate >= 0) {
+      TYRANO.kag.stat.f.heartRate -= recoveryValue;
+      TYRANO.kag.stat.f.heartRateMin -= recoveryValue;
+      TYRANO.kag.stat.f.heartRateMax -= recoveryValue;
     } else {
-      TYRANO.kag.hbsim.variables.heartStatus.heartRate += recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += recoveryValue;
+      TYRANO.kag.stat.f.heartRate += recoveryValue;
+      TYRANO.kag.stat.f.heartRateMin += recoveryValue;
+      TYRANO.kag.stat.f.heartRateMax += recoveryValue;
     }
   }
 
   // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
-    heartStatus.heartRate + random <= heartStatus.heartRateMax &&
-    heartStatus.heartRate + random >= heartStatus.heartRateMin
+    stat.heartRate + random <= stat.heartRateMax &&
+    stat.heartRate + random >= stat.heartRateMin
   ) {
-    TYRANO.kag.hbsim.variables.heartStatus.heartRate =
-      heartStatus.heartRate + random;
+    TYRANO.kag.stat.f.heartRate = stat.heartRate + random;
   }
 
-  TYRANO.kag.hbsim.variables.heartStatus.isPVC = false;
+  TYRANO.kag.stat.f.isPVC = false;
 }
 
 // PVC
 async function beatRhythmPVC() {
   console.log("PVC");
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
   // Set values for vital monitor
-  TYRANO.kag.hbsim.variables.heartStatus.current = {
-    type: "PVC",
-    isAddedQue: false,
-  };
+  TYRANO.kag.stat.f.ecgQueType = "PVC";
+  TYRANO.kag.stat.f.isEcgAddedQue = false;
 
   var random = randomRange(-3, 3);
   var randomMotion = randomRange(0, 1);
@@ -202,165 +191,146 @@ async function beatRhythmPVC() {
 
   // device lamp control
   TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.1));
   TYRANO.kag.ftag.master_tag.live2d_sa_node_off.start();
   TYRANO.kag.ftag.master_tag.live2d_av_node_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.1));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.1));
   TYRANO.kag.ftag.master_tag.live2d_av_node_off.start();
   TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.3));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.3));
   TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
 
-  playBeatSound(heartStatus.heartRate - 60);
+  playBeatSound(stat.heartRate - 60);
 
   // device lamp control
   TYRANO.kag.ftag.master_tag.live2d_ventricle_warn_on.start();
-  await sleep(Math.floor((60000 / heartStatus.heartRate) * 0.5));
+  await sleep(Math.floor((60000 / stat.heartRate) * 0.5));
   TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
-  await sleep(Math.floor(60000 / heartStatus.heartRate) * 1.5);
+  await sleep(Math.floor(60000 / stat.heartRate) * 1.5);
 
   // 心拍数の復元値を取得
   var maxRecoveryValue = 5;
   var recoveryValue = getRecoveryHeartRate(
-    heartStatus.baseHeartRate,
-    heartStatus.heartRate,
+    stat.baseHeartRate,
+    stat.heartRate,
     100,
     maxRecoveryValue,
   );
 
   // 心拍数の復元値の適用(会話中は復元しない) TODO: 関数に取り込む
-  if (!TYRANO.kag.hbsim.variables.event.onTalkEvent) {
+  if (!TYRANO.kag.stat.f.onTalkEvent) {
     // 心臓負荷の増減
-    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
-      heartStatus.burden,
-      recoveryValue,
-    );
-    TYRANO.kag.hbsim.variables.heartStatus.burden -= getRecoveryBurden(
-      heartStatus.burden,
-    );
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
+    TYRANO.kag.stat.f.burden -= getRecoveryBurden(stat.burden);
 
     // PVCが発生した場合心室に負荷をかける
-    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
-      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 10) >= 100
+    TYRANO.kag.stat.f.ventricleBurden =
+      stat.ventricleBurden + Math.floor(stat.burden / 10) >= 100
         ? 100
-        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 10);
+        : stat.ventricleBurden + Math.floor(stat.burden / 10);
 
-    if (heartStatus.heartRate - heartStatus.baseHeartRate >= 0) {
-      TYRANO.kag.hbsim.variables.heartStatus.heartRate -= recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= recoveryValue;
+    if (stat.heartRate - stat.baseHeartRate >= 0) {
+      TYRANO.kag.stat.f.heartRate -= recoveryValue;
+      TYRANO.kag.stat.f.heartRateMin -= recoveryValue;
+      TYRANO.kag.stat.f.heartRateMax -= recoveryValue;
     } else {
-      TYRANO.kag.hbsim.variables.heartStatus.heartRate += recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += recoveryValue;
-      TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += recoveryValue;
+      TYRANO.kag.stat.f.heartRate += recoveryValue;
+      TYRANO.kag.stat.f.heartRateMin += recoveryValue;
+      TYRANO.kag.stat.f.heartRateMax += recoveryValue;
     }
   }
 
   // Slight variation in heartRate (Between heartRateMin and heartRateMax)
   if (
-    heartStatus.heartRate + random <= heartStatus.heartRateMax &&
-    heartStatus.heartRate + random >= heartStatus.heartRateMin
+    stat.heartRate + random <= stat.heartRateMax &&
+    stat.heartRate + random >= stat.heartRateMin
   ) {
-    heartStatus.heartRate = heartStatus.heartRate + random;
+    stat.heartRate = stat.heartRate + random;
   }
 
-  TYRANO.kag.hbsim.variables.heartStatus.isPVC = true;
+  TYRANO.kag.stat.f.isPVC = true;
 }
 
 // VT
 async function beatRhythmVT() {
   console.log("VT");
-  var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  var stat = TYRANO.kag.stat.f;
 
   // 発生回数
   // ventricleBurden[0, 100]の値によって[2, 4]の区間で変動
-  var randomCount = randomRange(
-    2,
-    2 + Math.ceil(heartStatus.ventricleBurden * 0.02),
-  );
+  var randomCount = randomRange(2, 2 + Math.ceil(stat.ventricleBurden * 0.02));
 
   // 心拍数を強制的に上昇させる
-  var increaseRate = heartStatus.countVT <= 1 ? 60 : 0;
-  TYRANO.kag.hbsim.variables.heartStatus.heartRate += increaseRate;
-  TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += increaseRate;
-  TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += increaseRate;
+  var increaseRate = stat.countVT <= 1 ? 60 : 0;
+  TYRANO.kag.stat.f.heartRate += increaseRate;
+  TYRANO.kag.stat.f.heartRateMin += increaseRate;
+  TYRANO.kag.stat.f.heartRateMax += increaseRate;
 
-  console.log(increaseRate, heartStatus.countVT);
+  console.log(increaseRate, stat.countVT);
 
   // 1回目は普通の鼓動
-  TYRANO.kag.hbsim.variables.heartStatus.current = {
-    type: heartStatus.countVT <= 0 ? "Normal" : "VT",
-    isAddedQue: false,
-  };
+  TYRANO.kag.stat.f.ecgQueType = stat.countVT <= 0 ? "Normal" : "VT";
+  TYRANO.kag.stat.f.isEcgAddedQue = false;
 
   var randomMotion = randomRange(0, 1);
 
   playActorBeatMotion();
   playHeartBeatMotion(
-    heartStatus.countVT <= 0 ? "Normal" : "VT",
-    heartStatus.countVT <= 0 ? "0" : randomMotion.toString(),
+    stat.countVT <= 0 ? "Normal" : "VT",
+    stat.countVT <= 0 ? "0" : randomMotion.toString(),
   );
   playBeatSound();
 
   // device lamp control
-  heartStatus.countVT <= 0
+  stat.countVT <= 0
     ? TYRANO.kag.ftag.master_tag.live2d_ventricle_normal_on.start()
     : TYRANO.kag.ftag.master_tag.live2d_ventricle_warn_on.start();
-  await sleep(Math.floor(60000 / heartStatus.heartRate));
+  await sleep(Math.floor(60000 / stat.heartRate));
   TYRANO.kag.ftag.master_tag.live2d_ventricle_off.start();
 
-  if (heartStatus.countVT >= randomCount) {
+  if (stat.countVT >= randomCount) {
     // VTの終了処理
-    TYRANO.kag.hbsim.variables.heartStatus.heartRate =
-      heartStatus.atrialHeartRate;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin =
-      heartStatus.atrialHeartRate - 10;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax =
-      heartStatus.atrialHeartRate + 10;
-    TYRANO.kag.hbsim.variables.heartStatus.countVT = 0;
-    TYRANO.kag.hbsim.variables.heartStatus.isVT = false;
-    TYRANO.kag.hbsim.variables.heartStatus.isPVC = false;
+    TYRANO.kag.stat.f.heartRate = stat.atrialHeartRate;
+    TYRANO.kag.stat.f.heartRateMin = stat.atrialHeartRate - 10;
+    TYRANO.kag.stat.f.heartRateMax = stat.atrialHeartRate + 10;
+    TYRANO.kag.stat.f.countVT = 0;
+    TYRANO.kag.stat.f.isVT = false;
+    TYRANO.kag.stat.f.isPVC = false;
 
     // 心拍数の復元値を取得
     var maxRecoveryValue = 5;
     var recoveryValue = getRecoveryHeartRate(
-      heartStatus.baseHeartRate,
-      heartStatus.heartRate,
+      stat.baseHeartRate,
+      stat.heartRate,
       100,
       maxRecoveryValue,
     );
     // 心臓負荷の増加
-    TYRANO.kag.hbsim.variables.heartStatus.ventricleBurden =
-      heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5) >= 100
+    TYRANO.kag.stat.f.ventricleBurden =
+      stat.ventricleBurden + Math.floor(stat.burden / 5) >= 100
         ? 100
-        : heartStatus.ventricleBurden + Math.floor(heartStatus.burden / 5);
-    TYRANO.kag.hbsim.variables.heartStatus.burden += getIncreaseBurden(
-      heartStatus.burden,
-      recoveryValue,
-    );
-    await sleep(Math.floor(60000 / heartStatus.heartRate) * 1);
+        : stat.ventricleBurden + Math.floor(stat.burden / 5);
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
+    await sleep(Math.floor(60000 / stat.heartRate) * 1);
   } else {
-    TYRANO.kag.hbsim.variables.heartStatus.countVT++;
+    TYRANO.kag.stat.f.countVT++;
   }
 }
 
 async function atrialHeartbeat() {
-  while (
-    TYRANO.kag.hbsim.variables.heartStatus.isAsyncAtrial &&
-    TYRANO.kag.hbsim.variables.heartStatus.isVT
-  ) {
-    var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+  while (TYRANO.kag.stat.f.isAsyncAtrial && TYRANO.kag.stat.f.isVT) {
+    var stat = TYRANO.kag.stat.f;
     playAtrialBeatMotion();
-    await sleep(Math.floor(60000 / heartStatus.atrialHeartRate));
+    await sleep(Math.floor(60000 / stat.atrialHeartRate));
   }
-  TYRANO.kag.hbsim.variables.heartStatus.isAsyncAtrial = false;
+  TYRANO.kag.stat.f.isAsyncAtrial = false;
   return;
 }
 
 async function heartbeat() {
   var isDefinedHeartRate = true;
   while (isDefinedHeartRate) {
-    var heartStatus = TYRANO.kag.hbsim.variables.heartStatus;
+    var stat = TYRANO.kag.stat.f;
     var random = randomRange(0, 100);
 
     // Update expression
@@ -373,35 +343,31 @@ async function heartbeat() {
     TYRANO.kag.ftag.master_tag.update_debug_outputs.start();
 
     // cache prev heart rate
-    TYRANO.kag.hbsim.variables.heartStatus.prevHeartRate =
-      heartStatus.heartRate;
+    TYRANO.kag.stat.f.prevHeartRate = stat.heartRate;
 
     // force VT
-    if (heartStatus.isVT) {
+    if (stat.isVT) {
       await beatRhythmVT();
 
       // TODO: 重度の発作の場合
       // VT の場合、心房と心室の速度がずれるため心房用のループを非同期で回す
-      // if (!heartStatus.isAsyncAtrial) {
-      //   TYRANO.kag.hbsim.variables.heartStatus.isAsyncAtrial = true;
+      // if (!stat.isAsyncAtrial) {
+      //   TYRANO.kag.stat.f.isAsyncAtrial = true;
       //   atrialHeartbeat();
       // }
       continue;
     }
 
     // Arrhythmia caused by ventricle burden
-    if (heartStatus.ventricleBurden / 2 > random) {
+    if (stat.ventricleBurden / 2 > random) {
       // Synchronize heartRate into atrialHeartRate
-      TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
-        heartStatus.heartRate;
+      TYRANO.kag.stat.f.atrialHeartRate = stat.heartRate;
 
       var randomForVentricleBurden = randomRange(0, 100);
       // 負荷が上がるごとに重度の発作の確率が上がる
-      if (
-        getActiveVTRate(heartStatus.ventricleBurden) > randomForVentricleBurden
-      ) {
+      if (getActiveVTRate(stat.ventricleBurden) > randomForVentricleBurden) {
         // VTの発生
-        TYRANO.kag.hbsim.variables.heartStatus.isVT = true;
+        TYRANO.kag.stat.f.isVT = true;
       } else {
         await beatRhythmPVC();
       }
@@ -409,18 +375,16 @@ async function heartbeat() {
     }
 
     // Arrhythmia caused by burden
-    if (heartStatus.burden / 2 > random) {
+    if (stat.burden / 2 > random) {
       // Synchronize heartRate into atrialHeartRate
-      TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
-        heartStatus.heartRate;
+      TYRANO.kag.stat.f.atrialHeartRate = stat.heartRate;
       await beatRhythmPVC();
       continue;
     }
 
     // Normal beat
     // Synchronize heartRate into atrialHeartRate
-    TYRANO.kag.hbsim.variables.heartStatus.atrialHeartRate =
-      heartStatus.heartRate;
+    TYRANO.kag.stat.f.atrialHeartRate = stat.heartRate;
     await beatRhythmNormal();
   }
 }
@@ -445,9 +409,9 @@ TYRANO.kag.ftag.master_tag.set_heart_rate = {
   },
   start: function (pm) {
     var value = parseInt(pm.value);
-    TYRANO.kag.hbsim.variables.heartStatus.heartRate = value;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = value - 10;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = value + 10;
+    TYRANO.kag.stat.f.heartRate = value;
+    TYRANO.kag.stat.f.heartRateMin = value - 10;
+    TYRANO.kag.stat.f.heartRateMax = value + 10;
 
     if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
@@ -465,7 +429,7 @@ TYRANO.kag.ftag.master_tag.set_base_heart_rate = {
   start: function (pm) {
     var value = parseInt(pm.value);
     console.log(`baseHeartRate change to ${value}`);
-    TYRANO.kag.hbsim.variables.heartStatus.baseHeartRate = value;
+    TYRANO.kag.stat.f.baseHeartRate = value;
 
     if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
@@ -490,65 +454,51 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
     var limit = parseInt(pm.limit);
 
     if (pm.operator === "+") {
-      if (
-        limit &&
-        TYRANO.kag.hbsim.variables.heartStatus.heartRate + value >= limit
-      ) {
+      if (limit && TYRANO.kag.stat.f.heartRate + value >= limit) {
         if (pm.limitForce === "true") {
           console.log(
-            `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${limit}`,
+            `heartRate change ${TYRANO.kag.stat.f.heartRate} → ${limit}`,
           );
-          TYRANO.kag.hbsim.variables.heartStatus.heartRate = limit;
-          TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = limit - 10;
-          TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = limit + 10;
+          TYRANO.kag.stat.f.heartRate = limit;
+          TYRANO.kag.stat.f.heartRateMin = limit - 10;
+          TYRANO.kag.stat.f.heartRateMax = limit + 10;
           return;
         } else {
           console.log(`heartRate no change`);
           return;
         }
       }
-      if (
-        (limit &&
-          TYRANO.kag.hbsim.variables.heartStatus.heartRate + value < limit) ||
-        !limit
-      ) {
+      if ((limit && TYRANO.kag.stat.f.heartRate + value < limit) || !limit) {
         console.log(
-          `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${TYRANO.kag.hbsim.variables.heartStatus.heartRate + value}`,
+          `heartRate change ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate + value}`,
         );
-        TYRANO.kag.hbsim.variables.heartStatus.heartRate += value;
-        TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += value;
-        TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += value;
+        TYRANO.kag.stat.f.heartRate += value;
+        TYRANO.kag.stat.f.heartRateMin += value;
+        TYRANO.kag.stat.f.heartRateMax += value;
         return;
       }
     }
     if (pm.operator === "-") {
-      if (
-        limit &&
-        TYRANO.kag.hbsim.variables.heartStatus.heartRate - value <= limit
-      ) {
+      if (limit && TYRANO.kag.stat.f.heartRate - value <= limit) {
         if (pm.limitForce === "true") {
           console.log(
-            `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${limit}`,
+            `heartRate change ${TYRANO.kag.stat.f.heartRate} → ${limit}`,
           );
-          TYRANO.kag.hbsim.variables.heartStatus.heartRate = limit;
-          TYRANO.kag.hbsim.variables.heartStatus.heartRateMin = limit - 10;
-          TYRANO.kag.hbsim.variables.heartStatus.heartRateMax = limit + 10;
+          TYRANO.kag.stat.f.heartRate = limit;
+          TYRANO.kag.stat.f.heartRateMin = limit - 10;
+          TYRANO.kag.stat.f.heartRateMax = limit + 10;
         } else {
           console.log(`heartRate no change`);
           return;
         }
       }
-      if (
-        (limit &&
-          TYRANO.kag.hbsim.variables.heartStatus.heartRate - value > limit) ||
-        !limit
-      ) {
+      if ((limit && TYRANO.kag.stat.f.heartRate - value > limit) || !limit) {
         console.log(
-          `heartRate change ${TYRANO.kag.hbsim.variables.heartStatus.heartRate} → ${TYRANO.kag.hbsim.variables.heartStatus.heartRate - value}`,
+          `heartRate change ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate - value}`,
         );
-        TYRANO.kag.hbsim.variables.heartStatus.heartRate -= value;
-        TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= value;
-        TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= value;
+        TYRANO.kag.stat.f.heartRate -= value;
+        TYRANO.kag.stat.f.heartRateMin -= value;
+        TYRANO.kag.stat.f.heartRateMax -= value;
       }
     }
 
@@ -567,11 +517,11 @@ TYRANO.kag.ftag.master_tag.up_heart_rate_10 = {
   start: function (pm) {
     var value = parseInt(pm.value);
     console.log(
-      `heartRate up ${heartStatus.heartRate} → ${heartStatus.heartRate + value}`,
+      `heartRate up ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate + value}`,
     );
-    TYRANO.kag.hbsim.variables.heartStatus.heartRate += value;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin += value - 10;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax += value + 10;
+    TYRANO.kag.stat.f.heartRate += value;
+    TYRANO.kag.stat.f.heartRateMin += value - 10;
+    TYRANO.kag.stat.f.heartRateMax += value + 10;
 
     this.kag.ftag.nextOrder();
   },
@@ -586,11 +536,11 @@ TYRANO.kag.ftag.master_tag.down_heart_rate_10 = {
   start: function (pm) {
     var value = parseInt(pm.value);
     console.log(
-      `heartRate down ${heartStatus.heartRate} → ${heartStatus.heartRate - value}`,
+      `heartRate down ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate - value}`,
     );
-    TYRANO.kag.hbsim.variables.heartStatus.heartRate -= value;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMin -= value - 10;
-    TYRANO.kag.hbsim.variables.heartStatus.heartRateMax -= value + 10;
+    TYRANO.kag.stat.f.heartRate -= value;
+    TYRANO.kag.stat.f.heartRateMin -= value - 10;
+    TYRANO.kag.stat.f.heartRateMax -= value + 10;
 
     this.kag.ftag.nextOrder();
   },
@@ -606,7 +556,7 @@ TYRANO.kag.ftag.master_tag.set_heart_se_vol = {
     // TODO: 心音OFFの場合は強制的に0にする
     var vol = parseInt(pm.vol);
     console.log(`set heart beat se volume to ${vol}`);
-    TYRANO.kag.hbsim.variables.heartStatus.seVol = parseInt(vol);
+    TYRANO.kag.stat.f.beatVol = parseInt(vol);
 
     this.kag.ftag.nextOrder();
   },
