@@ -85,7 +85,7 @@ TYRANO.kag.ftag.master_tag.touch_chest_event_menu = {
 
     // compress button
     var $compressButton = $(
-      `<div class='glink_button btn_20_black compress_button'>押し込む</div>`,
+      `<div class='glink_button btn_20_black compress_button'>圧迫する</div>`,
     );
     $compressButton.css({
       cursor: "pointer",
