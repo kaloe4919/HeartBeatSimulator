@@ -1,12 +1,9 @@
-var prevRespiratoryRate = 15;
-
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 function playActorBreathMotion() {
-  var playRespiratoryRate =
-    TYRANO.kag.hbsim.variables.breathStatus.respiratoryRate;
+  var playRespiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: "Breath",
@@ -32,25 +29,23 @@ function playActorBreathMotion() {
 }
 
 async function breathNormal() {
-  var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
+  var stat = TYRANO.kag.stat.f;
   // Set values for vital monitor
-  TYRANO.kag.hbsim.variables.breathStatus.current = {
-    type: "Normal",
-    isAddedQue: false,
-  };
+  TYRANO.kag.stat.f.rrQueType = "Normal";
+  TYRANO.kag.stat.f.isRrAddedQue = false;
 
   playActorBreathMotion();
-  await sleep(Math.floor((60 / breathStatus.respiratoryRate) * 1000));
+  await sleep(Math.floor((60 / stat.respiratoryRate) * 1000));
 }
 
 async function breath() {
-  var breathStatus = TYRANO.kag.hbsim.variables.breathStatus;
+  var stat = TYRANO.kag.stat.f;
   var isDefinedRr = true;
   while (isDefinedRr) {
     console.log("breath");
     // Update RespiratoryRate from heartRate
-    var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
-    breathStatus.respiratoryRate = Math.round((heartRate / 65) * 15);
+    var heartRate = TYRANO.kag.stat.f.heartRate;
+    TYRANO.kag.stat.f.respiratoryRate = Math.round((heartRate / 65) * 15);
 
     // Update expression
     TYRANO.kag.hbsim.expression.update();
@@ -60,7 +55,7 @@ async function breath() {
 
     await breathNormal();
 
-    prevRespiratoryRate = breathStatus.respiratoryRate;
+    TYRANO.kag.stat.f.prevRespiratoryRate = stat.respiratoryRate;
   }
 }
 

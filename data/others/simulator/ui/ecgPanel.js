@@ -5,7 +5,7 @@ ecgYDataQue = [];
 
 // 心拍数に応じて Interval のフレームを短くする
 function shortenIntervalByHeartRate(yData) {
-  var heartRate = TYRANO.kag.hbsim.variables.heartStatus.heartRate;
+  var heartRate = TYRANO.kag.stat.f.heartRate;
   var shortenLength = Math.round(yData.length * (65 / heartRate));
   if (shortenLength >= 0) {
     return yData.splice(0, shortenLength);
@@ -15,12 +15,11 @@ function shortenIntervalByHeartRate(yData) {
 }
 
 function updateEcg() {
-  var current = TYRANO.kag.hbsim.variables.heartStatus.current;
-  var data = TYRANO.kag.hbsim.chart.ecg.data;
+  var stat = TYRANO.kag.stat.f;
 
   // 鼓動がある場合、鼓動を解析してキューを作成
-  if (!current.isAddedQue) {
-    if (current.type === "Normal") {
+  if (!stat.isEcgAddedQue) {
+    if (stat.ecgQueType === "Normal") {
       var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
       var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
@@ -35,8 +34,8 @@ function updateEcg() {
         .concat(tWave);
       ecgYDataQue = que;
 
-      TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
-    } else if (current.type === "PVC") {
+      TYRANO.kag.stat.f.isEcgAddedQue = true;
+    } else if (stat.ecgQueType === "PVC") {
       var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
       var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
@@ -55,17 +54,17 @@ function updateEcg() {
         .concat(rWavePVC);
       ecgYDataQue = que;
 
-      TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
-    } else if (current.type === "VT") {
+      TYRANO.kag.stat.f.isEcgAddedQue = true;
+    } else if (stat.ecgQueType === "VT") {
       var rWavePVC = [0.5, 1, 9, -2, -2.5, -4, -1, 0, 1];
       var que = rWavePVC;
       ecgYDataQue = que;
 
-      TYRANO.kag.hbsim.variables.heartStatus.current.isAddedQue = true;
+      TYRANO.kag.stat.f.isEcgAddedQue = true;
     }
   }
 
-  var yValues = data.y;
+  var yValues = stat.ecgChartData.y;
   if (ecgYDataQue.length > 0) {
     // キューがある場合、Y軸をキューの値で更新する
     // 次の 3 フレームを初期化する
@@ -76,12 +75,15 @@ function updateEcg() {
     // 次の 3 フレームを初期化する
     yValues.splice(ecgYIndex, 4, 0, null, null, null);
   }
-  data.y = yValues;
-  Plotly.update("ecg", [data], TYRANO.kag.hbsim.chart.ecg.layout);
-  TYRANO.kag.hbsim.chart.ecg.data = data;
+  TYRANO.kag.stat.f.ecgChartData.y = yValues;
+  Plotly.update(
+    "ecg",
+    [TYRANO.kag.stat.f.ecgChartData],
+    TYRANO.kag.stat.f.ecgChartLayout,
+  );
 
   // 更新したY軸が配列の最後の場合は Index を 0 に戻す
-  if (ecgYIndex >= data.x.length - 1) {
+  if (ecgYIndex >= stat.ecgChartData.x.length - 1) {
     ecgYIndex = 0;
   } else {
     ecgYIndex++;
@@ -153,8 +155,8 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
       line: { color: "#78f542", width: 2, shape: "spline" },
     };
     Plotly.newPlot("ecg", [data], layout);
-    TYRANO.kag.hbsim.chart.ecg.layout = layout;
-    TYRANO.kag.hbsim.chart.ecg.data = data;
+    TYRANO.kag.stat.f.ecgChartLayout = layout;
+    TYRANO.kag.stat.f.ecgChartData = data;
     TYRANO.kag.ftag.nextOrder();
   },
 };
@@ -181,7 +183,7 @@ TYRANO.kag.ftag.master_tag.update_hr = {
       x: 1090,
       y: 58,
       vertical: "false",
-      text: `HR: ${Math.floor(TYRANO.kag.hbsim.variables.heartStatus.heartRate)}`,
+      text: `HR: ${Math.floor(TYRANO.kag.stat.f.heartRate)}`,
       size: "20",
       hexColor: "#78f542",
       bold: "bold",
