@@ -57,6 +57,20 @@ function stopTouchChestEventHandler() {
   });
 }
 
+function touchChestCompressEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_chest_compress.ks`,
+    target: `touch_chest_compress_event`,
+  });
+}
+
+function stopTouchChestCompressEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_chest_compress.ks`,
+    target: `stop_touch_chest_compress`,
+  });
+}
+
 function returnTouchEventHandler() {
   // display current mode to init
   TYRANO.kag.ftag.master_tag.ptext.start({

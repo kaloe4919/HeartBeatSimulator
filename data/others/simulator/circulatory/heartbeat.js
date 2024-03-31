@@ -140,6 +140,8 @@ async function beatRhythmNormal() {
     maxRecoveryValue,
   );
 
+  console.log(stat.baseHeartRate, recoveryValue);
+
   // 心拍数の復元値の適用(会話中は復元しない)
   if (!TYRANO.kag.stat.f.onTalkEvent) {
     // 心臓負荷の増減

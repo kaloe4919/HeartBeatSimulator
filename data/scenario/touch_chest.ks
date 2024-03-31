@@ -4,6 +4,8 @@
 
 [tb_start_tyrano_code]
 [set_visible_touch_event_menu visible="false"]
+;turn on event flags
+[start_talk_event]
 [_tb_end_tyrano_code]
 
 [tb_fuki_start  ]
@@ -60,6 +62,10 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="1000"  ]
+[jump  storage="touch_chest.ks"  target="*touch_chest_wait"  ]
+*touch_chest_wait
+
 [iscript]
 TYRANO.kag.ftag.master_tag.set_base_heart_rate.start({
 value: "120",
@@ -69,6 +75,8 @@ isAsync: "true",
 
 [tb_start_tyrano_code]
 [set_visible_touch_chest_event_menu visible="true"]
+;turn off event flags
+[end_talk_event]
 [_tb_end_tyrano_code]
 
 [s  ]
@@ -76,6 +84,8 @@ isAsync: "true",
 
 [tb_start_tyrano_code]
 [set_visible_touch_chest_event_menu visible="false"]
+;turn on event flags
+[start_talk_event]
 [_tb_end_tyrano_code]
 
 [tb_fuki_start  ]
@@ -88,6 +98,7 @@ isAsync: "true",
 });
 [endscript]
 
+[wait  time="1000"  ]
 [tb_start_text mode=1 ]
 #京香
 も、もういいの……？[p]

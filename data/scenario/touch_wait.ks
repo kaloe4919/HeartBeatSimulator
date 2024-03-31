@@ -14,6 +14,8 @@ isAsync: "true",
 [tb_start_tyrano_code]
 [set_visible_touch_event_menu visible="true"]
 [set_visible_touch_event_area visible="true"]
+;turn off event flags
+[end_talk_event]
 [_tb_end_tyrano_code]
 
 [s  ]
