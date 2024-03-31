@@ -73,8 +73,9 @@ TYRANO.kag.hbsim.expression = {
       return;
     }
 
+    // TODO: used only compress event
     if (TYRANO.kag.stat.f.onCompressEvent) {
-      expressionOntCompressEventHandler();
+      // expressionOntCompressEventHandler();
     }
 
     expressionHandler();

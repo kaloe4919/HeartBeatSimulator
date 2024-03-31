@@ -28,7 +28,7 @@ isAsync: "true",
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
 value: "30",
 operator: "-",
-limit: "55",
+limit: "60",
 limitForce: "true",
 isAsync: "true",
 });
