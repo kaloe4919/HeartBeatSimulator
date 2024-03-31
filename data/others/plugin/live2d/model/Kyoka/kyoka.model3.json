@@ -109,7 +109,7 @@
 			"Face": [
 				{
 					"File": "motions/FaceNormal.motion3.json",
-					"FadeInTime": 0,
+					"FadeInTime": 0.2,
 					"FadeOutTime": 0
 				},
 				{
@@ -305,6 +305,18 @@
 				},
 				{
 					"File": "motions/TouchChest2.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				}
+			],
+			"TouchChestCompress": [
+				{
+					"File": "motions/TouchChestCompress1.motion3.json",
+					"FadeInTime": 0,
+					"FadeOutTime": 0
+				},
+				{
+					"File": "motions/TouchChestCompress2.motion3.json",
 					"FadeInTime": 0,
 					"FadeOutTime": 0
 				}

@@ -57,6 +57,20 @@ function stopTouchChestEventHandler() {
   });
 }
 
+function touchChestCompressEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_chest_compress.ks`,
+    target: `touch_chest_compress_event`,
+  });
+}
+
+function stopTouchChestCompressEventHandler() {
+  TYRANO.kag.ftag.startTag("jump", {
+    storage: `touch_chest_compress.ks`,
+    target: `stop_touch_chest_compress`,
+  });
+}
+
 function returnTouchEventHandler() {
   // display current mode to init
   TYRANO.kag.ftag.master_tag.ptext.start({
@@ -84,3 +98,25 @@ function returnTouchEventHandler() {
     target: `stand_by`,
   });
 }
+
+TYRANO.kag.ftag.master_tag.start_compress_event = {
+  kag: TYRANO.kag,
+  pm: {},
+  start: function (pm) {
+    console.log(`start compress event`);
+    TYRANO.kag.stat.f.onCompressEvent = true;
+
+    this.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.end_compress_event = {
+  kag: TYRANO.kag,
+  pm: {},
+  start: function (pm) {
+    console.log(`stop compress event`);
+    TYRANO.kag.stat.f.onCompressEvent = false;
+
+    this.kag.ftag.nextOrder();
+  },
+};

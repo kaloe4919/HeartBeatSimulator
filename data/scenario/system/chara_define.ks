@@ -38,4 +38,6 @@ f['rrChartLayout']='';
 f['beatVol']=''; 
 f['respiratoryRate']=''; 
 f['prevRespiratoryRate']=''; 
+f['currentExpression']=''; 
+f['onCompressEvent']=''; 
 [endscript] 

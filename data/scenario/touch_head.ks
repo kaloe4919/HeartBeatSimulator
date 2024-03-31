@@ -2,6 +2,11 @@
 
 *touch_head_event
 
+[tb_start_tyrano_code]
+;turn on event flags
+[start_talk_event]
+[_tb_end_tyrano_code]
+
 [tb_eval  exp="f.random=Math.floor(Math.random()*(2-1+1)+1)"  name="random"  cmd="="  op="r"  val="1"  val_2="2"  ]
 [jump  storage="touch_head.ks"  target="*touch_head_event1"  cond="f.random==1"  ]
 [jump  storage="touch_head.ks"  target="*touch_head_event2"  cond="f.random==2"  ]

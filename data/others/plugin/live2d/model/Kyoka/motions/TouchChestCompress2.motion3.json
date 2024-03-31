@@ -1,0 +1,342 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 2.017,
+		"Fps": 60.0,
+		"Loop": true,
+		"AreBeziersRestricted": false,
+		"CurveCount": 16,
+		"TotalSegmentCount": 38,
+		"TotalPointCount": 96,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Model",
+			"Id": "EyeBlink",
+			"Segments": [
+				0,
+				1,
+				0,
+				2.017,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLOpen",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.25,
+				0,
+				0.5,
+				0,
+				0.75,
+				0,
+				1,
+				0.806,
+				0,
+				0.861,
+				0.4,
+				0.917,
+				0.4,
+				1,
+				0.956,
+				0.4,
+				0.994,
+				0,
+				1.033,
+				0,
+				1,
+				1.078,
+				0,
+				1.122,
+				1,
+				1.167,
+				1,
+				0,
+				2.017,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeLFlat",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeROpen",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.25,
+				0,
+				0.5,
+				0,
+				0.75,
+				0,
+				1,
+				0.806,
+				0,
+				0.861,
+				0.4,
+				0.917,
+				0.4,
+				1,
+				0.956,
+				0.4,
+				0.994,
+				0,
+				1.033,
+				0,
+				1,
+				1.078,
+				0,
+				1.122,
+				1,
+				1.167,
+				1,
+				0,
+				2.017,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeRFlat",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeSize",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeBallX",
+			"Segments": [
+				0,
+				-0.1,
+				0,
+				2.017,
+				-0.1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamEyeBallY",
+			"Segments": [
+				0,
+				-1,
+				0,
+				2.017,
+				-1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamBrowY",
+			"Segments": [
+				0,
+				0.8,
+				1,
+				0.25,
+				0.8,
+				0.5,
+				0.8,
+				0.75,
+				0.8,
+				1,
+				0.889,
+				0.8,
+				1.028,
+				0,
+				1.167,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamBrowForm",
+			"Segments": [
+				0,
+				0.1,
+				1,
+				0.25,
+				0.1,
+				0.5,
+				0.1,
+				0.75,
+				0.1,
+				1,
+				0.889,
+				0.1,
+				1.028,
+				0,
+				1.167,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamMouthForm",
+			"Segments": [
+				0,
+				0.5,
+				1,
+				0.622,
+				0.5,
+				1.244,
+				0.5,
+				1.867,
+				0.5,
+				1,
+				1.911,
+				0.5,
+				1.956,
+				0,
+				2,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamMouthOpenY",
+			"Segments": [
+				0,
+				0.7,
+				1,
+				0.622,
+				0.7,
+				1.244,
+				0.7,
+				1.867,
+				0.7,
+				1,
+				1.911,
+				0.7,
+				1.956,
+				0,
+				2,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamCheek",
+			"Segments": [
+				0,
+				1,
+				0,
+				2.017,
+				1
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamBreath",
+			"Segments": [
+				0,
+				8,
+				0,
+				0.333,
+				8,
+				1,
+				0.472,
+				8,
+				0.611,
+				0,
+				0.75,
+				0,
+				1,
+				0.944,
+				0,
+				1.139,
+				7,
+				1.333,
+				7,
+				1,
+				1.556,
+				7,
+				1.778,
+				0,
+				2,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamLeaning",
+			"Segments": [
+				0,
+				10,
+				1,
+				0.111,
+				10,
+				0.222,
+				0,
+				0.333,
+				0,
+				0,
+				2.017,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "ParamArmSwitch",
+			"Segments": [
+				0,
+				-2,
+				1,
+				0.111,
+				-2,
+				0.222,
+				-1,
+				0.333,
+				-1,
+				0,
+				2.017,
+				-1
+			]
+		}
+	]
+}

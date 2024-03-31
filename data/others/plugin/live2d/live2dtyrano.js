@@ -562,6 +562,29 @@ TYRANO.kag.ftag.master_tag.live2d_expression = {
   },
 };
 
+TYRANO.kag.ftag.master_tag.live2d_switch_eye_blink = {
+  kag: TYRANO.kag,
+  vital: ["isEnable"],
+  pm: {
+    isEnable: "true",
+    next: "true",
+    isAsync: "false",
+  },
+
+  start: function (pm) {
+    var that = this;
+    var name = pm.name;
+
+    _live2d_tyrano.tm = tyranolive2dplugin.getTyranoManager();
+
+    _live2d_tyrano.tm.setEyeBlink(pm.isEnable == "true");
+
+    if (pm.next == "true" || !"true" == pm.isAsync) {
+      TYRANO.kag.ftag.nextOrder();
+    }
+  },
+};
+
 TYRANO.kag.ftag.master_tag.live2d_sa_node_normal_on = {
   kag: TYRANO.kag,
   vital: [],

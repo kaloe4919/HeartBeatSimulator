@@ -45,6 +45,9 @@ var defaultVariables = {
   countVT: 0,
   isActiveDevice: true,
   beatVol: 75,
+  currentExpression: "Normal",
+  onTalkEvent: false,
+  onCompressEvent: false,
 };
 
 TYRANO.kag.hbsim = {};
@@ -82,3 +85,7 @@ TYRANO.kag.stat.f.isVT = defaultVariables.isVT;
 TYRANO.kag.stat.f.countVT = defaultVariables.countVT;
 
 TYRANO.kag.stat.f.beatVol = defaultVariables.beatVol;
+TYRANO.kag.stat.f.currentExpression = defaultVariables.currentExpression;
+
+TYRANO.kag.stat.f.onTalkEvent = defaultVariables.onTalkEvent;
+TYRANO.kag.stat.f.onCompressEvent = defaultVariables.onCompressEvent;

@@ -1998,6 +1998,19 @@
           (this.id = null), (this.width = 0), (this.height = 0);
         };
       })(),
+      Status = (function () {
+        function t() {}
+        return (
+          (t.getIsEnableEyeBlink = function () {
+            return this.isEnableEyeBlink;
+          }),
+          (t.setIsEnableEyeBlink = function (isEnableEyeBlink) {
+            this.isEnableEyeBlink = isEnableEyeBlink;
+          }),
+          (t.isEnableEyeBlink = true),
+          t
+        );
+      })(),
       HeartStatus = (function () {
         function t() {}
         return (
@@ -8106,11 +8119,11 @@
               var atrialIntervalRate = HeartStatus.getAtrialIntervalRate();
               var respiratoryRate = BreathStatus.getRespiratoryRate();
               var breathIntervalRate = BreathStatus.getIntervalRate();
+              var isEnableEyeBlink = Status.getIsEnableEyeBlink();
               this._userTimeSeconds += t;
               var e = !1;
               if (
                 (this._model.loadParameters(),
-                (e = this._motionManager.updateMotion(this._model, t)),
                 (e = this._beatMotionManager.updateMotion(
                   this._model,
                   t * (heartRate / 60) * (1 + heartIntervalRate),
@@ -8123,9 +8136,11 @@
                   this._model,
                   t * (respiratoryRate / 20) * (1 + breathIntervalRate),
                 )),
+                (e = this._motionManager.updateMotion(this._model, t)),
                 this._model.saveParameters(),
                 e ||
                   (null != this._eyeBlink &&
+                    isEnableEyeBlink &&
                     this._eyeBlink.updateParameters(this._model, t)),
                 null != this._expressionManager &&
                   this._expressionManager.updateMotion(this._model, t),
@@ -8762,6 +8777,9 @@
             this.lappdelegate.lapplive2dmanager
               .getModel(i.index)
               .setExpression(e);
+          }),
+          (t.prototype.setEyeBlink = function (isEnable) {
+            Status.setIsEnableEyeBlink(isEnable);
           }),
           (t.prototype.start = function () {}),
           t
