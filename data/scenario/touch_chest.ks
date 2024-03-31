@@ -53,6 +53,7 @@ isAsync: "true",
 [_tb_end_text]
 
 [tb_fuki_stop  ]
+[wait  time="500"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",

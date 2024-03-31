@@ -98,3 +98,25 @@ function returnTouchEventHandler() {
     target: `stand_by`,
   });
 }
+
+TYRANO.kag.ftag.master_tag.start_compress_event = {
+  kag: TYRANO.kag,
+  pm: {},
+  start: function (pm) {
+    console.log(`start compress event`);
+    TYRANO.kag.stat.f.onCompressEvent = true;
+
+    this.kag.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.end_compress_event = {
+  kag: TYRANO.kag,
+  pm: {},
+  start: function (pm) {
+    console.log(`stop compress event`);
+    TYRANO.kag.stat.f.onCompressEvent = false;
+
+    this.kag.ftag.nextOrder();
+  },
+};

@@ -133,25 +133,16 @@ async function beatRhythmNormal() {
 
   // 心拍数の復元値を取得
   var maxRecoveryValue = 3;
-  var recoveryValue = getRecoveryHeartRate(
-    stat.baseHeartRate,
-    stat.heartRate,
-    100,
-    maxRecoveryValue,
-  );
-
-  console.log(stat.baseHeartRate, recoveryValue);
+  var recoveryValue = getRecoveryHeartRate(100, maxRecoveryValue);
 
   // 心拍数の復元値の適用(会話中は復元しない)
   if (!TYRANO.kag.stat.f.onTalkEvent) {
     // 心臓負荷の増減
-    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
-    TYRANO.kag.stat.f.burden -= getRecoveryBurden(stat.burden);
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(recoveryValue);
+    TYRANO.kag.stat.f.burden -= getRecoveryBurden();
 
     // 心室の負荷を軽減
-    TYRANO.kag.stat.f.ventricleBurden -= getRecoveryVentricleBurden(
-      stat.ventricleBurden,
-    );
+    TYRANO.kag.stat.f.ventricleBurden -= getRecoveryVentricleBurden();
 
     if (stat.heartRate - stat.baseHeartRate >= 0) {
       TYRANO.kag.stat.f.heartRate -= recoveryValue;
@@ -212,18 +203,13 @@ async function beatRhythmPVC() {
 
   // 心拍数の復元値を取得
   var maxRecoveryValue = 5;
-  var recoveryValue = getRecoveryHeartRate(
-    stat.baseHeartRate,
-    stat.heartRate,
-    100,
-    maxRecoveryValue,
-  );
+  var recoveryValue = getRecoveryHeartRate(100, maxRecoveryValue);
 
   // 心拍数の復元値の適用(会話中は復元しない) TODO: 関数に取り込む
   if (!TYRANO.kag.stat.f.onTalkEvent) {
     // 心臓負荷の増減
-    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
-    TYRANO.kag.stat.f.burden -= getRecoveryBurden(stat.burden);
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(recoveryValue);
+    TYRANO.kag.stat.f.burden -= getRecoveryBurden();
 
     // PVCが発生した場合心室に負荷をかける
     TYRANO.kag.stat.f.ventricleBurden =
@@ -301,18 +287,13 @@ async function beatRhythmVT() {
 
     // 心拍数の復元値を取得
     var maxRecoveryValue = 5;
-    var recoveryValue = getRecoveryHeartRate(
-      stat.baseHeartRate,
-      stat.heartRate,
-      100,
-      maxRecoveryValue,
-    );
+    var recoveryValue = getRecoveryHeartRate(100, maxRecoveryValue);
     // 心臓負荷の増加
     TYRANO.kag.stat.f.ventricleBurden =
       stat.ventricleBurden + Math.floor(stat.burden / 5) >= 100
         ? 100
         : stat.ventricleBurden + Math.floor(stat.burden / 5);
-    TYRANO.kag.stat.f.burden += getIncreaseBurden(stat.burden, recoveryValue);
+    TYRANO.kag.stat.f.burden += getIncreaseBurden(recoveryValue);
     await sleep(Math.floor(60000 / stat.heartRate) * 1);
   } else {
     TYRANO.kag.stat.f.countVT++;
@@ -367,7 +348,7 @@ async function heartbeat() {
 
       var randomForVentricleBurden = randomRange(0, 100);
       // 負荷が上がるごとに重度の発作の確率が上がる
-      if (getActiveVTRate(stat.ventricleBurden) > randomForVentricleBurden) {
+      if (getActiveVTRate() > randomForVentricleBurden) {
         // VTの発生
         TYRANO.kag.stat.f.isVT = true;
       } else {
@@ -507,44 +488,6 @@ TYRANO.kag.ftag.master_tag.calculate_heartRate = {
     if (!"true" == pm.isAsync) {
       TYRANO.kag.ftag.nextOrder();
     }
-  },
-};
-
-TYRANO.kag.ftag.master_tag.up_heart_rate_10 = {
-  kag: TYRANO.kag,
-  vital: ["value"],
-  pm: {
-    value: "0",
-  },
-  start: function (pm) {
-    var value = parseInt(pm.value);
-    console.log(
-      `heartRate up ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate + value}`,
-    );
-    TYRANO.kag.stat.f.heartRate += value;
-    TYRANO.kag.stat.f.heartRateMin += value - 10;
-    TYRANO.kag.stat.f.heartRateMax += value + 10;
-
-    this.kag.ftag.nextOrder();
-  },
-};
-
-TYRANO.kag.ftag.master_tag.down_heart_rate_10 = {
-  kag: TYRANO.kag,
-  vital: ["value"],
-  pm: {
-    value: "0",
-  },
-  start: function (pm) {
-    var value = parseInt(pm.value);
-    console.log(
-      `heartRate down ${TYRANO.kag.stat.f.heartRate} → ${TYRANO.kag.stat.f.heartRate - value}`,
-    );
-    TYRANO.kag.stat.f.heartRate -= value;
-    TYRANO.kag.stat.f.heartRateMin -= value - 10;
-    TYRANO.kag.stat.f.heartRateMax -= value + 10;
-
-    this.kag.ftag.nextOrder();
   },
 };
 

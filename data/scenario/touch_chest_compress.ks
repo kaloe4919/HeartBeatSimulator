@@ -28,6 +28,8 @@ isAsync: "true",
 TYRANO.kag.ftag.master_tag.calculate_heartRate.start({
 value: "30",
 operator: "-",
+limit: "55",
+limitForce: "true",
 isAsync: "true",
 });
 TYRANO.kag.ftag.master_tag.set_base_heart_rate.start({
@@ -47,7 +49,14 @@ isAsync: "true",
 [set_visible_compress_event_menu visible="true"]
 ;turn off event flags
 [end_talk_event]
+;turn on compress event flags
+[start_compress_event]
 [_tb_end_tyrano_code]
+
+[iscript]
+TYRANO.kag.stat.f.pressure = 100;
+TYRANO.kag.stat.f.burden = 50;
+[endscript]
 
 [s  ]
 *stop_touch_chest_compress
@@ -58,9 +67,13 @@ isAsync: "true",
 [live2d_switch_eye_blink isEnable="true" isAsync="true"]
 ;turn on event flags
 [start_talk_event]
+;turn off compress event flags
+[end_compress_event]
 [_tb_end_tyrano_code]
 
 [iscript]
+TYRANO.kag.stat.f.pressure = 0;
+TYRANO.kag.stat.f.burden = 10;
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
 name: "Kyoka",
 mtn: "TouchChestCompress",
