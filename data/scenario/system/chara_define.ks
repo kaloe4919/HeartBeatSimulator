@@ -40,4 +40,6 @@ f['respiratoryRate']='';
 f['prevRespiratoryRate']=''; 
 f['currentExpression']=''; 
 f['onCompressEvent']=''; 
+f['onReactionEvent']=''; 
+f['isDuringCoolTime']=''; 
 [endscript] 

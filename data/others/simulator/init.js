@@ -48,6 +48,8 @@ var defaultVariables = {
   currentExpression: "Normal",
   onTalkEvent: false,
   onCompressEvent: false,
+  onReactionEvent: false,
+  isDuringCoolTime: false,
 };
 
 TYRANO.kag.hbsim = {};
@@ -89,3 +91,5 @@ TYRANO.kag.stat.f.currentExpression = defaultVariables.currentExpression;
 
 TYRANO.kag.stat.f.onTalkEvent = defaultVariables.onTalkEvent;
 TYRANO.kag.stat.f.onCompressEvent = defaultVariables.onCompressEvent;
+TYRANO.kag.stat.f.onReactionEvent = defaultVariables.onReactionEvent;
+TYRANO.kag.stat.f.isDuringCoolTime = defaultVariables.isDuringCoolTime;

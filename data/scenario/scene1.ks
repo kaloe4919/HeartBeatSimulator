@@ -18,6 +18,7 @@
 [loadjs storage="simulator/init.js"]
 [loadjs storage="simulator/actor/expression.js"]
 [loadjs storage="simulator/talk/eventHandler.js"]
+[loadjs storage="simulator/talk/reaction/eventHandler.js"]
 [loadjs storage="simulator/touch/eventHandler.js"]
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
