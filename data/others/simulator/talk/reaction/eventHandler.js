@@ -25,7 +25,14 @@ function reactionEventByBurdenHandler() {
 
   // TODO: 発生条件見直す
   // 中度の心室負荷
-  if (stat.ventricleBurden >= 30 && stat.ventricleBurden < 60) {
+  if (stat.ventricleBurden < 30) {
+    if (stat.burden >= 60) {
+      TYRANO.kag.ftag.startTag("jump", {
+        storage: "reaction_burden_medium.ks",
+        target: "reaction_burden_medium_event",
+      });
+    }
+  } else if (stat.ventricleBurden >= 30 && stat.ventricleBurden < 60) {
     TYRANO.kag.ftag.startTag("jump", {
       storage: "reaction_burden_medium.ks",
       target: "reaction_burden_medium_event",
@@ -36,14 +43,6 @@ function reactionEventByBurdenHandler() {
     TYRANO.kag.ftag.startTag("jump", {
       storage: "reaction_burden_heavy.ks",
       target: "reaction_burden_heavy_event",
-    });
-  }
-
-  // 心臓負荷が高い場合も発生させる、ただし中度扱い
-  if (stat.burden >= 60) {
-    TYRANO.kag.ftag.startTag("jump", {
-      storage: "reaction_burden_medium.ks",
-      target: "reaction_burden_medium_event",
     });
   }
 
