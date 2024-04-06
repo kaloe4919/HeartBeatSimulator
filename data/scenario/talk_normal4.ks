@@ -32,7 +32,7 @@
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]
 *talk_normal4_2
 
 [tb_fuki_start  ]
@@ -49,7 +49,7 @@
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]
 *talk_normal4_3
 
 [tb_fuki_start  ]
@@ -74,4 +74,4 @@ isAsync: "true",
 ま、まったく……。[p]
 [_tb_end_text]
 
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]

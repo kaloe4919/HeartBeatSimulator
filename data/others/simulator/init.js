@@ -47,9 +47,10 @@ var defaultVariables = {
   beatVol: 75,
   currentExpression: "Normal",
   onTalkEvent: false,
-  onCompressEvent: false,
   onReactionEvent: false,
   isDuringCoolTime: false,
+  // scene name of where reaction event occurred
+  waitSceneName: "scene1",
 };
 
 TYRANO.kag.hbsim = {};
@@ -90,6 +91,7 @@ TYRANO.kag.stat.f.beatVol = defaultVariables.beatVol;
 TYRANO.kag.stat.f.currentExpression = defaultVariables.currentExpression;
 
 TYRANO.kag.stat.f.onTalkEvent = defaultVariables.onTalkEvent;
-TYRANO.kag.stat.f.onCompressEvent = defaultVariables.onCompressEvent;
 TYRANO.kag.stat.f.onReactionEvent = defaultVariables.onReactionEvent;
 TYRANO.kag.stat.f.isDuringCoolTime = defaultVariables.isDuringCoolTime;
+
+TYRANO.kag.stat.f.waitSceneName = defaultVariables.waitSceneName;

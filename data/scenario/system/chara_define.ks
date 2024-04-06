@@ -39,7 +39,7 @@ f['beatVol']='';
 f['respiratoryRate']=''; 
 f['prevRespiratoryRate']=''; 
 f['currentExpression']=''; 
-f['onCompressEvent']=''; 
 f['onReactionEvent']=''; 
 f['isDuringCoolTime']=''; 
+f['waitSceneName']=''; 
 [endscript] 

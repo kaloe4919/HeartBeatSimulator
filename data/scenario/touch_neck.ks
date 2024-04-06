@@ -33,7 +33,7 @@ isAsync: "true",
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
 [tb_fuki_stop  ]
-[jump  storage="touch_wait.ks"  target="*touch_wait"  ]
+[jump  storage="touch.ks"  target="*touch_wait"  ]
 *touch_neck_event2
 
 [tb_fuki_start  ]
@@ -56,4 +56,4 @@ isAsync: "true",
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
 [tb_fuki_stop  ]
-[jump  storage="touch_wait.ks"  target="*touch_wait"  ]
+[jump  storage="touch.ks"  target="*touch_wait"  ]

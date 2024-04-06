@@ -52,7 +52,6 @@ isAsync: "true",
 う、うん……。[p]
 [_tb_end_text]
 
-[tb_fuki_stop  ]
 [wait  time="500"  ]
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
@@ -74,10 +73,14 @@ isAsync: "true",
 });
 [endscript]
 
+[tb_fuki_stop  ]
 [tb_start_tyrano_code]
 [set_visible_touch_chest_event_menu visible="true"]
 ;turn off event flags
 [end_talk_event]
+[end_reaction_event]
+;scene name to return from a reaction event
+[set_wait_scene_name sceneName="touch_chest"]
 [_tb_end_tyrano_code]
 
 [s  ]
@@ -120,4 +123,4 @@ isAsync: "true",
 });
 [endscript]
 
-[jump  storage="touch_wait.ks"  target="*touch_wait"  ]
+[jump  storage="touch.ks"  target="*touch_wait"  ]

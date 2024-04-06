@@ -103,6 +103,30 @@
 			{
 				"Name": "Smile2",
 				"File": "expressions/Smile2.exp3.json"
+			},
+			{
+				"Name": "Painful5",
+				"File": "expressions/Painful5.exp3.json"
+			},
+			{
+				"Name": "Painful5_Sweat",
+				"File": "expressions/Painful5_Sweat.exp3.json"
+			},
+			{
+				"Name": "Painful6",
+				"File": "expressions/Painful6.exp3.json"
+			},
+			{
+				"Name": "Painful6_Sweat",
+				"File": "expressions/Painful6_Sweat.exp3.json"
+			},
+			{
+				"Name": "Painful7",
+				"File": "expressions/Painful7.exp3.json"
+			},
+			{
+				"Name": "Painful7_Sweat",
+				"File": "expressions/Painful7_Sweat.exp3.json"
 			}
 		],
 		"Motions": {
