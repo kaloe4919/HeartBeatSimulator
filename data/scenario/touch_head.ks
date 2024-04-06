@@ -40,7 +40,7 @@ isAsync: "true",
 
 [tb_fuki_stop  ]
 [wait  time="200"  ]
-[jump  storage="touch_wait.ks"  target="*touch_wait"  ]
+[jump  storage="touch.ks"  target="*touch_wait"  ]
 *touch_head_event2
 
 [iscript]
@@ -63,4 +63,4 @@ isAsync: "true",
 [endscript]
 
 [wait  time="2000"  ]
-[jump  storage="touch_wait.ks"  target="*touch_wait"  ]
+[jump  storage="touch.ks"  target="*touch_wait"  ]

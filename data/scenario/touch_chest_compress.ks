@@ -44,19 +44,23 @@ isAsync: "true",
 平気……そのまま続けて。[p]
 [_tb_end_text]
 
+[iscript]
+TYRANO.kag.stat.f.pressure = 100;
+TYRANO.kag.stat.f.burden = 50;
+[endscript]
+
+[jump  storage="touch_chest_compress.ks"  target="*touch_chest_compress_wait"  ]
+*touch_chest_compress_wait
+
 [tb_fuki_stop  ]
 [tb_start_tyrano_code]
 [set_visible_compress_event_menu visible="true"]
 ;turn off event flags
 [end_talk_event]
-;turn on compress event flags
-[start_compress_event]
+[end_reaction_event]
+;scene name to return from a reaction event
+[set_wait_scene_name sceneName="touch_chest_compress"]
 [_tb_end_tyrano_code]
-
-[iscript]
-TYRANO.kag.stat.f.pressure = 100;
-TYRANO.kag.stat.f.burden = 50;
-[endscript]
 
 [s  ]
 *stop_touch_chest_compress
@@ -67,8 +71,6 @@ TYRANO.kag.stat.f.burden = 50;
 [live2d_switch_eye_blink isEnable="true" isAsync="true"]
 ;turn on event flags
 [start_talk_event]
-;turn off compress event flags
-[end_compress_event]
 [_tb_end_tyrano_code]
 
 [iscript]
@@ -90,4 +92,4 @@ isAsync: "true",
 [_tb_end_text]
 
 [tb_fuki_stop  ]
-[jump  storage="touch_chest.ks"  target="*touch_chest_wait"  ]
+[jump  storage="touch_chest.ks"  target="*touch_chest_wait"  cond=""  ]

@@ -82,7 +82,7 @@ isAsync: "true",
 まあ、これでおあいこね。[p]
 [_tb_end_text]
 
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]
 *talk_normal1_2
 
 [tb_fuki_start  ]
@@ -156,7 +156,7 @@ isAsync: "true",
 大丈夫だから仕事に戻ってて。[p]
 [_tb_end_text]
 
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]
 *talk_normal1_3
 
 [tb_fuki_start  ]
@@ -167,4 +167,4 @@ isAsync: "true",
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  cond=""  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  cond=""  ]

@@ -328,6 +328,9 @@ async function heartbeat() {
     // cache prev heart rate
     TYRANO.kag.stat.f.prevHeartRate = stat.heartRate;
 
+    // reaction event by ventricle burden
+    reactionEventByBurdenHandler();
+
     // force VT
     if (stat.isVT) {
       await beatRhythmVT();

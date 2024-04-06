@@ -102,7 +102,7 @@ isAsync: "true",
 [endscript]
 
 [wait  time="500"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]
 *talk_normal2_2
 
 [tb_fuki_start  ]
@@ -113,4 +113,4 @@ isAsync: "true",
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
-[jump  storage="scene1.ks"  target="*stand_by"  ]
+[jump  storage="scene1.ks"  target="*scene1_wait"  ]

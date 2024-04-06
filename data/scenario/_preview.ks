@@ -20,6 +20,7 @@
 [loadjs storage="simulator/init.js"]
 [loadjs storage="simulator/actor/expression.js"]
 [loadjs storage="simulator/talk/eventHandler.js"]
+[loadjs storage="simulator/talk/reaction/eventHandler.js"]
 [loadjs storage="simulator/touch/eventHandler.js"]
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
@@ -129,7 +130,7 @@ isAsync: "true",
 [endscript]
 
 [wait  time="500"  ]
-*stand_by
+*scene1_wait
 
 [iscript]
 TYRANO.kag.ftag.master_tag.live2d_motion.start({
@@ -141,13 +142,12 @@ isAsync: "true",
 [endscript]
 
 [tb_fuki_stop  ]
-[tb_start_text mode=1 ]
-#
-[_tb_end_text]
-
 [tb_start_tyrano_code]
 ;turn off event flags
 [end_talk_event]
+[end_reaction_event]
+;scene name to return from a reaction event
+[set_wait_scene_name sceneName="scene1"]
 ;show buttons
 [set_visible_control_menu visible="true"]
 [set_visible_debug_buttons visible="true"]
