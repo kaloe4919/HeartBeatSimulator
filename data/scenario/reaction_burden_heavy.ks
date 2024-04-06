@@ -151,7 +151,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-苦しいのに、なんでこんなに興奮してるんだろ……。[p]
+苦しいのに、なんでこんなに、気持ちいいの……っ。[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_compress_end"  ]
