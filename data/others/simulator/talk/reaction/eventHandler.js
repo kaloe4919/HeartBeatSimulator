@@ -5,12 +5,12 @@ function setStatAfterInterval(second, variableKey, variableValue) {
       TYRANO.kag.stat.f[variableKey] = variableValue;
       clearInterval(intervalId);
     }
-    console.log(
-      count,
-      variableKey,
-      TYRANO.kag.stat.f[variableKey],
-      TYRANO.kag.stat.f.waitSceneName,
-    );
+    // console.log(
+    //   count,
+    //   variableKey,
+    //   TYRANO.kag.stat.f[variableKey],
+    //   TYRANO.kag.stat.f.waitSceneName,
+    // );
     count++;
   }, 1000);
 }
@@ -33,10 +33,10 @@ function reactionEventByBurdenHandler() {
   }
   // 重度の心室負荷
   else if (stat.ventricleBurden >= 60) {
-    // TYRANO.kag.ftag.startTag("jump", {
-    //   storage: "reaction_burden_medium.ks",
-    //   target: "reaction_burden_medium_event",
-    // });
+    TYRANO.kag.ftag.startTag("jump", {
+      storage: "reaction_burden_heavy.ks",
+      target: "reaction_burden_heavy_event",
+    });
   }
 
   // 心臓負荷が高い場合も発生させる、ただし中度扱い
