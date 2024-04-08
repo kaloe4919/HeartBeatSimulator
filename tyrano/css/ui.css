@@ -24,3 +24,54 @@
 .close_menu_button::after {
   transform: translate(-50%,-50%) rotate(-45deg);
 }
+
+.option_menu {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  height: calc(100% - 32px);
+  width: 420px;
+  z-index: 10005;
+}
+
+.tab_list {
+  display: flex;
+}
+
+.tab:not(:last-of-type) {
+  margin-right: 2px;
+}
+
+.tab_input {
+  display: none;
+}
+
+.tab_label_wrapper .tab_label {
+  display: block;
+  background-color: rgba(64, 64, 64, 1);
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 16px 24px;
+  transition: .3s;
+}
+
+.tab_label_wrapper .tab_label:hover{
+  background-color: rgba(16, 16, 16, 1);
+}
+
+.selected .tab_label {
+  color: #fff;
+  background-color: rgba(32, 32, 32, 1);
+  transition: .3s;
+}
+
+.tab_panel {
+  color: #fff;
+  background-color: rgba(32, 32, 32, 1);
+  height: calc(100% - 56px - 32px);
+}
+
+.tab_panel div {
+  padding: 16px 16px;
+}

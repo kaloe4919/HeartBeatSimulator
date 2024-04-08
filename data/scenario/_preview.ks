@@ -24,6 +24,7 @@
 [loadjs storage="simulator/touch/eventHandler.js"]
 [loadjs storage="simulator/ui/ecgPanel.js"]
 [loadjs storage="simulator/ui/rrPanel.js"]
+[loadjs storage="simulator/ui/optionMenu.js"]
 [loadjs storage="simulator/ui/controlMenu.js"]
 [loadjs storage="simulator/ui/actionMenu.js"]
 [loadjs storage="simulator/ui/playMenu.js"]
@@ -51,6 +52,7 @@
 
 [tb_start_tyrano_code]
 ;init control menu
+[option_menu]
 [control_menu x="20" y="32" width="360"]
 [action_menu x="20" y="164" width="360"]
 [play_menu x="20" y="164" width="360"]
