@@ -111,8 +111,8 @@ isAsync: "true",
 [live2d_expression  name="Kyoka"  expression="Shy2"  ]
 [tb_start_text mode=1 ]
 #
-やば……すごく緊張した……。[p]
-ドキドキしてたの絶対バレてるし……。[p]
+（やば……すごく緊張した……。）[p]
+（ドキドキしてたの絶対バレてるし……。）[p]
 [_tb_end_text]
 
 [tb_fuki_stop  ]

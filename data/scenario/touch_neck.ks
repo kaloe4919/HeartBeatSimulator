@@ -27,8 +27,8 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-うぅ……、脈測られてる……。[p]
-平常心、平常心……。[p]
+（うぅ……、脈測られてる……。）[p]
+（平常心、平常心……。）[p]
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]
@@ -50,8 +50,8 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-脈測られてる……。[p]
-ドキドキしないようにしないと……。[p]
+（脈測られてる……。）[p]
+（ドキドキしないようにしないと……。）[p]
 [_tb_end_text]
 
 [live2d_expression  name="Kyoka"  expression="Normal"  ]

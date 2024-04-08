@@ -30,7 +30,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-やば……心臓ちょっと変かも……。[p]
+（やば……心臓ちょっと変かも……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_end"  ]
@@ -38,7 +38,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、変な動きしてる……。[p]
+（心臓、変な動きしてる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_end"  ]
@@ -46,7 +46,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-また変な動きしてる……。[p]
+（また変な動きしてる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_end"  ]
@@ -54,7 +54,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、ちょっと無理させすぎたかな……。[p]
+（心臓、ちょっと無理させすぎたかな……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_end"  ]
@@ -83,7 +83,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-やば……心臓ちょっと変かも……。[p]
+（やば……心臓ちょっと変かも……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -91,7 +91,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、変な動きしてる……。[p]
+（心臓、変な動きしてる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -99,7 +99,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-また変な動きしてる……。[p]
+（また変な動きしてる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -107,7 +107,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、変な動きしてるの先生にバレちゃってる……。[p]
+（心臓、変な動きしてるの先生にバレちゃってる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -127,7 +127,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-やば……心臓ちょっと変……。[p]
+（やば……心臓ちょっと変……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -135,7 +135,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、変な動きしてる……。[p]
+（心臓、変な動きしてる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -143,7 +143,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓、ちょっと苦しい……っ。[p]
+（心臓、ちょっと苦しい……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -151,7 +151,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-くっ、まだ平気……。[p]
+（くっ、まだ平気……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_medium.ks"  target="*random_reaction_touch_chest_compress_end"  ]

@@ -30,7 +30,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-ちょっと、まずいかも……っ。[p]
+（ちょっと、まずいかも……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_end"  ]
@@ -38,7 +38,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓が、暴れてる……っ。[p]
+（心臓が、暴れてる……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_end"  ]
@@ -46,7 +46,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-もう少し、頑張って……。[p]
+（もう少し、頑張って……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_end"  ]
@@ -54,7 +54,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-くっ……ちゃんと動いてっ。[p]
+（くっ……ちゃんと動いてっ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_end"  ]
@@ -83,7 +83,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-ちょっと、まずいかも……っ。[p]
+（ちょっと、まずいかも……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -91,7 +91,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓が、暴れてる……っ。[p]
+（心臓が、暴れてる……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -99,7 +99,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-くっ……ちゃんと動いてっ。[p]
+（くっ……ちゃんと動いてっ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -107,7 +107,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-苦しいけど……この感覚、癖になる……。[p]
+（苦しいけど……この感覚、癖になる……。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_end"  ]
@@ -127,7 +127,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-ちょっと、まずいかも……っ。[p]
+（ちょっと、まずいかも……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -135,7 +135,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-心臓が、暴れてる……っ。[p]
+（心臓が、暴れてる……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -143,7 +143,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-先生の手に、押さえつけられて、心臓が苦しがってる……っ。[p]
+（先生の手に、押さえつけられて、心臓が苦しがってる……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_compress_end"  ]
@@ -151,7 +151,7 @@ isAsync: "true",
 
 [tb_start_text mode=1 ]
 #
-苦しいのに、なんでこんなに、気持ちいいの……っ。[p]
+（苦しいのに、なんでこんなに、気持ちいいの……っ。）[p]
 [_tb_end_text]
 
 [jump  storage="reaction_burden_heavy.ks"  target="*random_reaction_touch_chest_compress_end"  ]
