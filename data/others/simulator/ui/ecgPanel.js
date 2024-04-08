@@ -128,7 +128,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
         dtick: 10,
         showticklabels: false,
         zeroline: false,
-        range: [0, 499],
+        range: [0, 399],
       },
       yaxis: {
         automargin: false,
@@ -140,10 +140,10 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
       },
     };
     // バイタルモニタは 1 秒あたり 50 フレームを持つアニメーションと解釈する
-    // 10秒分表示するため 10 * 50 = 500 個のデータを作成する
+    // 8秒分表示するため 8 * 50 = 400 個のデータを作成する
     var xValues = [];
     var yValues = [];
-    for (var i = 0; i < 500; i++) {
+    for (var i = 0; i < 400; i++) {
       xValues.push(i.toString());
       yValues.push(null);
     }
