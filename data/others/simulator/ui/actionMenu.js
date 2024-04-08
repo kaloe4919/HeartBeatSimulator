@@ -1,4 +1,6 @@
 TYRANO.kag.ftag.master_tag.action_menu = {
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
   pm: {
     x: "",
     y: "",
@@ -6,7 +8,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
     height: "",
   },
   start: function (pm) {
-    var target_layer = TYRANO.kag.layer.getLayer("fix");
+    var target_layer = this.layer.getLayer("fix");
     var $menu = $("<div class='action_menu'>");
     $menu.css({
       display: "none",
@@ -89,7 +91,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
 
     target_layer.append($menu);
     target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
   setSurveyButtonEvent: function ($surveyButton, pm) {
     !(function () {
@@ -126,6 +128,7 @@ TYRANO.kag.ftag.master_tag.action_menu = {
 };
 
 TYRANO.kag.ftag.master_tag.set_visible_action_menu = {
+  ftag: TYRANO.kag.ftag,
   pm: {
     visible: "true",
   },
@@ -133,6 +136,6 @@ TYRANO.kag.ftag.master_tag.set_visible_action_menu = {
     var config = "true" == pm.visible ? "block" : "none";
     $(".action_menu").css("display", config);
 
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
