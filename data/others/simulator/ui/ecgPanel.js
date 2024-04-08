@@ -5,7 +5,8 @@ ecgYDataQue = [];
 
 // 心拍数に応じて Interval のフレームを短くする
 function shortenIntervalByHeartRate(yData) {
-  var heartRate = TYRANO.kag.stat.f.heartRate;
+  var f = TYRANO.kag.stat.f;
+  var heartRate = f.heartRate;
   var shortenLength = Math.round(yData.length * (65 / heartRate));
   if (shortenLength >= 0) {
     return yData.splice(0, shortenLength);
@@ -15,11 +16,11 @@ function shortenIntervalByHeartRate(yData) {
 }
 
 function updateEcg() {
-  var stat = TYRANO.kag.stat.f;
+  var f = TYRANO.kag.stat.f;
 
   // 鼓動がある場合、鼓動を解析してキューを作成
-  if (!stat.isEcgAddedQue) {
-    if (stat.ecgQueType === "Normal") {
+  if (!f.isEcgAddedQue) {
+    if (f.ecgQueType === "Normal") {
       var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
       var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
@@ -34,8 +35,8 @@ function updateEcg() {
         .concat(tWave);
       ecgYDataQue = que;
 
-      TYRANO.kag.stat.f.isEcgAddedQue = true;
-    } else if (stat.ecgQueType === "PVC") {
+      f.isEcgAddedQue = true;
+    } else if (f.ecgQueType === "PVC") {
       var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
       var pWave = [1, 0];
       var prInterval = shortenIntervalByHeartRate([0, 0, 0]);
@@ -54,17 +55,17 @@ function updateEcg() {
         .concat(rWavePVC);
       ecgYDataQue = que;
 
-      TYRANO.kag.stat.f.isEcgAddedQue = true;
-    } else if (stat.ecgQueType === "VT") {
+      f.isEcgAddedQue = true;
+    } else if (f.ecgQueType === "VT") {
       var rWavePVC = [0.5, 1, 9, -2, -2.5, -4, -1, 0, 1];
       var que = rWavePVC;
       ecgYDataQue = que;
 
-      TYRANO.kag.stat.f.isEcgAddedQue = true;
+      f.isEcgAddedQue = true;
     }
   }
 
-  var yValues = stat.ecgChartData.y;
+  var yValues = f.ecgChartData.y;
   if (ecgYDataQue.length > 0) {
     // キューがある場合、Y軸をキューの値で更新する
     // 次の 3 フレームを初期化する
@@ -75,15 +76,11 @@ function updateEcg() {
     // 次の 3 フレームを初期化する
     yValues.splice(ecgYIndex, 4, 0, null, null, null);
   }
-  TYRANO.kag.stat.f.ecgChartData.y = yValues;
-  Plotly.update(
-    "ecg",
-    [TYRANO.kag.stat.f.ecgChartData],
-    TYRANO.kag.stat.f.ecgChartLayout,
-  );
+  f.ecgChartData.y = yValues;
+  Plotly.update("ecg", [f.ecgChartData], f.ecgChartLayout);
 
   // 更新したY軸が配列の最後の場合は Index を 0 に戻す
-  if (ecgYIndex >= stat.ecgChartData.x.length - 1) {
+  if (ecgYIndex >= f.ecgChartData.x.length - 1) {
     ecgYIndex = 0;
   } else {
     ecgYIndex++;
@@ -100,6 +97,9 @@ async function liveEcg() {
 }
 
 TYRANO.kag.ftag.master_tag.show_ecg = {
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
   pm: {
     layer: "0",
     page: "fore",
@@ -110,7 +110,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
   },
   start: function (pm) {
     // init ecg monitor
-    var target_layer = TYRANO.kag.layer.getLayer(pm.layer, pm.page);
+    var target_layer = this.layer.getLayer(pm.layer, pm.page);
     var chart = $("<div id='ecg'></div>");
     chart.css("position", "absolute");
     chart.css("left", pm.x + "px");
@@ -155,35 +155,36 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
       line: { color: "#78f542", width: 2, shape: "spline" },
     };
     Plotly.newPlot("ecg", [data], layout);
-    TYRANO.kag.stat.f.ecgChartLayout = layout;
-    TYRANO.kag.stat.f.ecgChartData = data;
-    TYRANO.kag.ftag.nextOrder();
+    this.f.ecgChartLayout = layout;
+    this.f.ecgChartData = data;
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.start_ecg = {
-  kag: TYRANO.kag,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
     liveEcg();
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.update_hr = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1090,
       y: 58,
       vertical: "false",
-      text: `HR: ${Math.floor(TYRANO.kag.stat.f.heartRate)}`,
+      text: `HR: ${Math.floor(this.f.heartRate)}`,
       size: "20",
       hexColor: "#78f542",
       bold: "bold",

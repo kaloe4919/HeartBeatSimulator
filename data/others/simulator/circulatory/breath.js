@@ -3,7 +3,10 @@ function sleep(milliseconds) {
 }
 
 function playActorBreathMotion() {
-  var playRespiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
+  var f = TYRANO.kag.stat.f;
+  var ftag = TYRANO.kag.ftag;
+
+  var playRespiratoryRate = f.respiratoryRate;
   var motionConfig = {
     name: "Kyoka",
     mtn: "Breath",
@@ -25,47 +28,50 @@ function playActorBreathMotion() {
     motionConfig.no = "4";
   }
 
-  TYRANO.kag.ftag.master_tag.live2d_breath_motion.start(motionConfig);
+  ftag.master_tag.live2d_breath_motion.start(motionConfig);
 }
 
 async function breathNormal() {
-  var stat = TYRANO.kag.stat.f;
+  var f = TYRANO.kag.stat.f;
   // Set values for vital monitor
-  TYRANO.kag.stat.f.rrQueType = "Normal";
-  TYRANO.kag.stat.f.isRrAddedQue = false;
+  f.rrQueType = "Normal";
+  f.isRrAddedQue = false;
 
   playActorBreathMotion();
-  await sleep(Math.floor((60 / stat.respiratoryRate) * 1000));
+  await sleep(Math.floor((60 / f.respiratoryRate) * 1000));
 }
 
 async function breath() {
-  var stat = TYRANO.kag.stat.f;
   var isDefinedRr = true;
   while (isDefinedRr) {
+    var f = TYRANO.kag.stat.f;
+    var ftag = TYRANO.kag.ftag;
+    var hbsim = TYRANO.kag.hbsim;
+
     console.log("breath");
     // Update RespiratoryRate from heartRate
-    var heartRate = TYRANO.kag.stat.f.heartRate;
-    TYRANO.kag.stat.f.respiratoryRate = Math.round((heartRate / 65) * 15);
+    var heartRate = f.heartRate;
+    f.respiratoryRate = Math.round((heartRate / 65) * 15);
 
     // Update expression
-    TYRANO.kag.hbsim.expression.update();
+    hbsim.expression.update();
 
     // Update RR Display
-    TYRANO.kag.ftag.master_tag.update_rr.start();
+    ftag.master_tag.update_rr.start();
 
     await breathNormal();
 
-    TYRANO.kag.stat.f.prevRespiratoryRate = stat.respiratoryRate;
+    f.prevRespiratoryRate = f.respiratoryRate;
   }
 }
 
 TYRANO.kag.ftag.master_tag.breath_start = {
-  kag: TYRANO.kag,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
     breath();
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };

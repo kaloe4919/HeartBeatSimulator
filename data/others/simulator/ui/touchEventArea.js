@@ -1,7 +1,9 @@
 TYRANO.kag.ftag.master_tag.touch_event_area = {
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
   pm: {},
   start: function (pm) {
-    var target_layer = TYRANO.kag.layer.getLayer("fix");
+    var target_layer = this.layer.getLayer("fix");
 
     // head area
     var $headArea = $("<div class='touch_event_area touch_event_head_area'>");
@@ -68,7 +70,7 @@ TYRANO.kag.ftag.master_tag.touch_event_area = {
     target_layer.append($neckArea);
     target_layer.append($chestArea);
     target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
   setTouchHeadEvent: function ($headArea) {
     !(function () {
@@ -117,6 +119,7 @@ TYRANO.kag.ftag.master_tag.touch_event_area = {
 };
 
 TYRANO.kag.ftag.master_tag.set_visible_touch_event_area = {
+  ftag: TYRANO.kag.ftag,
   pm: {
     visible: "true",
   },
@@ -124,6 +127,6 @@ TYRANO.kag.ftag.master_tag.set_visible_touch_event_area = {
     var config = "true" == pm.visible ? "block" : "none";
     $(".touch_event_area").css("display", config);
 
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };

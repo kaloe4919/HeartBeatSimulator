@@ -5,7 +5,8 @@ rrYDataQue = [];
 
 // 呼吸数に応じて Interval のフレームを短くする
 function shortenIntervalByRespiratoryRate(yData) {
-  var respiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
+  var f = TYRANO.kag.stat.f;
+  var respiratoryRate = f.respiratoryRate;
   var shortenLength = Math.round(yData.length * (15 / respiratoryRate));
   if (shortenLength >= 0) {
     return yData.splice(yData[0], shortenLength);
@@ -40,11 +41,11 @@ function createCurveData(max, length, isReverse) {
 }
 
 function updateRr() {
-  var stat = TYRANO.kag.stat.f;
+  var f = TYRANO.kag.stat.f;
 
   // 呼吸がある場合、キューを作成
-  if (!stat.isRrAddedQue) {
-    var respiratoryRate = TYRANO.kag.stat.f.respiratoryRate;
+  if (!f.isRrAddedQue) {
+    var respiratoryRate = f.respiratoryRate;
     // 呼吸の強さに応じてY軸のMax値を変動させる
     var curveMaxValue = 2 * (respiratoryRate / 15);
     // 呼吸の速さに応じてグラフの曲線を急にする
@@ -62,10 +63,10 @@ function updateRr() {
     var que = inhaleCurve.concat(exhaleCurve);
     rrYDataQue = que;
 
-    TYRANO.kag.stat.f.isRrAddedQue = true;
+    f.isRrAddedQue = true;
   }
 
-  var yValues = stat.rrChartData.y;
+  var yValues = f.rrChartData.y;
   if (rrYDataQue.length > 0) {
     // キューがある場合、Y軸をキューの値で更新する
     // 次の 3 フレームを初期化する
@@ -76,15 +77,11 @@ function updateRr() {
     // 次の 3 フレームを初期化する
     yValues.splice(rrYIndex, 4, 0, null, null, null);
   }
-  TYRANO.kag.stat.f.rrChartData.y = yValues;
-  Plotly.update(
-    "rr",
-    [TYRANO.kag.stat.f.rrChartData],
-    TYRANO.kag.stat.f.rrChartLayout,
-  );
+  f.rrChartData.y = yValues;
+  Plotly.update("rr", [f.rrChartData], f.rrChartLayout);
 
   // 更新したY軸が配列の最後の場合は Index を 0 に戻す
-  if (rrYIndex >= stat.rrChartData.x.length - 1) {
+  if (rrYIndex >= f.rrChartData.x.length - 1) {
     rrYIndex = 0;
   } else {
     rrYIndex++;
@@ -101,6 +98,9 @@ async function liveRr() {
 }
 
 TYRANO.kag.ftag.master_tag.show_rr = {
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
   pm: {
     layer: "0",
     page: "fore",
@@ -111,7 +111,7 @@ TYRANO.kag.ftag.master_tag.show_rr = {
   },
   start: function (pm) {
     // init rr monitor
-    var target_layer = TYRANO.kag.layer.getLayer(pm.layer, pm.page);
+    var target_layer = this.layer.getLayer(pm.layer, pm.page);
     var chart = $("<div id='rr'></div>");
     chart.css("position", "absolute");
     chart.css("left", pm.x + "px");
@@ -156,35 +156,36 @@ TYRANO.kag.ftag.master_tag.show_rr = {
       line: { color: "#42e0f5", width: 2, shape: "spline" },
     };
     Plotly.newPlot("rr", [data], layout);
-    TYRANO.kag.stat.f.rrChartLayout = layout;
-    TYRANO.kag.stat.f.rrChartData = data;
-    TYRANO.kag.ftag.nextOrder();
+    this.f.rrChartLayout = layout;
+    this.f.rrChartData = data;
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.start_rr = {
-  kag: TYRANO.kag,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
     liveRr();
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.update_rr = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1190,
       y: 58,
       vertical: "false",
-      text: `RR: ${TYRANO.kag.stat.f.respiratoryRate}`,
+      text: `RR: ${this.f.respiratoryRate}`,
       size: "20",
       hexColor: "#42e0f5",
       bold: "bold",

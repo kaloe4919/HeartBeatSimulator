@@ -1,30 +1,34 @@
 function talkEventHandler() {
+  var ftag = TYRANO.kag.ftag;
+
   // TODO: 心拍数によって発生する会話を変える
   var random = randomRange(1, 4);
-  TYRANO.kag.ftag.startTag("jump", {
+  ftag.startTag("jump", {
     storage: `talk_normal${random}.ks`,
     target: `talk_normal${random}`,
   });
 }
 
 TYRANO.kag.ftag.master_tag.start_talk_event = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   pm: {},
   start: function (pm) {
     console.log(`start talk event`);
-    this.kag.stat.f.onTalkEvent = true;
+    this.f.onTalkEvent = true;
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.end_talk_event = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   pm: {},
   start: function (pm) {
     console.log(`stop talk event`);
-    this.kag.stat.f.onTalkEvent = false;
+    this.f.onTalkEvent = false;
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };

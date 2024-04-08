@@ -1,3 +1,5 @@
+var f = TYRANO.kag.stat.f;
+TYRANO.kag.hbsim = {};
 var defaultVariables = {
   // --- Chart Variables (vital monitor) ---
   // ecg monitor variables
@@ -53,45 +55,43 @@ var defaultVariables = {
   waitSceneName: "scene1",
 };
 
-TYRANO.kag.hbsim = {};
+f.ecgChartData = defaultVariables.ecgChartData;
+f.ecgChartLayout = defaultVariables.ecgChartLayout;
+f.ecgQueType = defaultVariables.ecgQueType;
+f.isEcgAddedQue = defaultVariables.isEcgAddedQue;
+f.rrChartData = defaultVariables.rrChartData;
+f.rrChartLayout = defaultVariables.rrChartLayout;
+f.rrQueType = defaultVariables.rrQueType;
+f.isRrAddedQue = defaultVariables.isRrAddedQue;
 
-TYRANO.kag.stat.f.ecgChartData = defaultVariables.ecgChartData;
-TYRANO.kag.stat.f.ecgChartLayout = defaultVariables.ecgChartLayout;
-TYRANO.kag.stat.f.ecgQueType = defaultVariables.ecgQueType;
-TYRANO.kag.stat.f.isEcgAddedQue = defaultVariables.isEcgAddedQue;
-TYRANO.kag.stat.f.rrChartData = defaultVariables.rrChartData;
-TYRANO.kag.stat.f.rrChartLayout = defaultVariables.rrChartLayout;
-TYRANO.kag.stat.f.rrQueType = defaultVariables.rrQueType;
-TYRANO.kag.stat.f.isRrAddedQue = defaultVariables.isRrAddedQue;
+f.baseHeartRate = defaultVariables.baseHeartRate;
+f.heartRate = defaultVariables.heartRate;
+f.prevHeartRate = defaultVariables.prevHeartRate;
+f.heartRateMin = defaultVariables.heartRateMin;
+f.heartRateMax = defaultVariables.heartRateMax;
+f.atrialHeartRate = defaultVariables.atrialHeartRate;
+f.isAsyncAtrial = defaultVariables.isAsyncAtrial;
+f.respiratoryRate = defaultVariables.respiratoryRate;
+f.prevRespiratoryRate = defaultVariables.prevRespiratoryRate;
 
-TYRANO.kag.stat.f.baseHeartRate = defaultVariables.baseHeartRate;
-TYRANO.kag.stat.f.heartRate = defaultVariables.heartRate;
-TYRANO.kag.stat.f.prevHeartRate = defaultVariables.prevHeartRate;
-TYRANO.kag.stat.f.heartRateMin = defaultVariables.heartRateMin;
-TYRANO.kag.stat.f.heartRateMax = defaultVariables.heartRateMax;
-TYRANO.kag.stat.f.atrialHeartRate = defaultVariables.atrialHeartRate;
-TYRANO.kag.stat.f.isAsyncAtrial = defaultVariables.isAsyncAtrial;
-TYRANO.kag.stat.f.respiratoryRate = defaultVariables.respiratoryRate;
-TYRANO.kag.stat.f.prevRespiratoryRate = defaultVariables.prevRespiratoryRate;
+f.burden = defaultVariables.burden;
+f.stress = defaultVariables.stress;
+f.pressure = defaultVariables.pressure;
+f.saNodeBurden = defaultVariables.saNodeBurden;
+f.avNodeBurden = defaultVariables.avNodeBurden;
+f.ventricleBurden = defaultVariables.ventricleBurden;
+f.deviceDamage = defaultVariables.deviceDamage;
+f.isActiveDevice = defaultVariables.isActiveDevice;
 
-TYRANO.kag.stat.f.burden = defaultVariables.burden;
-TYRANO.kag.stat.f.stress = defaultVariables.stress;
-TYRANO.kag.stat.f.pressure = defaultVariables.pressure;
-TYRANO.kag.stat.f.saNodeBurden = defaultVariables.saNodeBurden;
-TYRANO.kag.stat.f.avNodeBurden = defaultVariables.avNodeBurden;
-TYRANO.kag.stat.f.ventricleBurden = defaultVariables.ventricleBurden;
-TYRANO.kag.stat.f.deviceDamage = defaultVariables.deviceDamage;
-TYRANO.kag.stat.f.isActiveDevice = defaultVariables.isActiveDevice;
+f.isPVC = defaultVariables.isPVC;
+f.isVT = defaultVariables.isVT;
+f.countVT = defaultVariables.countVT;
 
-TYRANO.kag.stat.f.isPVC = defaultVariables.isPVC;
-TYRANO.kag.stat.f.isVT = defaultVariables.isVT;
-TYRANO.kag.stat.f.countVT = defaultVariables.countVT;
+f.beatVol = defaultVariables.beatVol;
+f.currentExpression = defaultVariables.currentExpression;
 
-TYRANO.kag.stat.f.beatVol = defaultVariables.beatVol;
-TYRANO.kag.stat.f.currentExpression = defaultVariables.currentExpression;
+f.onTalkEvent = defaultVariables.onTalkEvent;
+f.onReactionEvent = defaultVariables.onReactionEvent;
+f.isDuringCoolTime = defaultVariables.isDuringCoolTime;
 
-TYRANO.kag.stat.f.onTalkEvent = defaultVariables.onTalkEvent;
-TYRANO.kag.stat.f.onReactionEvent = defaultVariables.onReactionEvent;
-TYRANO.kag.stat.f.isDuringCoolTime = defaultVariables.isDuringCoolTime;
-
-TYRANO.kag.stat.f.waitSceneName = defaultVariables.waitSceneName;
+f.waitSceneName = defaultVariables.waitSceneName;

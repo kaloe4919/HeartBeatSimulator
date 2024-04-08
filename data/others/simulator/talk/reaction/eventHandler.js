@@ -16,30 +16,30 @@ function setStatAfterInterval(second, variableKey, variableValue) {
 }
 
 function reactionEventByBurdenHandler() {
-  var stat = TYRANO.kag.stat.f;
+  var f = TYRANO.kag.stat.f;
 
   // トークイベント中・リアクションイベント中・イベントのクールタイム中の場合はリアクションイベントを発生させない
-  if (stat.onTalkEvent || stat.onReactionEvent || stat.isDuringCoolTime) {
+  if (f.onTalkEvent || f.onReactionEvent || f.isDuringCoolTime) {
     return;
   }
 
   // TODO: 発生条件見直す
   // 中度の心室負荷
-  if (stat.ventricleBurden < 30) {
-    if (stat.burden >= 60) {
+  if (f.ventricleBurden < 30) {
+    if (f.burden >= 60) {
       TYRANO.kag.ftag.startTag("jump", {
         storage: "reaction_burden_medium.ks",
         target: "reaction_burden_medium_event",
       });
     }
-  } else if (stat.ventricleBurden >= 30 && stat.ventricleBurden < 60) {
+  } else if (f.ventricleBurden >= 30 && f.ventricleBurden < 60) {
     TYRANO.kag.ftag.startTag("jump", {
       storage: "reaction_burden_medium.ks",
       target: "reaction_burden_medium_event",
     });
   }
   // 重度の心室負荷
-  else if (stat.ventricleBurden >= 60) {
+  else if (f.ventricleBurden >= 60) {
     TYRANO.kag.ftag.startTag("jump", {
       storage: "reaction_burden_heavy.ks",
       target: "reaction_burden_heavy_event",
@@ -47,39 +47,42 @@ function reactionEventByBurdenHandler() {
   }
 
   // クールタイム設定 20秒
-  TYRANO.kag.stat.f.isDuringCoolTime = true;
+  f.isDuringCoolTime = true;
   setStatAfterInterval(20, "isDuringCoolTime", false);
 }
 
 TYRANO.kag.ftag.master_tag.start_reaction_event = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   pm: {},
   start: function (pm) {
     console.log(`start talk event`);
-    this.kag.stat.f.onReactionEvent = true;
+    this.f.onReactionEvent = true;
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.end_reaction_event = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   pm: {},
   start: function (pm) {
     console.log(`stop talk event`);
-    this.kag.stat.f.onReactionEvent = false;
+    this.f.onReactionEvent = false;
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.set_wait_scene_name = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   pm: { sceneName: "scene1" },
   start: function (pm) {
     console.log(`reaction event from ${pm.sceneName}`);
-    this.kag.stat.f.waitSceneName = pm.sceneName;
+    this.f.waitSceneName = pm.sceneName;
 
-    this.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };

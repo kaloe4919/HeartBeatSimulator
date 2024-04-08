@@ -1,4 +1,6 @@
 TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
   pm: {
     color: "black",
     name: "",
@@ -11,7 +13,7 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
     height: "",
   },
   start: function (pm) {
-    var target_layer = TYRANO.kag.layer.getLayer("fix");
+    var target_layer = this.layer.getLayer("fix");
     var $button = $(
       "<div class='glink_button btn_20_black heart_rate_button'>" +
         pm.text +
@@ -31,7 +33,7 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
     this.setEvent($button, pm);
     target_layer.append($button);
     target_layer.show();
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
   setEvent: function ($button, pm) {
     !(function () {
@@ -46,6 +48,7 @@ TYRANO.kag.ftag.master_tag.change_heart_rate_button = {
 };
 
 TYRANO.kag.ftag.master_tag.set_visible_debug_buttons = {
+  ftag: TYRANO.kag.ftag,
   pm: {
     visible: "true",
   },
@@ -53,22 +56,23 @@ TYRANO.kag.ftag.master_tag.set_visible_debug_buttons = {
     var config = "true" == pm.visible ? "block" : "none";
     $(".heart_rate_button").css("display", config);
 
-    TYRANO.kag.ftag.nextOrder();
+    this.ftag.nextOrder();
   },
 };
 
 TYRANO.kag.ftag.master_tag.update_debug_outputs = {
-  kag: TYRANO.kag,
+  f: TYRANO.kag.stat.f,
+  ftag: TYRANO.kag.ftag,
   vital: [],
   pm: {},
   start: function () {
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 500,
       vertical: "false",
-      text: `burden: ${Math.floor(TYRANO.kag.stat.f.burden)}`,
+      text: `burden: ${Math.floor(this.f.burden)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -78,13 +82,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 520,
       vertical: "false",
-      text: `saBurden: ${Math.floor(TYRANO.kag.stat.f.saNodeBurden)}`,
+      text: `saBurden: ${Math.floor(this.f.saNodeBurden)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -94,13 +98,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 540,
       vertical: "false",
-      text: `avBurden: ${Math.floor(TYRANO.kag.stat.f.avNodeBurden)}`,
+      text: `avBurden: ${Math.floor(this.f.avNodeBurden)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -110,13 +114,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 560,
       vertical: "false",
-      text: `vBurden: ${Math.floor(TYRANO.kag.stat.f.ventricleBurden)}`,
+      text: `vBurden: ${Math.floor(this.f.ventricleBurden)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -126,13 +130,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 580,
       vertical: "false",
-      text: `stress: ${Math.floor(TYRANO.kag.stat.f.stress)}`,
+      text: `stress: ${Math.floor(this.f.stress)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -142,13 +146,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 600,
       vertical: "false",
-      text: `pressure: ${Math.floor(TYRANO.kag.stat.f.pressure)}`,
+      text: `pressure: ${Math.floor(this.f.pressure)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
@@ -158,13 +162,13 @@ TYRANO.kag.ftag.master_tag.update_debug_outputs = {
       overwrite: "true",
       isAsync: "true",
     });
-    TYRANO.kag.ftag.master_tag.ptext.start({
+    this.ftag.master_tag.ptext.start({
       layer: "0",
       page: "fore",
       x: 1160,
       y: 620,
       vertical: "false",
-      text: `deviceDmg: ${Math.floor(TYRANO.kag.stat.f.deviceDamage)}`,
+      text: `deviceDmg: ${Math.floor(this.f.deviceDamage)}`,
       size: "12",
       hexColor: "#fff",
       bold: "bold",
