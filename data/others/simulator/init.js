@@ -47,6 +47,24 @@ var defaultVariables = {
   countVT: 0,
   isActiveDevice: true,
   beatVol: 75,
+  breathVol: 75,
+  musicVol: 75,
+  seVol: 75,
+  isPlayBeatAlways: false,
+  isPlayBreathAlways: false,
+  isShowEcg: true,
+  isShowHeart: true,
+  isShowDebug: true, // TODO: set false
+  customRecoveryHeartRate: 100,
+  customIncreaseBurden: 100,
+  customRecoveryBurden: 100,
+  customIncreaseVentricleBurden: 100,
+  customRecoveryVentricleBurden: 100,
+  customIncreaseSANodeBurden: 100,
+  customRecoverySANodeBurden: 100,
+  customIncreaseAVNodeBurden: 100,
+  customRecoveryAVNodeBurden: 100,
+  customIncreaseDeviceDamage: 100,
   currentExpression: "Normal",
   onTalkEvent: false,
   onReactionEvent: false,
@@ -88,6 +106,26 @@ f.isVT = defaultVariables.isVT;
 f.countVT = defaultVariables.countVT;
 
 f.beatVol = defaultVariables.beatVol;
+f.breathVol = defaultVariables.breathVol;
+f.musicVol = defaultVariables.musicVol;
+f.seVol = defaultVariables.seVol;
+f.isPlayBeatAlways = defaultVariables.isPlayBeatAlways;
+f.isPlayBreathAlways = defaultVariables.isPlayBreathAlways;
+f.isShowEcg = defaultVariables.isShowEcg;
+f.isShowHeart = defaultVariables.isShowHeart;
+f.isShowDebug = defaultVariables.isShowDebug;
+f.customRecoveryHeartRate = defaultVariables.customRecoveryHeartRate;
+f.customIncreaseBurden = defaultVariables.customIncreaseBurden;
+f.customRecoveryBurden = defaultVariables.customRecoveryBurden;
+f.customIncreaseVentricleBurden =
+  defaultVariables.customIncreaseVentricleBurden;
+f.customRecoveryVentricleBurden =
+  defaultVariables.customRecoveryVentricleBurden;
+f.customIncreaseSANodeBurden = defaultVariables.customIncreaseSANodeBurden;
+f.customRecoverySANodeBurden = defaultVariables.customRecoverySANodeBurden;
+f.customIncreaseAVNodeBurden = defaultVariables.customIncreaseAVNodeBurden;
+f.customRecoveryAVNodeBurden = defaultVariables.customRecoveryAVNodeBurden;
+f.customIncreaseDeviceDamage = defaultVariables.customIncreaseDeviceDamage;
 f.currentExpression = defaultVariables.currentExpression;
 
 f.onTalkEvent = defaultVariables.onTalkEvent;
