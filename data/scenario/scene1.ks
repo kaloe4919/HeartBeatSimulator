@@ -51,6 +51,7 @@
 [tb_start_tyrano_code]
 ;init control menu
 [option_menu]
+[option_open_menu x="20" y="106" width="120"]
 [control_menu x="20" y="32" width="360"]
 [action_menu x="20" y="164" width="360"]
 [play_menu x="20" y="164" width="360"]

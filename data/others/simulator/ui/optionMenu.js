@@ -171,6 +171,7 @@ TYRANO.kag.ftag.master_tag.option_menu = {
 
       $tabList.append($tabWrapper);
     });
+    $menu.css({ display: "none" });
     $menu.append($tabList);
 
     // タブパネル生成
@@ -232,5 +233,79 @@ TYRANO.kag.ftag.master_tag.option_menu = {
         $(`.tab_${key}_option .tab_label_wrapper`).addClass("selected");
       });
     })();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.option_open_menu = {
+  ftag: TYRANO.kag.ftag,
+  layer: TYRANO.kag.layer,
+  pm: {
+    x: "",
+    y: "",
+    width: "",
+    height: "",
+  },
+  start: function (pm) {
+    var target_layer = this.layer.getLayer("fix");
+    var $menu = $("<div class='option_open_menu'>");
+    $menu.css({
+      position: "absolute",
+      "z-index": 10000,
+      left: `${pm.x}px`,
+      top: `${pm.y}px`,
+      width: `${pm.width}px`,
+      height: "auto",
+    });
+    $.setName($menu, "option_open_menu");
+
+    // option open menu button
+    var $optionOpenMenuButton = $(
+      `<div class='glink_button btn_20_black option_open_menu_button'>Option</div>`,
+    );
+    $optionOpenMenuButton.css({
+      cursor: "pointer",
+      "font-size": "18px",
+    });
+    this.setOptionOpenMenuButtonEvent($optionOpenMenuButton, pm);
+
+    $menu.append($optionOpenMenuButton);
+
+    target_layer.append($menu);
+    target_layer.show();
+    this.ftag.nextOrder();
+  },
+  setOptionOpenMenuButtonEvent: function ($button, pm) {
+    !(function () {
+      $button.click(function (event) {
+        console.log("onclick option open menu button");
+        $(".option_menu").css("display", "block");
+      });
+    })();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_visible_option_open_menu = {
+  ftag: TYRANO.kag.ftag,
+  pm: {
+    visible: "true",
+  },
+  start: function (pm) {
+    var config = "true" == pm.visible ? "block" : "none";
+    $(".option_open_menu").css("display", config);
+
+    this.ftag.nextOrder();
+  },
+};
+
+TYRANO.kag.ftag.master_tag.set_visible_option_menu = {
+  ftag: TYRANO.kag.ftag,
+  pm: {
+    visible: "true",
+  },
+  start: function (pm) {
+    var config = "true" == pm.visible ? "block" : "none";
+    $(".option_menu").css("display", config);
+
+    this.ftag.nextOrder();
   },
 };

@@ -47,6 +47,7 @@
 [image layer=1 x=0 y=0 width=1280 height=720 storage="color/black.jpg" name="black"]
 [anim name=black opacity=0 time=0]
 [anim name=black opacity=255 time=1000 effect="easeOutExpo"]
+[set_visible_option_open_menu visible="false"]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]
@@ -67,6 +68,7 @@ isAsync: "true",
 ;fade in
 [set_heart_se_vol vol=75]
 [free layer=1 name=black time=1000]
+[set_visible_option_open_menu visible="true"]
 [_tb_end_tyrano_code]
 
 [live2d_expression  name="Kyoka"  expression="Painful4"  ]

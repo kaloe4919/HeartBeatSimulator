@@ -5,8 +5,8 @@ function touchEventHandler() {
   ftag.master_tag.ptext.start({
     layer: "0",
     page: "fore",
-    x: 20,
-    y: 100,
+    x: 152,
+    y: 118,
     vertical: "false",
     text: "触るモード",
     size: "18",
@@ -87,8 +87,8 @@ function returnTouchEventHandler() {
   ftag.master_tag.ptext.start({
     layer: "0",
     page: "fore",
-    x: 20,
-    y: 100,
+    x: 152,
+    y: 118,
     vertical: "false",
     text: "",
     size: "18",

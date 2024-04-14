@@ -6930,7 +6930,7 @@
 /* black */
 .btn_20_black {
   position: relative;
-  display: inline-block;
+  display: block;
   padding: .75em .6em;
   background: #333;
   color: #fefefe;
