@@ -6,15 +6,15 @@ var __tyrano_key_config = {
 	"mouse": {
 		"right": "hidemessage",
 		"center": "menu",
-		"wheel_up": "backlog",
-		"wheel_down": "next"
+		"wheel_up": "",
+		"wheel_down": ""
 	},
 	"gesture": {
 		"swipe_up_1": {
-			"action": "backlog"
+			"action": ""
 		},
 		"swipe_left_1": {
-			"action": "auto"
+			"action": ""
 		},
 		"swipe_right_1": {
 			"action": "menu"

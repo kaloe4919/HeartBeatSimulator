@@ -24,3 +24,203 @@
 .close_menu_button::after {
   transform: translate(-50%,-50%) rotate(-45deg);
 }
+
+.option_menu {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  height: calc(100% - 32px);
+  width: 420px;
+  z-index: 10005;
+}
+
+.tab_list {
+  display: flex;
+}
+
+.tab:not(:last-of-type) {
+  margin-right: 2px;
+}
+
+.tab_input {
+  display: none;
+}
+
+.tab_label_wrapper .tab_label {
+  display: block;
+  background-color: rgba(64, 64, 64, 1);
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 16px 24px;
+  transition: .3s;
+}
+
+.tab_label_wrapper .tab_label:hover{
+  background-color: rgba(16, 16, 16, 1);
+}
+
+.selected .tab_label {
+  color: #fff;
+  background-color: rgba(32, 32, 32, 1);
+  transition: .3s;
+}
+
+.tab_panel {
+  color: #fff;
+  background-color: rgba(32, 32, 32, 1);
+  height: calc(100% - 56px - 32px);
+  padding: 16px 16px;
+  display: block;
+  overflow: hidden;
+  overflow-y: scroll;
+  font-size: 13px;
+}
+
+.tab_panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tab_panel::-webkit-scrollbar-track {
+  background-color: rgba(64, 64, 64, 1);
+}
+
+.tab_panel::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.option_menu .menu_input_range[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  height: 2px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.option_menu .menu_input_range[type="range"]:focus,
+.option_menu .menu_input_range[type="range"]:active {
+  outline: none;
+}
+
+.option_menu .menu_input_range[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid rgba(0, 0, 0, .7);
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.option_menu .menu_input_range[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .6);
+  transition: .4s;
+}
+
+.option_menu .menu_input_checkbox[type="checkbox"] {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(0, 0, 0, .7);
+  vertical-align: -5px;
+  background-color: #fff;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.option_menu .menu_input_checkbox[type="checkbox"]:checked:before {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  transform: rotate(50deg);
+  width: 4px;
+  height: 8px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  content: '';
+}
+
+.menu_row {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu_label_wrapper {
+  width: 60%;
+  text-align: left;
+  padding-right: 16px;
+}
+
+.menu_label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu_tooltip_wrapper {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background: gray;
+  border-radius: 100%;
+  position: relative;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.menu_tooltip_wrapper .menu_tooltip {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  border-radius: 5px;
+  background: rgba(64, 64, 64, 1);
+  width: 250px;
+  z-index: 10006;
+}
+
+.menu_tooltip_wrapper .menu_tooltip:before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  right: 60%;
+  border: 15px solid transparent;
+  border-top: 15px solid rgba(64, 64, 64, 1);
+  margin-left: -15px;
+  transform: rotateZ(180deg);
+}
+
+.menu_tooltip_wrapper:hover .menu_tooltip {
+  display: inline-block;
+  top: 30px;
+  left: -84px;
+}
+
+.menu_tooltip_wrapper::before {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  content: '?';
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu_input_wrapper {
+  width: 40%;
+  text-align: right;
+}

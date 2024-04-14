@@ -161,6 +161,12 @@ tyrano.plugin.kag.key_mouse = {
       if (1 == that.kag.stat.is_click_text) return !1;
       if (1 == that.kag.stat.is_stop) return !1;
       1 == that.kag.stat.fuki.active && that.kag.layer.hideMessageLayers();
+
+      // hide custom menu
+      $(".action_menu").css("display", "none");
+      $(".play_menu").css("display", "none");
+      $(".option_menu").css("display", "none");
+
       that.kag.ftag.nextOrder();
     });
   },
