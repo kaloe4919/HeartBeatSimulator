@@ -22,9 +22,14 @@ function playBeatSound(heartRate) {
   var ftag = TYRANO.kag.ftag;
   // If heartRate is assigned, force playback at this heartRate
   var playHeartRate = heartRate ? heartRate : f.heartRate;
+  var beatVol = f.onHeartBeatEvent
+    ? f.beatVol
+    : f.isPlayBeatAlways
+      ? f.beatVol
+      : 0;
   var soundFileType = ".wav";
   var soundConfig = {
-    volume: f.beatVol,
+    volume: beatVol,
     buf: seChannel.toString(),
     storage: "heartbeat/AC08_HB01" + soundFileType,
     isAsync: "true",

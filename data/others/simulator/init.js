@@ -50,8 +50,8 @@ var defaultVariables = {
   breathVol: 75,
   musicVol: 75,
   seVol: 75,
-  isPlayBeatAlways: false,
-  isPlayBreathAlways: false,
+  isPlayBeatAlways: true, // TODO: set false
+  isPlayBreathAlways: true, // TODO: set false
   isShowEcg: true,
   isShowHeart: true,
   isShowDebug: true, // TODO: set false
@@ -68,6 +68,7 @@ var defaultVariables = {
   currentExpression: "Normal",
   onTalkEvent: false,
   onReactionEvent: false,
+  onHeartBeatEvent: false,
   isDuringCoolTime: false,
   // scene name of where reaction event occurred
   waitSceneName: "scene1",
@@ -130,6 +131,7 @@ f.currentExpression = defaultVariables.currentExpression;
 
 f.onTalkEvent = defaultVariables.onTalkEvent;
 f.onReactionEvent = defaultVariables.onReactionEvent;
+f.onHeartBeatEvent = defaultVariables.onHeartBeatEvent;
 f.isDuringCoolTime = defaultVariables.isDuringCoolTime;
 
 f.waitSceneName = defaultVariables.waitSceneName;
