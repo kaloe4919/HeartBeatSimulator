@@ -231,7 +231,7 @@ TYRANO.kag.ftag.master_tag.option_menu = {
         console.log(`onclick tab ${key}`);
         $(".tab_panel").css("display", "none");
         $(`.tab_panel_${key}_option`).css("display", "block");
-        $(`.tab_label_wrapper`).removeClass("selected");
+        $(".tab_label_wrapper").removeClass("selected");
         $(`.tab_${key}_option .tab_label_wrapper`).addClass("selected");
       });
     })();
@@ -240,11 +240,40 @@ TYRANO.kag.ftag.master_tag.option_menu = {
     !(function () {
       $input.change(function (event) {
         var f = TYRANO.kag.stat.f;
+        var ftag = TYRANO.kag.ftag;
         console.log(
           `onchange input ${key}: ${type === "checkbox" ? event.target.checked : event.target.value}`,
         );
         f[key] =
           type === "checkbox" ? event.target.checked : event.target.value;
+
+        // オプション個別のハンドリング
+        switch (key) {
+          case "isShowEcg":
+            if (event.target.checked) {
+              $(".ecg_monitor").css("display", "block");
+              $(".hr_output").css("display", "block");
+              $(".rr_output").css("display", "block");
+            } else {
+              $(".ecg_monitor").css("display", "none");
+              $(".hr_output").css("display", "none");
+              $(".rr_output").css("display", "none");
+            }
+            break;
+          case "isShowHeart":
+            if (event.target.checked) {
+              ftag.master_tag.live2d_mod.start({
+                name: "heart3",
+                scale: "0.5",
+              });
+            } else {
+              ftag.master_tag.live2d_mod.start({
+                name: "heart3",
+                scale: "0",
+              });
+            }
+            break;
+        }
       });
     })();
   },

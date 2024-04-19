@@ -46,8 +46,8 @@
 ;init vital panel
 [show_ecg]
 [start_ecg]
-[ptext layer="0" name="HR" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1090 y=58]
-[ptext layer="0" name="RR" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=58]
+[ptext layer="0" name="hr_output" text="HR: --" size="20" hexColor="#78f542" bold="bold" x=1090 y=58]
+[ptext layer="0" name="rr_output" text="RR: --" size="20" hexCoror="#42e0f5" bold="bold" x=1190 y=58]
 [_tb_end_tyrano_code]
 
 [tb_start_tyrano_code]

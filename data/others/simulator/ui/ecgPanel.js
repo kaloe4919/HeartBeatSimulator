@@ -111,7 +111,7 @@ TYRANO.kag.ftag.master_tag.show_ecg = {
   start: function (pm) {
     // init ecg monitor
     var target_layer = this.layer.getLayer(pm.layer, pm.page);
-    var chart = $("<div id='ecg'></div>");
+    var chart = $("<div id='ecg' class='ecg_monitor'></div>");
     chart.css("position", "absolute");
     chart.css("left", pm.x + "px");
     chart.css("top", pm.y + "px");
@@ -189,7 +189,7 @@ TYRANO.kag.ftag.master_tag.update_hr = {
       hexColor: "#78f542",
       bold: "bold",
       align: "left",
-      name: "HR",
+      name: "hr_output",
       zindex: "9999",
       overwrite: "true",
       isAsync: "true",

@@ -112,7 +112,7 @@ TYRANO.kag.ftag.master_tag.show_rr = {
   start: function (pm) {
     // init rr monitor
     var target_layer = this.layer.getLayer(pm.layer, pm.page);
-    var chart = $("<div id='rr'></div>");
+    var chart = $("<div id='rr' class='rr_monitor'></div>");
     chart.css("position", "absolute");
     chart.css("left", pm.x + "px");
     chart.css("top", pm.y + "px");
@@ -190,7 +190,7 @@ TYRANO.kag.ftag.master_tag.update_rr = {
       hexColor: "#42e0f5",
       bold: "bold",
       align: "left",
-      name: "RR",
+      name: "rr_output",
       zindex: "9999",
       overwrite: "true",
       isAsync: "true",
