@@ -201,6 +201,8 @@ TYRANO.kag.ftag.master_tag.option_menu = {
           `<input type='${type}' id='${key}' class='menu_input_${type}' value='${this.f[key]}' ${type === "range" ? `min='${min}' max='${max}'` : ""} ${this.f[key] === true ? "checked" : ""}>`,
         );
 
+        this.setOnChangeInputEvent($menuInput, key, type);
+
         $tooltipWrapper.append($tooltip);
         $tooltipWrapper.append($tooltipIcon);
 
@@ -231,6 +233,18 @@ TYRANO.kag.ftag.master_tag.option_menu = {
         $(`.tab_panel_${key}_option`).css("display", "block");
         $(`.tab_label_wrapper`).removeClass("selected");
         $(`.tab_${key}_option .tab_label_wrapper`).addClass("selected");
+      });
+    })();
+  },
+  setOnChangeInputEvent: function ($input, key, type) {
+    !(function () {
+      $input.change(function (event) {
+        var f = TYRANO.kag.stat.f;
+        console.log(
+          `onchange input ${key}: ${type === "checkbox" ? event.target.checked : event.target.value}`,
+        );
+        f[key] =
+          type === "checkbox" ? event.target.checked : event.target.value;
       });
     })();
   },
