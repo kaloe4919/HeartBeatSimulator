@@ -63,6 +63,21 @@ function getRecoveryVentricleBurden() {
 }
 
 /**
+ * AVノードの負荷の復元値を取得する
+ */
+function getRecoveryAvNodeBurden() {
+  var f = TYRANO.kag.stat.f;
+  // 乖離値(正常の負荷からどれだけ離れているか)
+  var deviationValue = Math.abs(f.avNodeBurden - 5);
+  // 乖離率
+  var deviationRate = deviationValue / 100;
+  // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
+  var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
+
+  return f.avNodeBurden - recoveryValue <= 5 ? 0 : recoveryValue;
+}
+
+/**
  * VTの発生率を取得する
  */
 function getActiveVTRate() {
