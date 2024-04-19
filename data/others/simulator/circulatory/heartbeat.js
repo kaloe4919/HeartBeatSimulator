@@ -155,6 +155,9 @@ async function beatRhythmNormal() {
     // 心室の負荷を軽減
     f.ventricleBurden -= getRecoveryVentricleBurden();
 
+    // AVノードの負荷を軽減
+    f.avNodeBurden -= getRecoveryAvNodeBurden();
+
     if (f.heartRate - f.baseHeartRate >= 0) {
       f.heartRate -= recoveryValue;
       f.heartRateMin -= recoveryValue;
@@ -314,6 +317,66 @@ async function beatRhythmVT() {
   }
 }
 
+// AV block
+async function beatRhythmAVBlock() {
+  console.log("AVBlock");
+
+  var f = TYRANO.kag.stat.f;
+  var ftag = TYRANO.kag.ftag;
+
+  // Set values for vital monitor
+  f.ecgQueType = "AVBlock";
+  f.isEcgAddedQue = false;
+
+  var random = randomRange(-3, 3);
+
+  playAtrialBeatMotion();
+
+  // device lamp control
+  ftag.master_tag.live2d_sa_node_normal_on.start();
+  await sleep(Math.floor((60000 / f.heartRate) * 0.1));
+  ftag.master_tag.live2d_sa_node_off.start();
+  ftag.master_tag.live2d_av_node_warn_on.start();
+  await sleep(Math.floor((60000 / f.heartRate) * 0.7));
+  ftag.master_tag.live2d_av_node_off.start();
+  await sleep(Math.floor((60000 / f.heartRate) * 0.2));
+
+  // 心拍数の復元値を取得
+  var maxRecoveryValue = 3;
+  var recoveryValue = getRecoveryHeartRate(100, maxRecoveryValue);
+
+  // 心拍数の復元値の適用(会話中は復元しない) TODO: 関数に取り込む
+  if (!f.onTalkEvent) {
+    // 心臓負荷の増減
+    f.burden += getIncreaseBurden(recoveryValue);
+    f.burden -= getRecoveryBurden();
+
+    // AV Blockが発生した場合AVノードに負荷をかける
+    f.avNodeBurden =
+      f.avNodeBurden + Math.floor(f.burden / 10) >= 100
+        ? 100
+        : f.avNodeBurden + Math.floor(f.burden / 10);
+
+    if (f.heartRate - f.baseHeartRate >= 0) {
+      f.heartRate -= recoveryValue;
+      f.heartRateMin -= recoveryValue;
+      f.heartRateMax -= recoveryValue;
+    } else {
+      f.heartRate += recoveryValue;
+      f.heartRateMin += recoveryValue;
+      f.heartRateMax += recoveryValue;
+    }
+  }
+
+  // Slight variation in heartRate (Between heartRateMin and heartRateMax)
+  if (
+    f.heartRate + random <= f.heartRateMax &&
+    f.heartRate + random >= f.heartRateMin
+  ) {
+    f.heartRate = f.heartRate + random;
+  }
+}
+
 async function atrialHeartbeat() {
   var f = TYRANO.kag.stat.f;
 
@@ -331,7 +394,6 @@ async function heartbeat() {
     var f = TYRANO.kag.stat.f;
     var ftag = TYRANO.kag.ftag;
     var hbsim = TYRANO.kag.hbsim;
-    var random = randomRange(0, 100);
 
     // Update expression
     hbsim.expression.update();
@@ -361,14 +423,21 @@ async function heartbeat() {
       continue;
     }
 
+    // Arrhythmia caused by burden
+    if (f.burden / 2.5 > randomRange(0, 100)) {
+      // Synchronize heartRate into atrialHeartRate
+      f.atrialHeartRate = f.heartRate;
+      await beatRhythmPVC();
+      continue;
+    }
+
     // Arrhythmia caused by ventricle burden
-    if (f.ventricleBurden / 2 > random) {
+    if (f.ventricleBurden / 2.5 > randomRange(0, 100)) {
       // Synchronize heartRate into atrialHeartRate
       f.atrialHeartRate = f.heartRate;
 
-      var randomForVentricleBurden = randomRange(0, 100);
       // 負荷が上がるごとに重度の発作の確率が上がる
-      if (getActiveVTRate() > randomForVentricleBurden) {
+      if (getActiveVTRate() > randomRange(0, 100)) {
         // VTの発生
         f.isVT = true;
       } else {
@@ -377,11 +446,15 @@ async function heartbeat() {
       continue;
     }
 
-    // Arrhythmia caused by burden
-    if (f.burden / 2 > random) {
-      // Synchronize heartRate into atrialHeartRate
-      f.atrialHeartRate = f.heartRate;
-      await beatRhythmPVC();
+    // Arrhythmia caused by av node burden
+    if (f.avNodeBurden / 2.5 > randomRange(0, 100)) {
+      // 負荷が上がるごとに重度の発作の確率が上がる
+      if (false) {
+        // TODO: 軽いAfの発生
+        // burden・hrが高い場合に高確率で発生させる
+      } else {
+        await beatRhythmAVBlock();
+      }
       continue;
     }
 

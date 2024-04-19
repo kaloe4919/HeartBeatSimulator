@@ -62,6 +62,13 @@ function updateEcg() {
       ecgYDataQue = que;
 
       f.isEcgAddedQue = true;
+    } else if (f.ecgQueType === "AVBlock") {
+      var preInterval = shortenIntervalByHeartRate([0, 0, 0]);
+      var pWave = [1, 0];
+      var que = preInterval.concat(pWave);
+      ecgYDataQue = que;
+
+      f.isEcgAddedQue = true;
     }
   }
 
