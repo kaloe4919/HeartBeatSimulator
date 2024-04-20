@@ -42,4 +42,5 @@ f['currentExpression']='';
 f['onReactionEvent']=''; 
 f['isDuringCoolTime']=''; 
 f['waitSceneName']=''; 
+f['seChannel']=''; 
 [endscript] 

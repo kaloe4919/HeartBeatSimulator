@@ -15,31 +15,6 @@ function shortenIntervalByRespiratoryRate(yData) {
   }
 }
 
-function smoothstep(x) {
-  return x * x * (3 - 2 * x);
-}
-
-// Create smoothstep values from 0 to max
-function createCurveData(max, length, isReverse) {
-  const xMin = 0;
-  const xMax = 1;
-
-  var values = [];
-
-  for (let i = xMin; i <= xMax; i += 1 / length) {
-    const x = i;
-    const y = smoothstep(x);
-
-    values.push(y * max);
-  }
-
-  if (isReverse) {
-    return values.reverse();
-  } else {
-    return values;
-  }
-}
-
 function updateRr() {
   var f = TYRANO.kag.stat.f;
 

@@ -1,120 +1,3 @@
-var seChannel = 0;
-
-function sleep(milliseconds) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
-
-function randomRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Distribute the play SE channels as the heartbeats may overlap if the heart rate is too fast
-function bufCounter() {
-  if (seChannel >= 9) {
-    seChannel = 0;
-  } else {
-    seChannel = seChannel + 1;
-  }
-}
-
-function playBeatSound(heartRate) {
-  var f = TYRANO.kag.stat.f;
-  var ftag = TYRANO.kag.ftag;
-  // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : f.heartRate;
-  var beatVol = f.onHeartBeatEvent
-    ? f.beatVol
-    : f.isPlayBeatAlways
-      ? f.beatVol
-      : 0;
-  var soundFileType = ".wav";
-  var soundConfig = {
-    volume: beatVol,
-    buf: seChannel.toString(),
-    storage: "heartbeat/AC08_HB01" + soundFileType,
-    isAsync: "true",
-  };
-
-  if (playHeartRate <= 50) {
-    soundConfig.storage = "heartbeat/AC08_HB-22" + soundFileType;
-  } else if (playHeartRate <= 70) {
-    soundConfig.storage = "heartbeat/AC08_HB01" + soundFileType;
-  } else if (playHeartRate <= 90) {
-    soundConfig.storage = "heartbeat/AC08_HB11" + soundFileType;
-  } else if (playHeartRate <= 110) {
-    soundConfig.storage = "heartbeat/AC08_HB21" + soundFileType;
-  } else {
-    soundConfig.storage = "heartbeat/AC08_HB31" + soundFileType;
-  }
-
-  ftag.startTag("playse", soundConfig);
-
-  bufCounter();
-}
-
-function playActorBeatMotion(cond, heartRate) {
-  var f = TYRANO.kag.stat.f;
-  var ftag = TYRANO.kag.ftag;
-  // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : f.heartRate;
-  var motionConfig = {
-    name: "Kyoka",
-    mtn: cond ? cond : "Normal",
-    no: "0",
-    isAsync: "true",
-    heartRate: playHeartRate.toString(),
-    intervalRate: "0.2",
-  };
-
-  if (playHeartRate <= 90) {
-    motionConfig.no = "0";
-  } else if (playHeartRate <= 120) {
-    motionConfig.no = "1";
-  } else if (playHeartRate <= 150) {
-    motionConfig.no = "1";
-  } else if (playHeartRate <= 180) {
-    motionConfig.no = "2";
-  } else if (playHeartRate <= 210) {
-    motionConfig.no = "2";
-  }
-  ftag.master_tag.live2d_beat_motion.start(motionConfig);
-}
-
-function playHeartBeatMotion(cond, no, heartRate) {
-  var f = TYRANO.kag.stat.f;
-  var ftag = TYRANO.kag.ftag;
-  // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = heartRate ? heartRate : f.heartRate;
-  var motionConfig = {
-    name: "heart3",
-    mtn: cond ? `${cond}_V` : "Normal_V",
-    no: no ? no : "0",
-    isAsync: "true",
-    heartRate: playHeartRate.toString(),
-    intervalRate: "0.1",
-  };
-
-  ftag.master_tag.live2d_beat_motion.start(motionConfig);
-}
-
-function playAtrialBeatMotion(cond, no, atrialHeartRate) {
-  var f = TYRANO.kag.stat.f;
-  var ftag = TYRANO.kag.ftag;
-  // If heartRate is assigned, force playback at this heartRate
-  var playHeartRate = atrialHeartRate ? atrialHeartRate : f.atrialHeartRate;
-
-  var motionConfig = {
-    name: "heart3",
-    mtn: cond ? `${cond}_A` : "Normal_A",
-    no: no ? no : "0",
-    isAsync: "true",
-    atrialHeartRate: playHeartRate.toString(),
-    intervalRate: "0.1",
-  };
-
-  ftag.master_tag.live2d_atrial_beat_motion.start(motionConfig);
-}
-
 // Normal beat
 async function beatRhythmNormal() {
   var f = TYRANO.kag.stat.f;
@@ -377,6 +260,7 @@ async function beatRhythmAVBlock() {
   }
 }
 
+// main loop of atrial beat
 async function atrialHeartbeat() {
   var f = TYRANO.kag.stat.f;
 
@@ -388,6 +272,7 @@ async function atrialHeartbeat() {
   return;
 }
 
+// main loop of ventricle beat
 async function heartbeat() {
   var isDefinedHeartRate = true;
   while (isDefinedHeartRate) {
@@ -396,7 +281,7 @@ async function heartbeat() {
     var hbsim = TYRANO.kag.hbsim;
 
     // Update expression
-    hbsim.expression.update();
+    updateExpression();
 
     // Update HR Display
     ftag.master_tag.update_hr.start();
@@ -464,138 +349,3 @@ async function heartbeat() {
     await beatRhythmNormal();
   }
 }
-
-TYRANO.kag.ftag.master_tag.heartbeat_start = {
-  ftag: TYRANO.kag.ftag,
-  vital: [],
-  pm: {},
-  start: function () {
-    heartbeat();
-
-    this.ftag.nextOrder();
-  },
-};
-
-TYRANO.kag.ftag.master_tag.set_heart_rate = {
-  f: TYRANO.kag.stat.f,
-  ftag: TYRANO.kag.ftag,
-  vital: ["value"],
-  pm: {
-    value: "65",
-    isAsync: "false",
-  },
-  start: function (pm) {
-    var value = parseInt(pm.value);
-    this.f.heartRate = value;
-    this.f.heartRateMin = value - 10;
-    this.f.heartRateMax = value + 10;
-
-    if (!"true" == pm.isAsync) {
-      this.ftag.nextOrder();
-    }
-  },
-};
-
-TYRANO.kag.ftag.master_tag.set_base_heart_rate = {
-  f: TYRANO.kag.stat.f,
-  ftag: TYRANO.kag.ftag,
-  vital: ["value"],
-  pm: {
-    value: "65",
-    isAsync: "false",
-  },
-  start: function (pm) {
-    var value = parseInt(pm.value);
-    console.log(`baseHeartRate change to ${value}`);
-    this.f.baseHeartRate = value;
-
-    if (!"true" == pm.isAsync) {
-      this.ftag.nextOrder();
-    }
-  },
-};
-
-TYRANO.kag.ftag.master_tag.calculate_heartRate = {
-  f: TYRANO.kag.stat.f,
-  ftag: TYRANO.kag.ftag,
-  vital: ["value", "operator"],
-  pm: {
-    value: "0",
-    operator: "+",
-    // 加算/減算の結果が limit より大きい/小さい場合、演算をしない
-    limit: "",
-    // trueにすると、加算/減算の結果が limit より大きい/小さい場合、limit の値が強制的に代入される
-    limitForce: "false",
-    isAsync: "false",
-  },
-  start: function (pm) {
-    var value = parseInt(pm.value);
-    var limit = parseInt(pm.limit);
-
-    if (pm.operator === "+") {
-      if (limit && this.f.heartRate + value >= limit) {
-        if (pm.limitForce === "true") {
-          console.log(`heartRate change ${this.f.heartRate} → ${limit}`);
-          this.f.heartRate = limit;
-          this.f.heartRateMin = limit - 10;
-          this.f.heartRateMax = limit + 10;
-          return;
-        } else {
-          console.log(`heartRate no change`);
-          return;
-        }
-      }
-      if ((limit && this.f.heartRate + value < limit) || !limit) {
-        console.log(
-          `heartRate change ${this.f.heartRate} → ${this.f.heartRate + value}`,
-        );
-        this.f.heartRate += value;
-        this.f.heartRateMin += value;
-        this.f.heartRateMax += value;
-        return;
-      }
-    }
-    if (pm.operator === "-") {
-      if (limit && this.f.heartRate - value <= limit) {
-        if (pm.limitForce === "true") {
-          console.log(`heartRate change ${this.f.heartRate} → ${limit}`);
-          this.f.heartRate = limit;
-          this.f.heartRateMin = limit - 10;
-          this.f.heartRateMax = limit + 10;
-        } else {
-          console.log(`heartRate no change`);
-          return;
-        }
-      }
-      if ((limit && this.f.heartRate - value > limit) || !limit) {
-        console.log(
-          `heartRate change ${this.f.heartRate} → ${this.f.heartRate - value}`,
-        );
-        this.f.heartRate -= value;
-        this.f.heartRateMin -= value;
-        this.f.heartRateMax -= value;
-      }
-    }
-
-    if (!"true" == pm.isAsync) {
-      this.ftag.nextOrder();
-    }
-  },
-};
-
-TYRANO.kag.ftag.master_tag.set_heart_se_vol = {
-  f: TYRANO.kag.stat.f,
-  ftag: TYRANO.kag.ftag,
-  vital: ["vol"],
-  pm: {
-    vol: "75",
-  },
-  start: function (pm) {
-    // TODO: 心音OFFの場合は強制的に0にする
-    var vol = parseInt(pm.vol);
-    console.log(`set heart beat se volume to ${vol}`);
-    this.f.beatVol = parseInt(vol);
-
-    this.ftag.nextOrder();
-  },
-};

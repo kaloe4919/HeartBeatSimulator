@@ -13,8 +13,10 @@ function getRecoveryHeartRate(maxDeviationValue, maxRecoveryValue) {
       ? 1
       : deviationValue / maxDeviationValue;
   // 乖離率をsmoothStep関数を利用してまるめる
+  // graph: https://www.desmos.com/calculator/xodggesqsk
   var smoothDeviationRate = deviationRate ** 2 * (3 - 2 * deviationRate);
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
+  // graph: https://www.desmos.com/calculator/znylagr48g
   var recoveryValue = 10 ** (smoothDeviationRate - 1) * maxRecoveryValue;
 
   return recoveryValue;
@@ -41,7 +43,7 @@ function getRecoveryBurden() {
   // 乖離率(乖離値が上限を超える場合は強制的に 1 とする)
   var deviationRate = deviationValue / 100;
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
-  // 最大復元値は増加値より多めに設定する 増加値の最大は心拍数の復元値の最大値
+  // graph: https://www.desmos.com/calculator/msdgh1dife
   var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
 
   return f.burden - recoveryValue <= 10 ? 0 : recoveryValue;
@@ -57,6 +59,7 @@ function getRecoveryVentricleBurden() {
   // 乖離率
   var deviationRate = deviationValue / 100;
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
+  // graph: https://www.desmos.com/calculator/msdgh1dife
   var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
 
   return f.ventricleBurden - recoveryValue <= 5 ? 0 : recoveryValue;
@@ -72,6 +75,7 @@ function getRecoveryAvNodeBurden() {
   // 乖離率
   var deviationRate = deviationValue / 100;
   // 指数関数を利用して乖離率が高いほど復元が大きくなるようにする
+  // graph: https://www.desmos.com/calculator/msdgh1dife
   var recoveryValue = (10 ** (deviationRate - 1.2) + 0.1) * 5;
 
   return f.avNodeBurden - recoveryValue <= 5 ? 0 : recoveryValue;
