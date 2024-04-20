@@ -1,7 +1,10 @@
+// !! variables must be synchronized with TyranoBuilder
+// !! variables names must be defined in TyranoBuilder
+
 var f = TYRANO.kag.stat.f;
 TYRANO.kag.hbsim = {};
 var defaultVariables = {
-  // --- Chart Variables (vital monitor) ---
+  // Chart Variables (vital monitor) -------
   // ecg monitor variables
   ecgChartData: null,
   ecgChartLayout: null,
@@ -14,7 +17,8 @@ var defaultVariables = {
   // respiratory wave type
   rrQueType: "Normal",
   isRrAddedQue: true,
-  // --- Sim Variables ---
+
+  // Simulation Variables -------
   // heartRate recovers to this rate
   baseHeartRate: 65,
   heartRate: 65,
@@ -41,6 +45,9 @@ var defaultVariables = {
   // variable increase by compression or hacking or etc
   // high value cause to device malfunction
   deviceDamage: 0,
+  seChannel: 0,
+
+  // Manually Changeable Variables -------
   isAsyncAtrial: false,
   isPVC: false,
   isVT: false,
@@ -66,6 +73,8 @@ var defaultVariables = {
   customRecoveryAVNodeBurden: 100,
   customIncreaseDeviceDamage: 100,
   currentExpression: "Normal",
+
+  // On Event Flags -------
   onTalkEvent: false,
   onReactionEvent: false,
   onHeartBeatEvent: false,
@@ -100,16 +109,17 @@ f.saNodeBurden = defaultVariables.saNodeBurden;
 f.avNodeBurden = defaultVariables.avNodeBurden;
 f.ventricleBurden = defaultVariables.ventricleBurden;
 f.deviceDamage = defaultVariables.deviceDamage;
-f.isActiveDevice = defaultVariables.isActiveDevice;
+f.seVol = defaultVariables.seVol;
 
 f.isPVC = defaultVariables.isPVC;
 f.isVT = defaultVariables.isVT;
 f.countVT = defaultVariables.countVT;
+f.isActiveDevice = defaultVariables.isActiveDevice;
 
 f.beatVol = defaultVariables.beatVol;
 f.breathVol = defaultVariables.breathVol;
 f.musicVol = defaultVariables.musicVol;
-f.seVol = defaultVariables.seVol;
+f.seChannel = defaultVariables.seChannel;
 f.isPlayBeatAlways = defaultVariables.isPlayBeatAlways;
 f.isPlayBreathAlways = defaultVariables.isPlayBreathAlways;
 f.isShowEcg = defaultVariables.isShowEcg;

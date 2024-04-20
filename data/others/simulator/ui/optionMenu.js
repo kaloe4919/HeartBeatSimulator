@@ -182,7 +182,7 @@ TYRANO.kag.ftag.master_tag.option_menu = {
 
       // メニューリスト生成
       options.forEach(({ key, label, type, min, max, tooltip }) => {
-        var $menuWrapper = $("<div class='menu_row'>");
+        var $menuWrapper = $(`<div class='menu_row menu_${key}'>`);
         var $menuLabelWrapper = $(
           `<div class='menu_label_wrapper ${tooltip ? "tooltip" : ""}'>`,
         );
@@ -246,6 +246,11 @@ TYRANO.kag.ftag.master_tag.option_menu = {
         );
         f[key] =
           type === "checkbox" ? event.target.checked : event.target.value;
+
+        // update state
+        $(`.menu_${key} .menu_label_state`).text(
+          `${type === "range" ? `${f[key]}%` : `${f[key]}`} (default: ${type === "range" ? `${defaultVariables[key]}%` : `${defaultVariables[key]}`})`,
+        );
 
         // オプション個別のハンドリング
         switch (key) {

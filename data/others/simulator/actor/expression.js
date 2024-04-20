@@ -67,20 +67,16 @@ function expressionHandler() {
   }
 }
 
-TYRANO.kag.hbsim.expression = {
-  f: TYRANO.kag.stat.f,
-  current: "Normal",
-  update: function () {
-    // do not change expression in talk event
-    if (this.f.onTalkEvent) {
-      return;
-    }
+function updateExpression() {
+  // do not change expression in talk event
+  if (this.f.onTalkEvent) {
+    return;
+  }
 
-    // TODO: used only compress event
-    if (this.f.onCompressEvent) {
-      // expressionOntCompressEventHandler();
-    }
+  // TODO: used only compress event
+  if (this.f.onCompressEvent) {
+    // expressionOntCompressEventHandler();
+  }
 
-    expressionHandler();
-  },
-};
+  expressionHandler();
+}
